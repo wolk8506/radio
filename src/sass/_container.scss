@@ -7,24 +7,24 @@
     // padding-left: 20px;
     border: 1px solid black;
 }
-    @media screen and (min-width: 320px) {
+    @media screen and (min-width: 330px) {
             .container {
-                width: 320px;
+                width: 330px;
             }
         }
      
-     @media screen and (min-width: 768px){
-        .container{
-            width: 768px;
-            // padding: 0 40px;
-        }
-     }
+    //  @media screen and (min-width: 768px){
+    //     .container{
+    //         width: 768px;
+    //         // padding: 0 40px;
+    //     }
+    //  }
      
-     @media screen and (min-width: 1024px){
-        .container{
-            width: 1024px;
-            // padding: 0 20px;
-        }
-     }
+    //  @media screen and (min-width: 1024px){
+    //     .container{
+    //         width: 1024px;
+    //         // padding: 0 20px;
+    //     }
+    //  }
        
 
