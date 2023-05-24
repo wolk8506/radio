@@ -14,3 +14,9 @@ body{
 #rad_player{
     width: 340px !important;
 }
+
+#SinoptikInformer{
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+}
