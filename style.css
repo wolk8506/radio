@@ -1,0 +1,16 @@
+#rad_block_logo {
+    display: none !important;
+}
+body{
+    background-color: rgb(67, 66, 66);
+}
+#rad_player{
+    margin-left: auto;
+    margin-right: auto;
+}
+#rad_stationname{
+    width: 160px!important;
+}
+#rad_player{
+    width: 340px !important;
+}
