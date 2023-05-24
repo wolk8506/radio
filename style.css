@@ -15,8 +15,11 @@ body{
     width: 340px !important;
 }
 
-#SinoptikInformer{
-    position: absolute;
-    right: 10%;
-    bottom: 10%;
+ul{
+    font-size: 20px;
+
+}
+li {
+    list-style: none;
+
 }
