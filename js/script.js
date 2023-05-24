@@ -8,7 +8,7 @@ const weather = document.querySelector("#weather");
 
 const fetchUsers7 = async () => {
   const response = await fetch(
-    "http://api.weatherapi.com/v1/forecast.json?key=02f4d3b9a4c141c6b73150514232405&q=Kharkiv&days=30"
+    "http://api.weatherapi.com/v1/forecast.json?key=02f4d3b9a4c141c6b73150514232405&q=Kharkiv&days=14"
   );
   const data = await response.json();
   return data;
