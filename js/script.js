@@ -1,5 +1,20 @@
+const weatherDay = document.querySelector("#weather-day");
+const weatherWeek = document.querySelector("#weather-week");
 const weather = document.querySelector("#weather");
-let w;
+
+const fetchUsers7 = async () => {
+  const response = await fetch(
+    "http://api.weatherapi.com/v1/forecast.json?key=02f4d3b9a4c141c6b73150514232405&q=Kharkiv&days=30"
+  );
+  const data = await response.json();
+  return data;
+};
+
+fetchUsers7().then((data) => {
+  console.log(data);
+  weatherW(data);
+  weatherH(data);
+});
 
 const fetchUsers = async () => {
   const response = await fetch(
@@ -9,14 +24,48 @@ const fetchUsers = async () => {
   return data;
 };
 
-fetchUsers().then((data) => weatherF(data));
+setInterval(() => {
+  fetchUsers().then((data) => weatherD(data));
+  fetchUsers7().then((data) => weatherW(data));
+  console.log(1);
+}, 600000);
+
+fetchUsers().then((data) => weatherD(data));
 // fetchUsers().then((data) => (weather.textContent = data.location.name));
 // fetchUsers().then((users) => console.log(users));
 
 // weather.textContent = users.location.name;
+function weatherH(data) {
+  const hour = data.forecast.forecastday[0].hour
+    .map(
+      (i) => `
+      
+      <p>${i.time} |${i.dewpoint_c} °C |</p>`
+    )
+    .join("");
+  //   console.log(hour);
+  weather.innerHTML = hour;
+}
 
-function weatherF(data) {
-  weather.innerHTML = `
+function weatherW(data) {
+  const week = data.forecast.forecastday
+    .map(
+      (i) => `<ul>
+        <li>${i.date}</li>
+        <li>${i.day.avgtemp_c} °C</li>
+        <li> <img src='${i.day.condition.icon}'></li>
+        <li>${i.day.condition.text}</li>
+        <li>Влажность: ${i.day.avghumidity}%</li>
+    </ul>`
+    )
+    .join("");
+
+  weatherWeek.innerHTML = week;
+}
+// weatherW();
+
+function weatherD(data) {
+  weatherDay.innerHTML = `
     <ul>
         <li>Страна: ${data.location.country}</li>
         <li>Город: ${data.location.name}</li>
@@ -41,4 +90,4 @@ function weatherF(data) {
     </ul>
     `;
 }
-weatherF();
+// weatherF();

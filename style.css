@@ -17,9 +17,27 @@ body{
 
 ul{
     font-size: 20px;
+    color: aliceblue;
 
 }
 li {
     list-style: none;
 
+}
+
+#weather-week {
+    display: flex;
+    color: aliceblue;
+    font-size: 12px;
+    
+}
+
+#weather-week ul{
+border: 1px solid coral;
+margin: 0;
+padding: 5px;
+}
+
+#weather-week li{
+    margin: 0;
 }
