@@ -4,7 +4,7 @@ console.log(myJson.find((el) => el.code == 1000));
 
 const weatherDay = document.querySelector("#weather-day");
 const weatherWeek = document.querySelector("#weather-week");
-const weather = document.querySelector("#weather");
+const weather = document.querySelector("#weather-hour");
 
 const fetchUsers7 = async () => {
   const response = await fetch(
@@ -17,7 +17,7 @@ const fetchUsers7 = async () => {
 fetchUsers7().then((data) => {
   console.log(data);
   weatherW(data);
-  // weatherH(data);
+  weatherH(data);
 });
 
 const fetchUsers = async () => {
@@ -31,32 +31,35 @@ const fetchUsers = async () => {
 setInterval(() => {
   fetchUsers().then((data) => weatherD(data));
   fetchUsers7().then((data) => weatherW(data));
-  console.log(1);
+  // console.log(1);
 }, 600000);
 
 fetchUsers().then((data) => weatherD(data));
 
-// function weatherH(data) {
-//   const hour = data.forecast.forecastday[0].hour
-//     .map(
-//       (i) => `
+function weatherH(data) {
+  const hour = data.forecast.forecastday[0].hour
+    .map(
+      (i) => `
+<div class="hour-item">
+<p>${i.time.slice(11)}</p> 
+        <p class="hour-item-temp"> ${i.dewpoint_c} °C </p>
+      <img src="${i.condition.icon}"></div>
+      `
+    )
+    .join("");
 
-//       <p>${i.time} |${i.dewpoint_c} °C |</p>`
-//     )
-//     .join("");
-
-//   weather.innerHTML = hour;
-// }
+  weather.innerHTML = hour;
+}
 
 function weatherW(data) {
   const week = data.forecast.forecastday
     .map((i) => {
       const cond = myJson.find((el) => el.code == i.day.condition.code);
-      console.log(cond.ru);
+      // console.log(cond.ru);
       return `<ul>
         <li>${i.date}</li>
-        <li>${i.day.avgtemp_c} °C</li>
-        <li> <img src='${i.day.condition.icon}'></li>
+        <li></li>
+        <li class="condition-week"> <p>${i.day.avgtemp_c} °C</p><img src='${i.day.condition.icon}'></li>
         <li>${cond.ru}</li>
         <li>Влажность: ${i.day.avghumidity}%</li>
     </ul>`;
@@ -68,7 +71,7 @@ function weatherW(data) {
 
 function weatherD(data) {
   const cond = myJson.find((el) => el.code == data.current.condition.code);
-  console.log(cond.ru);
+  // console.log(cond.ru);
   weatherDay.innerHTML = `<div class="day">
     <ul class="day-list">
         <li class="location">${data.location.country}, ${
