@@ -1,10 +1,12 @@
 import myJson from "./condition.json" assert { type: "json" };
-console.log(myJson);
-console.log(myJson.find((el) => el.code == 1000));
+// console.log(myJson);
+// console.log(myJson.find((el) => el.code == 1000));
 
 const weatherDay = document.querySelector("#weather-day");
 const weatherWeek = document.querySelector("#weather-week");
 const weather = document.querySelector("#weather-hour");
+const currencyUsd = document.querySelector("#currency-usd");
+const currencyEur = document.querySelector("#currency-eur");
 
 const fetchUsers7 = async () => {
   const response = await fetch(
@@ -37,11 +39,23 @@ setInterval(() => {
 fetchUsers().then((data) => weatherD(data));
 
 function weatherH(data) {
-  const hour = data.forecast.forecastday[0].hour
+  const hourTwoDays = [];
+  data.forecast.forecastday[0].hour.map((i) => {
+    let arr = i;
+    arr.style = "first-day";
+    hourTwoDays.push(arr);
+  });
+  data.forecast.forecastday[1].hour.map((i) => hourTwoDays.push(i));
+  const currentTime = data.location.localtime.slice(11, 13);
+  const hourOneDay = hourTwoDays.splice(currentTime, 24);
+  // console.log(hourOneDay);
+  // console.log(data.location.localtime.slice(11, 13));
+
+  const hour = hourOneDay
     .map(
       (i) => `
 <div class="hour-item">
-<p>${i.time.slice(11)}</p> 
+<p class="${i.style}">${i.time.slice(11)}</p> 
         <p class="hour-item-temp"> ${i.dewpoint_c} °C </p>
       <img src="${i.condition.icon}"></div>
       `
@@ -96,25 +110,25 @@ function weatherD(data) {
         <li class="card-day">
           <p>УФ-индекс</p>
           <span>${data.current.uv}</span> </li>
-        <li class="card-day"> <p>Давление:</p> <span>${
+        <li class="card-day"> <p>Давление</p> <span>${
           data.current.pressure_mb
         } мм</span> </li>
-        <li class="card-day"> <p>Порывы ветра:</p> <span>${(
+        <li class="card-day"> <p>Порывы ветра</p>  <span>${(
           data.current.gust_kph / 3.6
         ).toFixed(2)} м/с</span> </li>
-        <li class="card-day"> <p>Количество осадков:</p> <span>${
+        <li class="card-day"> <p>Количество осадков</p> <span>${
           data.current.precip_mm
         } мм</span> </li>
-        <li class="card-day"> <p>Влажность:</p> <span>${
+        <li class="card-day"> <p>Влажность</p> <span>${
           data.current.humidity
         } %</span> </li>
-        <li class="card-day"><p>Облачность: </p> <span>${
+        <li class="card-day"><p>Облачность</p> <span>${
           data.current.cloud
         } %</span> </li>
-        <li class="card-day"><p>По ощущениям температура:</p> <span>${
+        <li class="card-day"><p>По ощущениям температура</p> <span>${
           data.current.feelslike_c
         }°C</span> </li>
-        <li class="card-day"> <p>Видимость:</p> <span>${
+        <li class="card-day"> <p>Видимость</p> <span>${
           data.current.vis_km
         } км</span> </li>
         
@@ -126,3 +140,58 @@ function weatherD(data) {
     </div>
     `;
 }
+
+const currency = async () => {
+  const response = await fetch("https://api.monobank.ua/bank/currency");
+  const data = await response.json();
+  return data;
+};
+
+currency().then((data) => {
+  // console.log(data);
+  currencyA(data);
+});
+
+function currencyA(data) {
+  // console.log(data.filter((el) => el.currencyCodeB == 840));
+  let arr = [];
+  data.map((i) => {
+    if (i.currencyCodeB == 980) {
+      arr.push(i);
+    }
+  });
+
+  const USD = arr.find((el) => el.currencyCodeA == 840);
+  const PLN = arr.find((el) => el.currencyCodeA == 985);
+  const EUR = arr.find((el) => el.currencyCodeA == 978);
+  console.log(`USD продажа: ${USD.rateBuy} | покупка: ${USD.rateSell}`);
+  console.log(`PLN продажа: ${PLN.rateBuy} | покупка: ${PLN.rateSell}`);
+  console.log(`EUR продажа: ${EUR.rateBuy} | покупка: ${EUR.rateSell}`);
+
+  currencyUsd.innerHTML = `<p class="currencyUsd">USD продажа: ${USD.rateBuy} | покупка: ${USD.rateSell}</p>`;
+  currencyEur.innerHTML = `<p class="currencyEur">EUR продажа: ${EUR.rateBuy} | покупка: ${EUR.rateSell}</p>`;
+  // console.log(arr);
+}
+// UNITED STATES OF AMERICA (THE)	US Dollar	USD	840
+// UKRAINE	Hryvnia	UAH	980
+// POLAND	Zloty	PLN	985
+// EUROPEAN UNION	Euro	EUR	978
+
+currencyCodeA: 840;
+currencyCodeB: 980;
+date: 1684965674;
+rateBuy: 36.65;
+rateCross: 0;
+rateSell: 37.4406;
+
+[
+  {
+    cod: 840,
+    currencyCod: "USD",
+    country: "UNITED STATES OF AMERICA",
+    currency: "US Dollar",
+  },
+  { cod: 980, currencyCod: "UAH", country: "UKRAINE", currency: "Hryvnia" },
+  { cod: 985, currencyCod: "PLN", country: "POLAND", currency: "Zloty" },
+  { cod: 978, currencyCod: "EUR", country: "EUROPEAN UNION", currency: "Euro" },
+];
