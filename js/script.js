@@ -46,11 +46,13 @@ function weatherH(data) {
     hourTwoDays.push(arr);
   });
   data.forecast.forecastday[1].hour.map((i) => hourTwoDays.push(i));
-  const currentTime = data.location.localtime.slice(11, 13);
-  const hourOneDay = hourTwoDays.splice(currentTime, 24);
+  // const currentTime = data.location.localtime.slice(11, 13);
+  const date = new Date();
+  const hourOneDay = hourTwoDays.splice(date.getHours(), 24);
   // console.log(hourOneDay);
   // console.log(data.location.localtime.slice(11, 13));
 
+  // console.log(date.getHours());
   const hour = hourOneDay
     .map(
       (i) => `
@@ -195,3 +197,7 @@ rateSell: 37.4406;
   { cod: 985, currencyCod: "PLN", country: "POLAND", currency: "Zloty" },
   { cod: 978, currencyCod: "EUR", country: "EUROPEAN UNION", currency: "Euro" },
 ];
+
+const googleNews = "308e599cba574c4299ca07f15ee0447d";
+const aa =
+  "https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=308e599cba574c4299ca07f15ee0447d";
