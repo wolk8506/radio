@@ -69,32 +69,57 @@ function weatherW(data) {
 function weatherD(data) {
   const cond = myJson.find((el) => el.code == data.current.condition.code);
   console.log(cond.ru);
-  weatherDay.innerHTML = `
-    <ul>
-        <li>Страна: ${data.location.country}</li>
-        <li>Город: ${data.location.name}</li>
-        <li>Таймзона: ${data.location.tz_id}</li>
-        <li> <img src='${data.current.condition.icon}'></li>
-        <li>Погодные условия: ${cond.ru}</li>
-        <li>Температура: ${data.current.temp_c}°C</li>
+  weatherDay.innerHTML = `<div class="day">
+    <ul class="day-list">
+        <li class="location">${data.location.country}, ${
+    data.location.name
+  }</li>
         
-        <li>Местное время, когда данные в реальном времени были обновлены: ${
-          data.current.last_updated
-        }</li>
+        <li>Таймзона: ${data.location.tz_id}</li>
+        <li class="condition"><p>+${data.current.temp_c}°C</p> <img src='${
+    data.current.condition.icon
+  }' widh=64 ></li>
+        <li>Погодные условия: ${cond.ru}</li>
+        
+        
+        
         <li>Скорость ветра: ${(data.current.wind_kph / 3.6).toFixed(2)} м/с</li>
         <li>Направление ветра в градусах: ${data.current.wind_degree}°</li>
         <li>Направление ветра в виде компаса с 16 точками: ${
           data.current.wind_dir
         }</li>
-        <li>УФ-индекс: ${data.current.uv}</li>
-        <li>Давление: ${data.current.pressure_mb} мм</li>
-        <li>Порывы ветра: ${(data.current.gust_kph / 3.6).toFixed(2)} м/с</li>
-        <li>Количество осадков: ${data.current.precip_mm} мм</li>
-        <li>Влажность: ${data.current.humidity} %</li>
-        <li>Облачность: ${data.current.cloud} %</li>
-        <li>По ощущениям температура: ${data.current.feelslike_c}°C</li>
-        <li>Видимость: ${data.current.vis_km} км</li>
+        </ul>
+        <ul class="card-day-list">
+        <li class="card-day">
+          <p>УФ-индекс</p>
+          <span>${data.current.uv}</span> </li>
+        <li class="card-day"> <p>Давление:</p> <span>${
+          data.current.pressure_mb
+        } мм</span> </li>
+        <li class="card-day"> <p>Порывы ветра:</p> <span>${(
+          data.current.gust_kph / 3.6
+        ).toFixed(2)} м/с</span> </li>
+        <li class="card-day"> <p>Количество осадков:</p> <span>${
+          data.current.precip_mm
+        } мм</span> </li>
+        <li class="card-day"> <p>Влажность:</p> <span>${
+          data.current.humidity
+        } %</span> </li>
+        <li class="card-day"><p>Облачность: </p> <span>${
+          data.current.cloud
+        } %</span> </li>
+        <li class="card-day"><p>По ощущениям температура:</p> <span>${
+          data.current.feelslike_c
+        }°C</span> </li>
+        <li class="card-day"> <p>Видимость:</p> <span>${
+          data.current.vis_km
+        } км</span> </li>
+        
 
     </ul>
+    <p class="update-time">Местное время, когда данные в реальном времени были обновлены: ${
+      data.current.last_updated
+    }</p>
+    </div>
     `;
 }
