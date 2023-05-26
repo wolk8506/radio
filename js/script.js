@@ -30,15 +30,6 @@ const fetchUsers = async () => {
   return data;
 };
 
-setInterval(() => {
-  fetchUsers().then((data) => weatherD(data));
-  fetchUsers7().then((data) => {
-    weatherW(data);
-    weatherH(data);
-  });
-  // console.log(1);
-}, 600000);
-
 fetchUsers().then((data) => weatherD(data));
 
 function weatherH(data) {
@@ -145,13 +136,17 @@ function weatherD(data) {
 const currency = async () => {
   const response = await fetch("https://api.monobank.ua/bank/currency");
   const data = await response.json();
+  if (data.errorDescription === "Too many requests") {
+    console.log(data);
+    const response = await fetch("https://api.monobank.ua/bank/currency");
+    const data2 = await response.json();
+    return data2;
+  }
+
   return data;
 };
 
-currency().then((data) => {
-  // console.log(data);
-  currencyA(data);
-});
+currency().then((data) => currencyA(data));
 
 function currencyA(data) {
   // console.log(data.filter((el) => el.currencyCodeB == 840));
@@ -173,29 +168,23 @@ function currencyA(data) {
   currencyEur.innerHTML = `<div class="currency"><img src="./img/eur.png" width="24"><p class="currencyEur">EUR продажа: ${EUR.rateBuy} | покупка: ${EUR.rateSell}</p></div>`;
   // console.log(arr);
 }
-// UNITED STATES OF AMERICA (THE)	US Dollar	USD	840
-// UKRAINE	Hryvnia	UAH	980
-// POLAND	Zloty	PLN	985
-// EUROPEAN UNION	Euro	EUR	978
+setInterval(() => {
+  fetchUsers().then((data) => weatherD(data));
+  fetchUsers7().then((data) => {
+    weatherW(data);
+    weatherH(data);
+  });
+  currency().then((data) => currencyA(data));
+  // console.log(1);
+}, 600000);
 
-currencyCodeA: 840;
-currencyCodeB: 980;
-date: 1684965674;
-rateBuy: 36.65;
-rateCross: 0;
-rateSell: 37.4406;
-
-[
-  {
-    cod: 840,
-    currencyCod: "USD",
-    country: "UNITED STATES OF AMERICA",
-    currency: "US Dollar",
-  },
-  { cod: 980, currencyCod: "UAH", country: "UKRAINE", currency: "Hryvnia" },
-  { cod: 985, currencyCod: "PLN", country: "POLAND", currency: "Zloty" },
-  { cod: 978, currencyCod: "EUR", country: "EUROPEAN UNION", currency: "Euro" },
-];
+//
+//
+//
+//
+//
+//
+//
 
 const googleNews = "308e599cba574c4299ca07f15ee0447d";
 const aa =
