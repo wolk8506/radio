@@ -57,7 +57,7 @@ function weatherH(data) {
       (i) => `
 <div class="hour-item">
 <p class="${i.style}">${i.time.slice(11)}</p> 
-        <p class="hour-item-temp"> ${i.dewpoint_c} °C </p>
+        <p class="hour-item-temp"> ${i.feelslike_c} °C </p>
       <img src="${i.condition.icon}"></div>
       `
     )
