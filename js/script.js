@@ -32,7 +32,10 @@ const fetchUsers = async () => {
 
 setInterval(() => {
   fetchUsers().then((data) => weatherD(data));
-  fetchUsers7().then((data) => weatherW(data));
+  fetchUsers7().then((data) => {
+    weatherW(data);
+    weatherH(data);
+  });
   // console.log(1);
 }, 600000);
 
@@ -46,13 +49,9 @@ function weatherH(data) {
     hourTwoDays.push(arr);
   });
   data.forecast.forecastday[1].hour.map((i) => hourTwoDays.push(i));
-  // const currentTime = data.location.localtime.slice(11, 13);
   const date = new Date();
   const hourOneDay = hourTwoDays.splice(date.getHours(), 24);
-  // console.log(hourOneDay);
-  // console.log(data.location.localtime.slice(11, 13));
 
-  // console.log(date.getHours());
   const hour = hourOneDay
     .map(
       (i) => `
