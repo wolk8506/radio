@@ -169,8 +169,8 @@ function currencyA(data) {
   console.log(`PLN продажа: ${PLN.rateBuy} | покупка: ${PLN.rateSell}`);
   console.log(`EUR продажа: ${EUR.rateBuy} | покупка: ${EUR.rateSell}`);
 
-  currencyUsd.innerHTML = `<div class="currency"><img src="../img/usa.png" width="24"><p class="currencyUsd">USD продажа: ${USD.rateBuy} | покупка: ${USD.rateSell}</p></div>`;
-  currencyEur.innerHTML = `<div class="currency"><img src="../img/eur.png" width="24"><p class="currencyEur">EUR продажа: ${EUR.rateBuy} | покупка: ${EUR.rateSell}</p></div>`;
+  currencyUsd.innerHTML = `<div class="currency"><img src="./img/usa.png" width="24"><p class="currencyUsd">USD продажа: ${USD.rateBuy} | покупка: ${USD.rateSell}</p></div>`;
+  currencyEur.innerHTML = `<div class="currency"><img src="./img/eur.png" width="24"><p class="currencyEur">EUR продажа: ${EUR.rateBuy} | покупка: ${EUR.rateSell}</p></div>`;
   // console.log(arr);
 }
 // UNITED STATES OF AMERICA (THE)	US Dollar	USD	840
