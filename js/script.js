@@ -71,27 +71,22 @@ function weatherW(data) {
     </ul>`;
     })
     .join("");
-
   weatherWeek.innerHTML = week;
 }
 
 function weatherD(data) {
   const cond = myJson.find((el) => el.code == data.current.condition.code);
-  // console.log(cond.ru);
+
   weatherDay.innerHTML = `<div class="day">
     <ul class="day-list">
         <li class="location">${data.location.country}, ${
     data.location.name
   }</li>
-        
         <li>Таймзона: ${data.location.tz_id}</li>
         <li class="condition"><p>+${data.current.temp_c}°C</p> <img src='${
     data.current.condition.icon
   }' widh=64 ></li>
         <li>Погодные условия: ${cond.ru}</li>
-        
-        
-        
         <li>Скорость ветра: ${(data.current.wind_kph / 3.6).toFixed(2)} м/с</li>
         <li>Направление ветра в градусах: ${data.current.wind_degree}°</li>
         <li>Направление ветра в виде компаса с 16 точками: ${
@@ -123,8 +118,6 @@ function weatherD(data) {
         <li class="card-day"> <p>Видимость</p> <span>${
           data.current.vis_km
         } км</span> </li>
-        
-
     </ul>
     <p class="update-time">Местное время, когда данные в реальном времени были обновлены: ${
       data.current.last_updated
@@ -142,14 +135,12 @@ const currency = async () => {
     const data2 = await response.json();
     return data2;
   }
-
   return data;
 };
 
 currency().then((data) => currencyA(data));
 
 function currencyA(data) {
-  // console.log(data.filter((el) => el.currencyCodeB == 840));
   let arr = [];
   data.map((i) => {
     if (i.currencyCodeB == 980) {
@@ -166,7 +157,6 @@ function currencyA(data) {
 
   currencyUsd.innerHTML = `<div class="currency"><img src="./img/usa.png" width="24"><p class="currencyUsd">USD продажа: ${USD.rateBuy} | покупка: ${USD.rateSell}</p></div>`;
   currencyEur.innerHTML = `<div class="currency"><img src="./img/eur.png" width="24"><p class="currencyEur">EUR продажа: ${EUR.rateBuy} | покупка: ${EUR.rateSell}</p></div>`;
-  // console.log(arr);
 }
 setInterval(() => {
   fetchUsers().then((data) => weatherD(data));
@@ -175,17 +165,4 @@ setInterval(() => {
     weatherH(data);
   });
   currency().then((data) => currencyA(data));
-  // console.log(1);
 }, 600000);
-
-//
-//
-//
-//
-//
-//
-//
-
-const googleNews = "308e599cba574c4299ca07f15ee0447d";
-const aa =
-  "https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=308e599cba574c4299ca07f15ee0447d";

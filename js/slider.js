@@ -5,27 +5,34 @@ const sliderNews = document.querySelector("#slider-news");
 let count = 0;
 let totalnews = 0;
 let dataNews = [];
+const APIkey1 = "4be889e7726b4f24b5bf5f5ab9a69c1f";
+const APIkey2 = "308e599cba574c4299ca07f15ee0447d";
 
 const news = async () => {
+  const date = new Date();
+  let APIkey = "";
+  date.getHours();
+  if (date.getHours() < 12) {
+    APIkey = APIkey1;
+  } else APIkey = APIkey2;
+
   const response1 = await fetch(
-    "https://newsapi.org/v2/everything?q=google%20news&language=ru&apiKey=308e599cba574c4299ca07f15ee0447d"
+    `https://newsapi.org/v2/everything?q=google%20news&language=ru&apiKey=${APIkey}`
   );
   const data1 = await response1.json();
   const response2 = await fetch(
-    "https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=308e599cba574c4299ca07f15ee0447d"
+    `https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=${APIkey}`
   );
   const data2 = await response2.json();
   const response3 = await fetch(
-    "https://newsapi.org/v2/top-headlines?country=ru&apiKey=308e599cba574c4299ca07f15ee0447d"
+    `https://newsapi.org/v2/top-headlines?country=ru&apiKey=${APIkey}`
   );
   const data3 = await response3.json();
   let data = [];
   data = await data.concat(data1.articles);
   data = await data.concat(data2.articles);
   data = await data.concat(data3.articles);
-  // console.log(data1);
   if (data1.status === "error") {
-    // console.log("error");
     return "error";
   }
   return data;
@@ -43,7 +50,6 @@ news().then((data) => {
 
 function newsMarkup() {
   const data = dataNews;
-  // console.log(data);
   totalnews = data.length;
   if (count === data.length - 1) {
     count = 0;
@@ -54,12 +60,11 @@ function newsMarkup() {
 
   function startTimer() {
     if (!nIntervId) {
-      nIntervId = setInterval(flashText, 5000);
+      nIntervId = setInterval(nextSlide, 5000);
     }
   }
 
-  function flashText() {
-    console.log(1);
+  function nextSlide() {
     if (count === data.length - 1) {
       count = 0;
     } else count = count + 1;
@@ -77,7 +82,6 @@ function newsMarkup() {
     if (count === 0) {
       count = data.length - 1;
     } else count = count - 1;
-    // console.log(count);
     markup();
   });
 
@@ -85,7 +89,6 @@ function newsMarkup() {
     if (count === data.length - 1) {
       count = 0;
     } else count = count + 1;
-    // console.log(count);
     stopTimer();
     markup();
   });
