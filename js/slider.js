@@ -60,7 +60,7 @@ function newsMarkup() {
 
   function startTimer() {
     if (!nIntervId) {
-      nIntervId = setInterval(nextSlide, 5000);
+      nIntervId = setInterval(nextSlide, 10000);
     }
   }
 
@@ -104,7 +104,9 @@ function newsMarkup() {
       <div>
       <h3>${data[count].title}</h3>
         <p>${data[count].description}</p>
-        <a class="news-link" href="${data[count].url}">${
+        <a class="news-link" href="${
+          data[count].url
+        }" rel="noopener noreferrer" target="_blank">${
       data[count].source.name
     }</a>
       </div>
