@@ -76,22 +76,25 @@ function weatherW(data) {
 
 function weatherD(data) {
   const cond = myJson.find((el) => el.code == data.current.condition.code);
-
+  const icon = data.current.condition.icon.slice(34);
+  console.log(icon);
   weatherDay.innerHTML = `<div class="day">
     <ul class="day-list">
         <li class="location">${data.location.country}, ${
     data.location.name
   }</li>
         <li>Таймзона: ${data.location.tz_id}</li>
-        <li class="condition"><p>+${data.current.temp_c}°C</p> <img src='${
-    data.current.condition.icon
-  }' widh=64 ></li>
+        <li class="condition"><p>${
+          data.current.temp_c
+        }°C</p> <img src='//cdn.weatherapi.com/weather/128x128${icon}' widh=128 ></li>
         <li>Погодные условия: ${cond.ru}</li>
         <li>Скорость ветра: ${(data.current.wind_kph / 3.6).toFixed(2)} м/с</li>
-        <li>Направление ветра в градусах: ${data.current.wind_degree}°</li>
+        <li>Направление ветра в градусах: ${data.current.wind_degree}° </li>
         <li>Направление ветра в виде компаса с 16 точками: ${
           data.current.wind_dir
-        }</li>
+        }     <img src="./img/compass.png" width="24" style="transform: rotate(${
+    316 + data.current.wind_degree
+  }deg);"></li>
         </ul>
         <ul class="card-day-list">
         <li class="card-day">
@@ -129,12 +132,6 @@ function weatherD(data) {
 const currency = async () => {
   const response = await fetch("https://api.monobank.ua/bank/currency");
   const data = await response.json();
-  if (data.errorDescription === "Too many requests") {
-    console.log(data);
-    const response = await fetch("https://api.monobank.ua/bank/currency");
-    const data2 = await response.json();
-    return data2;
-  }
   return data;
 };
 
