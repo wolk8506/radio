@@ -1,3 +1,4 @@
+console.log("fix-w-1.0.0");
 import myJson from "./condition.json" assert { type: "json" };
 // console.log(myJson);
 // console.log(myJson.find((el) => el.code == 1000));

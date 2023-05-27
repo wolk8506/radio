@@ -1,3 +1,4 @@
+console.log("fix-s-1.0.0");
 const idNews = document.querySelector("#news");
 const btnMinus = document.querySelector("#btn-minus");
 const btnPlus = document.querySelector("#btn-plus");
