@@ -5,19 +5,23 @@ const sliderNews = document.querySelector("#slider-news");
 let count = 0;
 let totalnews = 0;
 let dataNews = [];
-const APIkey1 = "4be889e7726b4f24b5bf5f5ab9a69c1f";
-const APIkey2 = "308e599cba574c4299ca07f15ee0447d";
+const APIkey1 = "4be889e7726b4f24b5bf5f5ab9a69c1f"; //borat72807@introace.com
+const APIkey2 = "1683087afdaf490aa64b24c15f181360"; //borat72807+a1@introace.com
+const APIkey3 = "308e599cba574c4299ca07f15ee0447d"; //w
 
 const news = async () => {
   const date = new Date();
   let APIkey = "";
   date.getHours();
-  if (date.getHours() < 12) {
+  if (date.getHours() < 8) {
     APIkey = APIkey1;
     console.log("APIkey1");
-  } else {
+  } else if (date.getHours() < 16) {
     APIkey = APIkey2;
     console.log("APIkey2");
+  } else {
+    APIkey = APIkey3;
+    console.log("APIkey3");
   }
 
   const response1 = await fetch(
