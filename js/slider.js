@@ -14,7 +14,11 @@ const news = async () => {
   date.getHours();
   if (date.getHours() < 12) {
     APIkey = APIkey1;
-  } else APIkey = APIkey2;
+    console.log("APIkey1");
+  } else {
+    APIkey = APIkey2;
+    console.log("APIkey2");
+  }
 
   const response1 = await fetch(
     `https://newsapi.org/v2/everything?q=google%20news&language=ru&apiKey=${APIkey}`
