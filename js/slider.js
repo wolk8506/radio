@@ -1,4 +1,4 @@
-console.log("fix-s-1.0.0");
+console.log("fix-s-1.0.1");
 const idNews = document.querySelector("#news");
 const btnMinus = document.querySelector("#btn-minus");
 const btnPlus = document.querySelector("#btn-plus");
@@ -26,15 +26,18 @@ const news = async () => {
   }
 
   const response1 = await fetch(
-    `https://newsapi.org/v2/everything?q=google%20news&language=ru&apiKey=${APIkey}`
+    // `https://newsapi.org/v2/everything?q=google%20news&language=ru&apiKey=${APIkey}`
+    `https://newsapi.org/v2/everything?q=google%20news&language=ru&apiKey=1683087afdaf490aa64b24c15f181360`
   );
   const data1 = await response1.json();
   const response2 = await fetch(
-    `https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=${APIkey}`
+    // `https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=${APIkey}`
+    `https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=1683087afdaf490aa64b24c15f181360`
   );
   const data2 = await response2.json();
   const response3 = await fetch(
-    `https://newsapi.org/v2/top-headlines?country=ru&apiKey=${APIkey}`
+    // `https://newsapi.org/v2/top-headlines?country=ru&apiKey=${APIkey}`
+    `https://newsapi.org/v2/top-headlines?country=ru&apiKey=1683087afdaf490aa64b24c15f181360`
   );
   const data3 = await response3.json();
   let data = [];

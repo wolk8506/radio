@@ -1,7 +1,5 @@
-console.log("fix-w-1.0.0");
+console.log("fix-w-1.0.1");
 import myJson from "./condition.json" assert { type: "json" };
-// console.log(myJson);
-// console.log(myJson.find((el) => el.code == 1000));
 
 const weatherDay = document.querySelector("#weather-day");
 const weatherWeek = document.querySelector("#weather-week");
@@ -21,17 +19,18 @@ fetchUsers7().then((data) => {
   console.log(data);
   weatherW(data);
   weatherH(data);
+  weatherD(data);
 });
 
-const fetchUsers = async () => {
-  const response = await fetch(
-    "https://api.weatherapi.com/v1/current.json?key=02f4d3b9a4c141c6b73150514232405&q=Kharkiv"
-  );
-  const data = await response.json();
-  return data;
-};
+// const fetchUsers = async () => {
+//   const response = await fetch(
+//     "https://api.weatherapi.com/v1/current.json?key=02f4d3b9a4c141c6b73150514232405&q=Kharkiv"
+//   );
+//   const data = await response.json();
+//   return data;
+// };
 
-fetchUsers().then((data) => weatherD(data));
+// fetchUsers().then((data) => weatherD(data));
 
 function weatherH(data) {
   const hourTwoDays = [];
@@ -48,7 +47,9 @@ function weatherH(data) {
     .map(
       (i) => `
 <div class="hour-item">
-<p class="${i.style}">${i.time.slice(11)}</p> 
+<p class="${i.style}"><svg class="icon-time" width="24" height="24">
+          <use href="./img/sprite.svg#icon-time"></use>
+        </svg>${i.time.slice(11)}</p> 
         <p class="hour-item-temp">${i.feelslike_c}°C </p>
       <img src="${i.condition.icon}"></div>
       `
@@ -62,13 +63,14 @@ function weatherW(data) {
   const week = data.forecast.forecastday
     .map((i) => {
       const cond = myJson.find((el) => el.code == i.day.condition.code);
-      // console.log(cond.ru);
       return `<ul>
-        <li>${i.date}</li>
+        <li class="week-first-item"><p>${i.date}</p><div class="week-humidity"><svg class="icon-humidity" width="24" height="24">
+          <use href="./img/sprite.svg#icon-humidity"></use>
+        </svg><p>${i.day.avghumidity}%</p></div> </li>
         <li></li>
-        <li class="condition-week"> <p>${i.day.avgtemp_c} °C</p><img src='${i.day.condition.icon}'></li>
+        <li class="condition-week"> <p>${i.day.avgtemp_c}°C</p><img src='${i.day.condition.icon}'></li>
         <li>${cond.ru}</li>
-        <li>Влажность: ${i.day.avghumidity}%</li>
+        
     </ul>`;
     })
     .join("");
@@ -81,12 +83,12 @@ function weatherD(data) {
   console.log(icon);
   weatherDay.innerHTML = `<div class="day">
     <ul class="day-list">
-        <li class="location">${data.location.country}, ${
-    data.location.name
-  }</li>
+        <li class="location"> <svg class="ico-location" width="18" height="18">
+          <use href="./img/sprite.svg#icon-location2"></use>
+        </svg>${data.location.country}, ${data.location.name}</li>
         <li>Таймзона: ${data.location.tz_id}</li>
         <li class="condition"><p>${
-          data.current.temp_c
+          data.current.feelslike_c
         }°C</p> <img src='//cdn.weatherapi.com/weather/128x128${icon}' widh=128 ></li>
         <li>${cond.ru}</li>
         <li class="day-wind"><p>Скорость ветра: ${(
@@ -96,36 +98,55 @@ function weatherD(data) {
         )} м/с</p>  <img src="./img/compass.png" width="24" style="transform: rotate(${
     316 + data.current.wind_degree
   }deg);"></li>
-        
+        <li>Восход: ${data.forecast.forecastday[0].astro.sunrise}</li>
+        <li>Закат: ${data.forecast.forecastday[0].astro.sunset}</li>
         </ul>
         <ul class="card-day-list">
         <li class="card-day">
-          <p>УФ-индекс</p>
-          <span>${data.current.uv}</span> </li>
-        <li class="card-day"> <p>Давление</p> <span>${
+          <p><svg class="icon-sun" width="24" height="24">
+          <use href="./img/sprite.svg#icon-sun"></use>
+        </svg><span>УФ-индекс</span></p>
+          <span>${data.current.uv} из 10</span> </li>
+        <li class="card-day"> <p><svg class="icon-pressure" width="24" height="24">
+          <use href="./img/sprite.svg#icon-pressure"></use>
+        </svg><span>Давление</span></p> <span>${
           data.current.pressure_mb
         } мм</span> </li>
-        <li class="card-day"> <p>Порывы ветра</p>  <span>${(
-          data.current.gust_kph / 3.6
+        <li class="card-day"> <p><svg class="icon-wind" width="24" height="24">
+          <use href="./img/sprite.svg#icon-wind"></use>
+        </svg><span>Порывы ветра</span></p>  <span>${(
+          data.forecast.forecastday[0].day.maxwind_kph / 3.6
         ).toFixed(2)} м/с</span> </li>
-        <li class="card-day"> <p>Количество осадков</p> <span>${
+        <li class="card-day"> <p><svg class="icon-opacity" width="24" height="24">
+          <use href="./img/sprite.svg#icon-opacity"></use>
+        </svg><span>Количество осадков</span></p> <span>${
           data.current.precip_mm
         } мм</span> </li>
-        <li class="card-day"> <p>Влажность</p> <span>${
+        <li class="card-day"> <p><svg class="icon-humidity" width="24" height="24">
+          <use href="./img/sprite.svg#icon-humidity"></use>
+        </svg><span>Влажность</span></p> <span>${
           data.current.humidity
         } %</span> </li>
-        <li class="card-day"><p>Облачность</p> <span>${
+        <li class="card-day"><p>
+        <svg class="icon-cloudy" width="24" height="24">
+          <use href="./img/sprite.svg#icon-cloudy"></use>
+        </svg><span>Облачность</span></p> <span>${
           data.current.cloud
         } %</span> </li>
-        <li class="card-day"><p>По ощущениям температура</p> <span>${
+        <li class="card-day"><p>
+        <svg class="icon-thermometer" width="24" height="24">
+          <use href="./img/sprite.svg#icon-thermometer"></use>
+        </svg>По ощущениям температура</p> <span>${
           data.current.feelslike_c
         }°C</span> </li>
-        <li class="card-day"> <p>Видимость</p> <span>${
+        <li class="card-day"> <p><svg class="icon-eye" width="24" height="24">
+          <use href="./img/sprite.svg#icon-eye"></use>
+        </svg><span>Видимость</span></p> <span>${
           data.current.vis_km
         } км</span> </li>
     </ul>
     <p class="update-time">Местное время, когда данные в реальном времени были обновлены: ${
-      data.current.last_updated
+      data.forecast.forecastday[0].day.last_updated
     }</p>
     </div>
     `;
@@ -153,9 +174,32 @@ function currencyA(data) {
   console.log(`USD продажа: ${USD.rateBuy} | покупка: ${USD.rateSell}`);
   console.log(`PLN продажа: ${PLN.rateBuy} | покупка: ${PLN.rateSell}`);
   console.log(`EUR продажа: ${EUR.rateBuy} | покупка: ${EUR.rateSell}`);
+  const eurTOusaSell = EUR.rateSell / USD.rateSell;
+  const eurTOusaBuy = EUR.rateBuy / USD.rateBuy;
+  const usdTOeurSell = USD.rateSell / EUR.rateSell;
+  const usdTOeurBuy = USD.rateBuy / EUR.rateBuy;
 
-  currencyUsd.innerHTML = `<div class="currency"><img src="./img/usa.png" width="24"><p class="currencyUsd">USD продажа: ${USD.rateBuy} | покупка: ${USD.rateSell}</p></div>`;
-  currencyEur.innerHTML = `<div class="currency"><img src="./img/eur.png" width="24"><p class="currencyEur">EUR продажа: ${EUR.rateBuy} | покупка: ${EUR.rateSell}</p></div>`;
+  currencyUsd.innerHTML = `<div class="currency"><img src="./img/usa.png" width="24">
+  <div>
+  <p class="currencyUsd">1 &#36; покупка: ${USD.rateBuy} ₴ | продажа: ${
+    USD.rateSell
+  } ₴</p>
+  <p class="currencyUsd">1 &#8364; покупка: ${usdTOeurSell.toFixed(
+    4
+  )} &#36; | продажа: ${usdTOeurBuy.toFixed(4)} &#36;</p>
+  </div>
+  </div>`;
+
+  currencyEur.innerHTML = `<div class="currency">
+  <img src="./img/eur.png" width="24"><div>
+  <div>
+    <p class="currencyEur">1 &#8364; покупка: ${EUR.rateBuy} ₴ | продажа: ${
+    EUR.rateSell
+  } ₴</p>
+    <p class="currencyEur">1 &#8364; покупка: ${eurTOusaSell.toFixed(
+      4
+    )} &#36; | продажа: ${eurTOusaBuy.toFixed(4)} &#36;</p>
+    </div>`;
 }
 setInterval(() => {
   fetchUsers().then((data) => weatherD(data));
