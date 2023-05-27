@@ -1,4 +1,4 @@
-console.log("fix-s-1.0.2");
+console.log("fix-s-1.0.3-del");
 const idNews = document.querySelector("#news");
 const btnMinus = document.querySelector("#btn-minus");
 const btnPlus = document.querySelector("#btn-plus");
@@ -53,15 +53,15 @@ const news = async () => {
   return data;
 };
 
-news().then((data) => {
-  if (data === "error") {
-    console.log("привышен лимит запроса новостей");
-    sliderNews.classList.add("limit-request");
-    return;
-  }
-  dataNews = data;
-  newsMarkup();
-});
+// news().then((data) => {
+//   if (data === "error") {
+//     console.log("привышен лимит запроса новостей");
+//     sliderNews.classList.add("limit-request");
+//     return;
+//   }
+//   dataNews = data;
+//   newsMarkup();
+// });
 
 function newsMarkup() {
   const data = dataNews;
