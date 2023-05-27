@@ -108,9 +108,7 @@ function newsMarkup() {
       <div>
       <h3>${data[count].title}</h3>
         <p>${data[count].description}</p>
-        <a class="news-link" href="${
-          data[count].url
-        }" rel="noopener noreferrer" target="_blank">${
+        <a class="news-link" href="${data[count].url}" >${
       data[count].source.name
     }</a>
       </div>

@@ -18,11 +18,12 @@
 }
 .currencyUsd{
     font-size: 20px;
-    color: rgb(58, 245, 12);
+    color: aqua;
 }
 .currencyEur{
     font-size: 20px;
-        color: #ec5360;
+        color: #2486eb;
+        color: #eb65df;
 }
 /* !!!PLAYER */
 
@@ -120,7 +121,7 @@ li {
 }
 
 .undefined {
-    color: rgb(235, 101, 223)
+    color: #eb65df;
 }
 
 /* ************ */
@@ -209,6 +210,7 @@ margin-bottom: 10px;
     font-size: 50px;
     font-weight: 700;
     justify-content: space-around;
+    align-items: center;
 }
 .condition p{
     margin: 25px;
@@ -252,6 +254,14 @@ margin-bottom: 10px;
     padding: 0;
     margin: 0;
     
+}
+.day-wind{
+    display: flex;
+    align-items: center;
+}
+.day-wind p{
+    margin-top: 7px;
+    margin-right: 15px;
 }
 
 /*!!! slider */
@@ -335,13 +345,34 @@ align-items: flex-end;
     }
     #weather-hour {
         padding-left: 0;
+            justify-content: space-around;
     }
-        .hour-item {
-        
-            width: 100%;
+    .currency p{
+        font-size: 18px;
+    }
+    .currency img{
+        width: 36px;
+        height: 32px;
+    }
+    .hour-item {
+        width: calc(100%/7);
         margin-right: 0;
+        margin: 0;
         margin-bottom: 3px;
+        flex-direction: column;
+        height: 150px;
+        padding: 3px;
+        
+    }
+        .hour-item-temp {
+            font-size: 16px;
+            margin-top: 0px;
+            margin-bottom: 5px;
         }
+
+    .day{
+        margin-top: 3px;
+    }
         .card-day {
     
             display: flex;
@@ -364,13 +395,14 @@ align-items: flex-end;
                     font-weight: 700;
                 }
         
-                .card-day p {
-                    font-size: 16px;
-                    margin: 0;
-                    text-align: center;
-                }
+        .card-day p {
+            font-size: 16px;
+            margin: 0;
+            text-align: center;
+        }
         .header {
             flex-direction: column;
+            align-items: center;
         }
         #slider-news{
             display: none;

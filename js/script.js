@@ -48,7 +48,7 @@ function weatherH(data) {
       (i) => `
 <div class="hour-item">
 <p class="${i.style}">${i.time.slice(11)}</p> 
-        <p class="hour-item-temp"> ${i.feelslike_c} °C </p>
+        <p class="hour-item-temp">${i.feelslike_c}°C </p>
       <img src="${i.condition.icon}"></div>
       `
     )
@@ -87,14 +87,15 @@ function weatherD(data) {
         <li class="condition"><p>${
           data.current.temp_c
         }°C</p> <img src='//cdn.weatherapi.com/weather/128x128${icon}' widh=128 ></li>
-        <li>Погодные условия: ${cond.ru}</li>
-        <li>Скорость ветра: ${(data.current.wind_kph / 3.6).toFixed(2)} м/с</li>
-        <li>Направление ветра в градусах: ${data.current.wind_degree}° </li>
-        <li>Направление ветра в виде компаса с 16 точками: ${
-          data.current.wind_dir
-        }     <img src="./img/compass.png" width="24" style="transform: rotate(${
+        <li>${cond.ru}</li>
+        <li class="day-wind"><p>Скорость ветра: ${(
+          data.current.wind_kph / 3.6
+        ).toFixed(
+          2
+        )} м/с</p>  <img src="./img/compass.png" width="24" style="transform: rotate(${
     316 + data.current.wind_degree
   }deg);"></li>
+        
         </ul>
         <ul class="card-day-list">
         <li class="card-day">
