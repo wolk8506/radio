@@ -6,21 +6,69 @@ const weatherWeek = document.querySelector("#weather-week");
 const weather = document.querySelector("#weather-hour");
 const currencyUsd = document.querySelector("#currency-usd");
 const currencyEur = document.querySelector("#currency-eur");
+let meLocation = "Kharkiv";
+
+function locationWeather() {
+  // const status = document.querySelector("#status");
+  // const mapLink = document.querySelector("#map-link");
+
+  // mapLink.href = "";
+  // mapLink.textContent = "";
+
+  function success(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    meLocation = `${latitude},${longitude}`;
+    console.log(meLocation);
+
+    fetchUsers7().then((data) => {
+      console.log(data);
+      weatherW(data);
+      weatherH(data);
+      weatherD(data);
+    });
+    // status.textContent = "";
+    // mapLink.href = `https://www.google.com.ua/maps/@${latitude},${longitude},14z?hl=ru&authuser=0&entry=ttu`;
+    // mapLink.textContent = `Широта: ${latitude} °, Долгота: ${longitude} °`;
+  }
+
+  function error() {
+    alert("Невозможно получить ваше местоположение");
+
+    fetchUsers7().then((data) => {
+      console.log(data);
+      weatherW(data);
+      weatherH(data);
+      weatherD(data);
+    });
+  }
+
+  if (!navigator.geolocation) {
+    alert("Geolocation не поддерживается вашим браузером");
+  } else {
+    // alert("Определение местоположения…");
+    weatherDay.innerHTML = "Определение местоположения…";
+    navigator.geolocation.getCurrentPosition(success, error);
+  }
+}
+locationWeather();
 
 const fetchUsers7 = async () => {
   const response = await fetch(
-    "https://api.weatherapi.com/v1/forecast.json?key=02f4d3b9a4c141c6b73150514232405&q=Kharkiv&days=14"
+    // "https://api.weatherapi.com/v1/forecast.json?key=02f4d3b9a4c141c6b73150514232405&q=Kharkiv&days=14"
+    `https://api.weatherapi.com/v1/forecast.json?key=02f4d3b9a4c141c6b73150514232405&q=${meLocation}&days=14`,
+    { referrerPolicy: "origin-when-cross-origin" }
   );
   const data = await response.json();
   return data;
 };
 
-fetchUsers7().then((data) => {
-  console.log(data);
-  weatherW(data);
-  weatherH(data);
-  weatherD(data);
-});
+// fetchUsers7().then((data) => {
+//   console.log(data);
+//   weatherW(data);
+//   weatherH(data);
+//   weatherD(data);
+// });
 
 // const fetchUsers = async () => {
 //   const response = await fetch(
@@ -158,7 +206,9 @@ const currency = async () => {
   return data;
 };
 
-currency().then((data) => currencyA(data));
+currency().then((data) => {
+  currencyA(data);
+});
 
 function currencyA(data) {
   let arr = [];
@@ -209,3 +259,33 @@ setInterval(() => {
   });
   currency().then((data) => currencyA(data));
 }, 600000);
+
+// function geoFindMe() {
+//   const status = document.querySelector("#status");
+//   const mapLink = document.querySelector("#map-link");
+
+//   mapLink.href = "";
+//   mapLink.textContent = "";
+
+//   function success(position) {
+//     const latitude = position.coords.latitude;
+//     const longitude = position.coords.longitude;
+
+//     status.textContent = "";
+//     mapLink.href = `https://www.google.com.ua/maps/@${latitude},${longitude},14z?hl=ru&authuser=0&entry=ttu`;
+//     mapLink.textContent = `Широта: ${latitude} °, Долгота: ${longitude} °`;
+//   }
+
+//   function error() {
+//     status.textContent = "Невозможно получить ваше местоположение";
+//   }
+
+//   if (!navigator.geolocation) {
+//     status.textContent = "Geolocation не поддерживается вашим браузером";
+//   } else {
+//     status.textContent = "Определение местоположения…";
+//     navigator.geolocation.getCurrentPosition(success, error);
+//   }
+// }
+
+// document.querySelector("#find-me").addEventListener("click", geoFindMe);
