@@ -112,7 +112,9 @@ function weatherW(data) {
     .map((i) => {
       const cond = myJson.find((el) => el.code == i.day.condition.code);
       return `<ul>
-        <li class="week-first-item"><p>${i.date}</p><div class="week-humidity"><svg class="icon-humidity" width="24" height="24">
+        <li class="week-first-item"><p><svg class="icon-calendar" width="24" height="24">
+          <use href="./img/sprite.svg#icon-calendar"></use>
+        </svg>${i.date}</p><div class="week-humidity"><svg class="icon-humidity" width="24" height="24">
           <use href="./img/sprite.svg#icon-humidity"></use>
         </svg><p>${i.day.avghumidity}%</p></div> </li>
         <li></li>
@@ -135,61 +137,65 @@ function weatherD(data) {
           <use href="./img/sprite.svg#icon-location2"></use>
         </svg>${data.location.country}, ${data.location.name}</li>
         <li>Таймзона: ${data.location.tz_id}</li>
-        <li class="condition"><p>${
+        <li class="condition"><p><span>${
           data.current.feelslike_c
-        }°C</p> <img src='//cdn.weatherapi.com/weather/128x128${icon}' widh=128 ></li>
+        }°C</span></p> <img src='//cdn.weatherapi.com/weather/128x128${icon}' widh=128 ></li>
         <li>${cond.ru}</li>
-        <li class="day-wind"><p>Скорость ветра: ${(
+        <li class="day-wind"><p>Скорость ветра: <span class="day-num">${(
           data.current.wind_kph / 3.6
         ).toFixed(
           2
-        )} м/с</p>  <img src="./img/compass.png" width="24" style="transform: rotate(${
+        )} м/с</span></p>  <img src="./img/compass.png" width="24" style="transform: rotate(${
     136 + data.current.wind_degree
   }deg);"></li>
-        <li>Восход: ${data.forecast.forecastday[0].astro.sunrise}</li>
-        <li>Закат: ${data.forecast.forecastday[0].astro.sunset}</li>
+        <li>Восход: <span class="day-num">${
+          data.forecast.forecastday[0].astro.sunrise
+        }</span></li>
+        <li>Закат: <span class="day-num">${
+          data.forecast.forecastday[0].astro.sunset
+        }</span></li>
         </ul>
         <ul class="card-day-list">
         <li class="card-day">
           <p><svg class="icon-sun" width="24" height="24">
           <use href="./img/sprite.svg#icon-sun"></use>
         </svg><span>УФ-индекс</span></p>
-          <span>${data.current.uv} из 10</span> </li>
+          <span class="day-num">${data.current.uv} из 10</span> </li>
         <li class="card-day"> <p><svg class="icon-pressure" width="24" height="24">
           <use href="./img/sprite.svg#icon-pressure"></use>
-        </svg><span>Давление</span></p> <span>${
+        </svg><span>Давление</span></p> <span class="day-num">${
           data.current.pressure_mb
         } мм</span> </li>
         <li class="card-day"> <p><svg class="icon-wind" width="24" height="24">
           <use href="./img/sprite.svg#icon-wind"></use>
-        </svg><span>Порывы ветра</span></p>  <span>${(
+        </svg><span>Порывы ветра</span></p>  <span class="day-num">${(
           data.forecast.forecastday[0].day.maxwind_kph / 3.6
         ).toFixed(2)} м/с</span> </li>
         <li class="card-day"> <p><svg class="icon-opacity" width="24" height="24">
           <use href="./img/sprite.svg#icon-opacity"></use>
-        </svg><span>Количество осадков</span></p> <span>${
+        </svg><span>Количество осадков</span></p> <span class="day-num">${
           data.current.precip_mm
         } мм</span> </li>
         <li class="card-day"> <p><svg class="icon-humidity" width="24" height="24">
           <use href="./img/sprite.svg#icon-humidity"></use>
-        </svg><span>Влажность</span></p> <span>${
+        </svg><span>Влажность</span></p> <span class="day-num">${
           data.current.humidity
         } %</span> </li>
         <li class="card-day"><p>
         <svg class="icon-cloudy" width="24" height="24">
           <use href="./img/sprite.svg#icon-cloudy"></use>
-        </svg><span>Облачность</span></p> <span>${
+        </svg><span>Облачность</span></p> <span class="day-num">${
           data.current.cloud
         } %</span> </li>
         <li class="card-day"><p>
         <svg class="icon-thermometer" width="24" height="24">
           <use href="./img/sprite.svg#icon-thermometer"></use>
-        </svg>По ощущениям температура</p> <span>${
+        </svg>По ощущениям температура</p> <span class="day-num">${
           data.current.feelslike_c
         }°C</span> </li>
         <li class="card-day"> <p><svg class="icon-eye" width="24" height="24">
           <use href="./img/sprite.svg#icon-eye"></use>
-        </svg><span>Видимость</span></p> <span>${
+        </svg><span>Видимость</span></p> <span class="day-num">${
           data.current.vis_km
         } км</span> </li>
     </ul>
