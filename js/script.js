@@ -144,7 +144,7 @@ function weatherD(data) {
         ).toFixed(
           2
         )} м/с</p>  <img src="./img/compass.png" width="24" style="transform: rotate(${
-    316 + data.current.wind_degree
+    136 + data.current.wind_degree
   }deg);"></li>
         <li>Восход: ${data.forecast.forecastday[0].astro.sunrise}</li>
         <li>Закат: ${data.forecast.forecastday[0].astro.sunset}</li>
