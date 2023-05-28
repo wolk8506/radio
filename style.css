@@ -1,3 +1,26 @@
+body::-webkit-scrollbar {
+    width: 10px;
+    /* Ширина всего элемента навигации */
+}
+
+body::-webkit-scrollbar-track {
+    background: #434242;
+    /* Цвет дорожки */
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #eb65df;
+    /* Цвет бегунка */
+    border-radius: 20px;
+    /* Округление бегунка */
+    border: 3px solid #eb65df;
+    /* Оформление границ бегунка */
+}
+
+
+
+
+
 .header{
     display: flex;
     align-items: flex-start;
@@ -31,8 +54,7 @@
 .currencyEur{
     margin: 3px;
     font-size: 20px;
-        color: #2486eb;
-        color: #eb65df;
+    color: #eb65df;
 }
 /* !!!PLAYER */
 
@@ -42,38 +64,29 @@
 
 .rad-list::-webkit-scrollbar-track {
     -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
-    background-color: #f9f9fd;
+    background: #2c2c2c;
 }
 
 .rad-list::-webkit-scrollbar-thumb {
-    background-color: coral;
-    /* background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .25) 25%,
-            transparent 25%,
-            transparent 50%,
-            rgba(255, 255, 255, .25) 50%,
-            rgba(255, 255, 255, .25) 75%,
-            transparent 75%,
-            transparent); */
+    background-color: #eb65df;
+        /* Цвет бегунка */
+        border-radius: 20px;
+        /* Округление бегунка */
+        border: 3px solid #eb65df;
+        /* Оформление границ бегунка */
 }
 
 /* !!!!!!!!!! */
-/* #rad_block_logo {
-    display: none !important;
-} */
+
 body{
-    background-color: rgb(67, 66, 66);
+    background-color: #434242;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 #rad_player{
     margin-left: auto;
     margin-right: auto;
 }
-/* #rad_stationname{
-    width: 160px!important;
-} */
-/* #rad_player{
-    width: 340px !important;
-} */
+
 
 ul{
     font-size: 18px;
@@ -86,18 +99,18 @@ li {
 }
 .block-day{
     max-width: 1600px;
-        margin-right: auto;
-        margin-left: auto;
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 40px;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
 }
 
 #weather-hour{
- display: flex;
- flex-wrap: wrap;
- max-width: 885px;
- padding-left: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 885px;
+    padding-left: 100px;
  
 }
 
@@ -133,7 +146,7 @@ svg{
 .first-day{
     color:aqua;
     display: flex;
-        align-items: center;
+    align-items: center;
 }
 
 .undefined {
@@ -160,13 +173,13 @@ svg{
 }
 
 #weather-week ul{
-/* border: 1px solid coral; */
-margin: 0;
-padding: 5px;
-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
-width: 200px;
-border-radius: 5px;
-margin-bottom: 10px;
+    /* border: 1px solid coral; */
+    margin: 0;
+    padding: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    width: 200px;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 #weather-week li{
@@ -269,12 +282,12 @@ margin-bottom: 10px;
     width: 130px;
     height: 120px;
     flex-direction: column;
-        align-items: center;
-        padding: 3px;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
-        margin-bottom: 10px;
-        justify-content: space-between;
-        border-radius: 5px;
+    align-items: center;
+    padding: 3px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    margin-bottom: 10px;
+    justify-content: space-between;
+    border-radius: 5px;
 
 }
 .card-day span{
@@ -301,9 +314,7 @@ margin-bottom: 10px;
     flex-direction: row;
     height: 30px;
     align-items: center;
-    /* margin: 5px; */
     padding: 3px;
-    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6); */
     margin-bottom: 3px;
     justify-content: space-between;
 
@@ -334,7 +345,7 @@ margin-bottom: 10px;
 .card-day-list{
     display: flex;
     flex-wrap: wrap;
-        justify-content: space-around;
+    justify-content: space-around;
     padding: 0;
     margin: 0;
     
@@ -353,7 +364,6 @@ margin-bottom: 10px;
 #slider-news {
     display: flex;
     align-items: center;
-    /* border: 1px solid coral; */
     max-width: 1600px;
     height: 300px;
     justify-content: space-between;
@@ -366,24 +376,23 @@ margin-bottom: 10px;
 }
 
 #news {
-    /* padding-left: 50px; */
-    /* padding-right: 50px; */
     width: 1200px;
 }
 
 .news-card {
     display: flex;
     align-items: flex-start;
-        justify-content: flex-end;
+    justify-content: flex-end;
 }
 
 .news-card img {
     margin-right: 20px;
-    /* width: 250px; */
 }
+
 .scrol-slider-ico{
     fill: rgba(0, 255, 255, 0.151);
 }
+
 .scrol-slider-ico:hover {
     fill: aqua;
 }
@@ -395,18 +404,15 @@ margin-bottom: 10px;
     cursor: pointer;
 }
 
-
-
 .news-link{
     color: #8495e0;
 }
+
 .news-card-text{
     display: flex;
-align-items: flex-end;
+    align-items: flex-end;
     justify-content: space-between;
     flex-direction: column;
-    /* width: 700px; */
-
 }
 
 .publishedAt{
@@ -490,6 +496,16 @@ align-items: flex-end;
 }
 
 @media screen and (max-width: 420px) {
+    .currencyUsd {
+        font-size: 18px;
+    }
+    
+    .currencyEur {  
+        font-size: 18px;
+    }
+    
+    
+    
     #weather-week ul {
         width: 180px;
     }
@@ -526,28 +542,21 @@ align-items: flex-end;
     .day{
         margin-top: 3px;
     }
-        .card-day {
-    
-            display: flex;
-            /* border: 1px solid coral; */
-            width: 100%;
-            flex-direction: row;
-            height: 30px;
-            align-items: center;
-            /* margin: 5px; */
-            padding: 3px;
-            /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6); */
-            margin-bottom: 3px;
-            justify-content: space-between;
-         
-    
-        }
-                .card-day span {
-        
-                    font-size: 24px;
-                    font-weight: 700;
-                    margin-bottom: 0;
-                }
+    .card-day {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        height: 30px;
+        align-items: center;
+        padding: 3px;
+        margin-bottom: 3px;
+        justify-content: space-between;    
+    }
+    .card-day span {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 0;
+    }
         
         .card-day p {
             font-size: 16px;
