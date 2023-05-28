@@ -206,11 +206,29 @@ const currency = async () => {
   return data;
 };
 
-currency().then((data) => {
-  currencyA(data);
-});
-
+function f1() {
+  currency()
+    .then((data) => {
+      currencyA(data);
+    })
+    .catch((error) => {
+      // console.error(error);
+      console.log("error load currency");
+      currencyA("error");
+    });
+}
+f1();
+setInterval(f1, 3600000);
+currencyUsd.innerHTML = `<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`;
+currencyEur.innerHTML = `<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`;
+let timeout = 5000;
 function currencyA(data) {
+  if (data == "error") {
+    timeout = timeout + 1000;
+    setTimeout(f1, timeout);
+    return;
+  }
+
   let arr = [];
   data.map((i) => {
     if (i.currencyCodeB == 980) {
@@ -221,9 +239,19 @@ function currencyA(data) {
   const USD = arr.find((el) => el.currencyCodeA == 840);
   const PLN = arr.find((el) => el.currencyCodeA == 985);
   const EUR = arr.find((el) => el.currencyCodeA == 978);
-  console.log(`USD продажа: ${USD.rateBuy} | покупка: ${USD.rateSell}`);
-  console.log(`PLN продажа: ${PLN.rateBuy} | покупка: ${PLN.rateSell}`);
-  console.log(`EUR продажа: ${EUR.rateBuy} | покупка: ${EUR.rateSell}`);
+  const RUB = arr.find((el) => el.currencyCodeA == 943);
+  console.log(
+    `USD продажа: ${USD.rateBuy} | покупка: ${USD.rateSell} | ставка кросс ${USD.rateCross}`
+  );
+  console.log(
+    `PLN продажа: ${PLN.rateBuy} | покупка: ${PLN.rateSell} | ставка кросс ${PLN.rateCross}`
+  );
+  console.log(
+    `EUR продажа: ${EUR.rateBuy} | покупка: ${EUR.rateSell} | ставка кросс ${EUR.rateCross}`
+  );
+  console.log(
+    `RUB продажа: ${RUB.rateBuy} | покупка: ${RUB.rateSell} | ставка кросс ${RUB.rateCross}`
+  );
   const eurTOusaSell = EUR.rateSell / USD.rateSell;
   const eurTOusaBuy = EUR.rateBuy / USD.rateBuy;
   const usdTOeurSell = USD.rateSell / EUR.rateSell;
@@ -252,10 +280,10 @@ function currencyA(data) {
     </div>`;
 }
 setInterval(() => {
-  fetchUsers().then((data) => weatherD(data));
   fetchUsers7().then((data) => {
     weatherW(data);
     weatherH(data);
+    weatherD(data);
   });
   currency().then((data) => currencyA(data));
 }, 600000);
