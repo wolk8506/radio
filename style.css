@@ -113,7 +113,7 @@ li {
     flex-wrap: wrap;
     max-width: 885px;
     padding-left: 100px;
-        justify-content: space-around;
+    justify-content: space-between;
 }
 
 .ico-location{
@@ -165,7 +165,7 @@ svg{
     display: flex;
 
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     color: aliceblue;
     font-size: 10px;
     max-width: 1600px;

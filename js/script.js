@@ -112,7 +112,7 @@ function weatherW(data) {
     .map((i) => {
       const cond = myJson.find((el) => el.code == i.day.condition.code);
       return `<ul>
-        <li class="week-first-item"><p><svg class="icon-calendar" width="24" height="24">
+        <li class="week-first-item"><p><svg class="icon-calendar" width="20" height="20">
           <use href="./img/sprite.svg#icon-calendar"></use>
         </svg>${i.date}</p><div class="week-humidity"><svg class="icon-humidity" width="24" height="24">
           <use href="./img/sprite.svg#icon-humidity"></use>
@@ -130,6 +130,10 @@ function weatherW(data) {
 function weatherD(data) {
   const cond = myJson.find((el) => el.code == data.current.condition.code);
   const icon = data.current.condition.icon.slice(34);
+  const timeSunsetH = data.forecast.forecastday[0].astro.sunset.slice(0, 2);
+  const timeSunsetM = data.forecast.forecastday[0].astro.sunset.slice(3, -3);
+  console.log();
+  console.log(`${Number(timeSunsetH) + 12}:${timeSunsetM}`);
   console.log(icon);
   weatherDay.innerHTML = `<div class="day">
     <ul class="day-list">
@@ -148,12 +152,13 @@ function weatherD(data) {
         )} м/с</span></p>  <img src="./img/compass.png" width="24" style="transform: rotate(${
     136 + data.current.wind_degree
   }deg);"></li>
-        <li>Восход: <span class="day-num">${
-          data.forecast.forecastday[0].astro.sunrise
-        }</span></li>
+        <li>Восход: <span class="day-num">${data.forecast.forecastday[0].astro.sunrise.slice(
+          0,
+          -3
+        )}</span></li>
         <li>Закат: <span class="day-num">${
-          data.forecast.forecastday[0].astro.sunset
-        }</span></li>
+          Number(timeSunsetH) + 12
+        }:${timeSunsetM}</span></li>
         </ul>
         <ul class="card-day-list">
         <li class="card-day">
