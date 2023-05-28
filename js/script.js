@@ -234,9 +234,9 @@ function currencyA(data) {
   <p class="currencyUsd">1 &#36; покупка: ${USD.rateBuy} ₴ | продажа: ${
     USD.rateSell
   } ₴</p>
-  <p class="currencyUsd">1 &#8364; покупка: ${usdTOeurSell.toFixed(
+  <p class="currencyUsd">1 &#36; покупка: ${usdTOeurSell.toFixed(
     4
-  )} &#36; | продажа: ${usdTOeurBuy.toFixed(4)} &#36;</p>
+  )} &#8364; | продажа: ${usdTOeurBuy.toFixed(4)} &#8364;</p>
   </div>
   </div>`;
 
