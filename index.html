@@ -77,12 +77,23 @@
           <use href="./img/slider-btn.svg#icon-circle-left"></use>
         </svg>
       </button>
-      <div id="news"></div>
+      <div id="news" data-modal-open-1></div>
       <button id="btn-plus">
         <svg class="scrol-slider-ico" width="32" height="32">
           <use href="./img/slider-btn.svg#icon-circle-right"></use>
         </svg>
       </button>
+    </div>
+    <!-- Модальное окно -->
+    <div class="backdrop is-hidden" data-modal-1>
+      <div class="modal">
+        <button data-modal-close-1>
+          <svg class="icon-cross" width="24" height="24">
+            <use href="./img/sprite.svg#icon-cross"></use>
+          </svg>
+        </button>
+        <div id="contentModal"><h1>TEST MODAL</h1></div>
+      </div>
     </div>
 
     <div class="block-day">

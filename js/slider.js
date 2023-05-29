@@ -1,15 +1,22 @@
-console.log("fix-s-1.0.3-del");
+console.log("fix-s-2.1.0");
 const idNews = document.querySelector("#news");
 const btnMinus = document.querySelector("#btn-minus");
 const btnPlus = document.querySelector("#btn-plus");
 const sliderNews = document.querySelector("#slider-news");
+const contentModal = document.querySelector("#contentModal");
+const openModalBtn = document.querySelector("[data-modal-open-1]");
+const closeModalBtn = document.querySelector("[data-modal-close-1]");
+const modal = document.querySelector("[data-modal-1]");
+
+// import myJson from "./news.json" assert { type: "json" };
+
 let count = 0;
 let totalnews = 0;
-let dataNews = [];
-const APIkey1 = "4be889e7726b4f24b5bf5f5ab9a69c1f"; //borat72807@introace.com
-const APIkey2 = "1683087afdaf490aa64b24c15f181360"; //borat72807+a1@introace.com
-const APIkey3 = "308e599cba574c4299ca07f15ee0447d"; //w
-
+let dataNews = []; //let dataNews = [];
+// const APIkey1 = "";
+// const APIkey2 = "";
+// const APIkey3 = "";
+idNews.innerHTML = `<div class="spinner-news"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>`;
 const news = async () => {
   // const date = new Date();
   // let APIkey = "";
@@ -26,28 +33,25 @@ const news = async () => {
   // }
 
   const response1 = await fetch(
-    `https://newsdata.io/api/1/news?apikey=pub_23621b41ce6e76a43d01c3aee8de2c6346c71&language=ru`
+    `https://newsdata.io/api/1/news?apikey=pub_23621b41ce6e76a43d01c3aee8de2c6346c71&country=ru,ua&language=ru&category=technology `
   );
-  const data = await response1.json();
-  // const response2 = await fetch(
-  //   // `https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=${APIkey}`
-  //   `https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=1683087afdaf490aa64b24c15f181360`,
-  //   { referrer: "http://127.0.0.1:5500/" }
-  // );
-  // const data2 = await response2.json();
-  // const response3 = await fetch(
-  //   // `https://newsapi.org/v2/top-headlines?country=ru&apiKey=${APIkey}`
-  //   `https://newsapi.org/v2/top-headlines?country=ru&apiKey=1683087afdaf490aa64b24c15f181360`,
-  //   { referrer: "http://127.0.0.1:5500/" }
-  // );
-  // const data3 = await response3.json();
-  // let data = [];
-  // data = await data.concat(data1.articles);
-  // data = await data.concat(data2.articles);
-  // data = await data.concat(data3.articles);
-  // if (data1.status === "error") {
-  //   return "error";
-  // }
+  const data1 = await response1.json();
+  const response2 = await fetch(
+    `https://newsdata.io/api/1/news?apikey=pub_23621b41ce6e76a43d01c3aee8de2c6346c71&country=ua`
+  );
+  const data2 = await response2.json();
+  const nextPage = data2.nextPage;
+  const response3 = await fetch(
+    `https://newsdata.io/api/1/news?apikey=pub_23621b41ce6e76a43d01c3aee8de2c6346c71&country=ua&page=${nextPage}`
+  );
+  const data3 = await response3.json();
+  let data = [];
+  data = await data.concat(data1.results);
+  data = await data.concat(data2.results);
+  data = await data.concat(data3.results);
+  if (data1.status === "error") {
+    return "error";
+  }
   return data;
 };
 
@@ -57,7 +61,8 @@ news().then((data) => {
   //   sliderNews.classList.add("limit-request");
   //   return;
   // }
-  dataNews = data.results;
+
+  dataNews = data;
   newsMarkup();
   console.log(data);
 });
@@ -91,6 +96,26 @@ function newsMarkup() {
   }
 
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+  // !!!!! MODAL OPEN/CLOSED
+
+  openModalBtn.addEventListener("click", toggleModal);
+  closeModalBtn.addEventListener("click", toggleModal);
+
+  let toggleTimer = true;
+  function toggleModal() {
+    if (toggleTimer) {
+      stopTimer();
+      toggleTimer = false;
+    } else {
+      startTimer();
+      toggleTimer = true;
+    }
+
+    document.body.classList.toggle("modal-open");
+    modal.classList.toggle("is-hidden");
+  }
+
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   btnMinus.addEventListener("click", () => {
     if (count === 0) {
@@ -109,18 +134,17 @@ function newsMarkup() {
 
   function markup() {
     startTimer();
-    const t1 = `<img src="${data[count].image_url}" height="250">`;
-    const t2 = "";
+    const img1 = `<img src="${data[count].image_url}" height="250">`;
+    const img2 = "";
+
     idNews.innerHTML = `
     <div class="news-card">
-      ${data[count].image_url ? t1 : t2}
+      ${data[count].image_url ? img1 : img2}
       <div class="news-card-text">
-      <div>
+      <div class="news-card-content">
       <h3>${data[count].title}</h3>
-        <p>${data[count].description}</p>
-        <a class="news-link" href="${data[count].link}" >${
-      data[count].source_id
-    }</a>
+        <p>${data[count].description ? data[count].description : ""}</p>
+        
       </div>
         
         <div>
@@ -130,8 +154,49 @@ function newsMarkup() {
       </div>
     </div>
    `;
+
+    contentModal.innerHTML = `
+    <div class="news-card-modal">
+    <h2>${data[count].title}</h2>
+      ${data[count].image_url ? img1 : img2}
+      <div class="news-card-text">
+      <div>
+      
+        <p>${
+          data[count].content ? data[count].content : data[count].description
+        }</p>
+        <a class="news-link" href="${
+          data[count].link
+        }" rel="noopener noreferrer" target="_blank">Источник: ${
+      data[count].source_id
+    }</a>
+      </div>
+        
+        <div>
+          <p class="publishedAt">Опубликовано ${data[count].pubDate}</p>
+          
+        </div>
+      </div>
+    </div>
+   `;
   }
   markup();
 
   // const intervalID = setInterval(() => {}, 10000);
 }
+// ???? MODAL NEWS
+// (() => {
+// const refs = {
+//   openModalBtn: document.querySelector("[data-modal-open-1]"),
+//   closeModalBtn: document.querySelector("[data-modal-close-1]"),
+//   modal: document.querySelector("[data-modal-1]"),
+// };
+
+// refs.openModalBtn.addEventListener("click", toggleModal);
+// refs.closeModalBtn.addEventListener("click", toggleModal);
+
+// function toggleModal() {
+//   document.body.classList.toggle("modal-open");
+//   refs.modal.classList.toggle("is-hidden");
+// }
+// })();
