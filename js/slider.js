@@ -12,56 +12,55 @@ const APIkey3 = "308e599cba574c4299ca07f15ee0447d"; //w
 
 const news = async () => {
   const date = new Date();
-  let APIkey = "";
-  date.getHours();
-  if (date.getHours() < 8) {
-    APIkey = APIkey1;
-    console.log("APIkey1");
-  } else if (date.getHours() < 16) {
-    APIkey = APIkey2;
-    console.log("APIkey2");
-  } else {
-    APIkey = APIkey3;
-    console.log("APIkey3");
-  }
+  // let APIkey = "";
+  // date.getHours();
+  // if (date.getHours() < 8) {
+  //   APIkey = APIkey1;
+  //   console.log("APIkey1");
+  // } else if (date.getHours() < 16) {
+  //   APIkey = APIkey2;
+  //   console.log("APIkey2");
+  // } else {
+  //   APIkey = APIkey3;
+  //   console.log("APIkey3");
+  // }
 
   const response1 = await fetch(
-    // `https://newsapi.org/v2/everything?q=google%20news&language=ru&apiKey=${APIkey}`
-    `https://newsapi.org/v2/everything?q=google%20news&language=ru&apiKey=1683087afdaf490aa64b24c15f181360`,
-    { referrer: "http://127.0.0.1:5500/" }
+    `https://newsdata.io/api/1/news?apikey=pub_23621b41ce6e76a43d01c3aee8de2c6346c71&language=ru `
   );
-  const data1 = await response1.json();
-  const response2 = await fetch(
-    // `https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=${APIkey}`
-    `https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=1683087afdaf490aa64b24c15f181360`,
-    { referrer: "http://127.0.0.1:5500/" }
-  );
-  const data2 = await response2.json();
-  const response3 = await fetch(
-    // `https://newsapi.org/v2/top-headlines?country=ru&apiKey=${APIkey}`
-    `https://newsapi.org/v2/top-headlines?country=ru&apiKey=1683087afdaf490aa64b24c15f181360`,
-    { referrer: "http://127.0.0.1:5500/" }
-  );
-  const data3 = await response3.json();
-  let data = [];
-  data = await data.concat(data1.articles);
-  data = await data.concat(data2.articles);
-  data = await data.concat(data3.articles);
-  if (data1.status === "error") {
-    return "error";
-  }
+  const data = await response1.json();
+  // const response2 = await fetch(
+  //   // `https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=${APIkey}`
+  //   `https://newsapi.org/v2/top-headlines?sources=google-news-ru&apiKey=1683087afdaf490aa64b24c15f181360`,
+  //   { referrer: "http://127.0.0.1:5500/" }
+  // );
+  // const data2 = await response2.json();
+  // const response3 = await fetch(
+  //   // `https://newsapi.org/v2/top-headlines?country=ru&apiKey=${APIkey}`
+  //   `https://newsapi.org/v2/top-headlines?country=ru&apiKey=1683087afdaf490aa64b24c15f181360`,
+  //   { referrer: "http://127.0.0.1:5500/" }
+  // );
+  // const data3 = await response3.json();
+  // let data = [];
+  // data = await data.concat(data1.articles);
+  // data = await data.concat(data2.articles);
+  // data = await data.concat(data3.articles);
+  // if (data1.status === "error") {
+  //   return "error";
+  // }
   return data;
 };
 
-// news().then((data) => {
-//   if (data === "error") {
-//     console.log("привышен лимит запроса новостей");
-//     sliderNews.classList.add("limit-request");
-//     return;
-//   }
-//   dataNews = data;
-//   newsMarkup();
-// });
+news().then((data) => {
+  // if (data === "error") {
+  //   console.log("привышен лимит запроса новостей");
+  //   sliderNews.classList.add("limit-request");
+  //   return;
+  // }
+  // dataNews = data;
+  // newsMarkup();
+  console.log(data);
+});
 
 function newsMarkup() {
   const data = dataNews;
