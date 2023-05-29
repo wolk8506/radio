@@ -11,7 +11,7 @@ const APIkey2 = "1683087afdaf490aa64b24c15f181360"; //borat72807+a1@introace.com
 const APIkey3 = "308e599cba574c4299ca07f15ee0447d"; //w
 
 const news = async () => {
-  const date = new Date();
+  // const date = new Date();
   // let APIkey = "";
   // date.getHours();
   // if (date.getHours() < 8) {
@@ -26,7 +26,7 @@ const news = async () => {
   // }
 
   const response1 = await fetch(
-    `https://newsdata.io/api/1/news?apikey=pub_23621b41ce6e76a43d01c3aee8de2c6346c71&language=ru `
+    `https://newsdata.io/api/1/news?apikey=pub_23621b41ce6e76a43d01c3aee8de2c6346c71&language=ru`
   );
   const data = await response1.json();
   // const response2 = await fetch(
@@ -57,8 +57,8 @@ news().then((data) => {
   //   sliderNews.classList.add("limit-request");
   //   return;
   // }
-  // dataNews = data;
-  // newsMarkup();
+  dataNews = data.results;
+  newsMarkup();
   console.log(data);
 });
 
@@ -109,22 +109,22 @@ function newsMarkup() {
 
   function markup() {
     startTimer();
-    const t1 = `<img src="${data[count].urlToImage}" height="250">`;
+    const t1 = `<img src="${data[count].image_url}" height="250">`;
     const t2 = "";
     idNews.innerHTML = `
     <div class="news-card">
-      ${data[count].urlToImage ? t1 : t2}
+      ${data[count].image_url ? t1 : t2}
       <div class="news-card-text">
       <div>
       <h3>${data[count].title}</h3>
         <p>${data[count].description}</p>
-        <a class="news-link" href="${data[count].url}" >${
-      data[count].source.name
+        <a class="news-link" href="${data[count].link}" >${
+      data[count].source_id
     }</a>
       </div>
         
         <div>
-          <p class="publishedAt">Опубликовано ${data[count].publishedAt}</p>
+          <p class="publishedAt">Опубликовано ${data[count].pubDate}</p>
           <p class="totalnews">${count + 1} из ${totalnews}</p>
         </div>
       </div>
