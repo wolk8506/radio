@@ -160,7 +160,7 @@ function newsMarkup() {
     <h2>${data[count].title}</h2>
       ${data[count].image_url ? img1 : img2}
       <div class="news-card-text">
-      <div>
+      <div class="news-card-content-modal">
       
         <p>${
           data[count].content ? data[count].content : data[count].description

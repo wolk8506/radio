@@ -299,32 +299,21 @@ setInterval(() => {
   currency().then((data) => currencyA(data));
 }, 600000);
 
-// function geoFindMe() {
-//   const status = document.querySelector("#status");
-//   const mapLink = document.querySelector("#map-link");
+// const currency2 = async () => {
+//   const response = await fetch(
+//     "https://kurstoday.com.ua/api/chart?from=2000-01&to=2020-05&exchanger_id=9&currency=usd",
+//     {
+//       referrerPolicy: "unsafe-url",
+//     }
+//   );
+//   const data = await response.json();
+//   return data;
+// };
 
-//   mapLink.href = "";
-//   mapLink.textContent = "";
+// currency2()
+//   .then((data) => currencyObmennik(data))
+//   .catch((error) => console.log(error, "error load currency"));
 
-//   function success(position) {
-//     const latitude = position.coords.latitude;
-//     const longitude = position.coords.longitude;
-
-//     status.textContent = "";
-//     mapLink.href = `https://www.google.com.ua/maps/@${latitude},${longitude},14z?hl=ru&authuser=0&entry=ttu`;
-//     mapLink.textContent = `Широта: ${latitude} °, Долгота: ${longitude} °`;
-//   }
-
-//   function error() {
-//     status.textContent = "Невозможно получить ваше местоположение";
-//   }
-
-//   if (!navigator.geolocation) {
-//     status.textContent = "Geolocation не поддерживается вашим браузером";
-//   } else {
-//     status.textContent = "Определение местоположения…";
-//     navigator.geolocation.getCurrentPosition(success, error);
-//   }
+// function currencyObmennik(data) {
+//   console.log(data);
 // }
-
-// document.querySelector("#find-me").addEventListener("click", geoFindMe);

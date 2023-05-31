@@ -733,14 +733,43 @@ svg{
     position: absolute;
     right: 20px;
     cursor: pointer;
-    color: #eb65df;
+    color: rgba(235, 101, 224, 0.5);
 }
 .modal button:hover{
-    color: #bd54b4;
+    color: #eb65df;
 }
 
 .icon-cross:hover {
     fill: currentColor;
     transform: rotate(90deg);
 
+}
+
+
+
+.news-card-content-modal::-webkit-scrollbar {
+    width: 10px;
+    /* Ширина всего элемента навигации */
+}
+
+.news-card-content-modal::-webkit-scrollbar-track {
+    background: hsla(0, 1%, 26%, 0.438);
+    /* Цвет дорожки */
+}
+
+.news-card-content-modal::-webkit-scrollbar-thumb {
+    background-color: #eb65df;
+    /* Цвет бегунка */
+    border-radius: 20px;
+    /* Округление бегунка */
+    border: 3px solid #eb65df;
+    /* Оформление границ бегунка */
+}
+
+.news-card-content-modal {
+    overflow-y: scroll;
+    height: 280px;
+    /* padding-right: 5px; */
+    padding: 10px;
+    margin-top: 10px;
 }
