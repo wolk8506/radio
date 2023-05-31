@@ -16,7 +16,7 @@
   </head>
   <body>
     <div class="header">
-      <div id="currency-eur"></div>
+      <div id="currency-eur" data-modal-open-2-eur></div>
       <div id="radiobells_container">
         <a href="https://www.radiobells.com/" id="RP_link"></a>
       </div>
@@ -68,7 +68,7 @@
         charset="UTF-8"
       ></script>
 
-      <div id="currency-usd"></div>
+      <div id="currency-usd" data-modal-open-2-usd></div>
     </div>
 
     <div id="slider-news" class="slider">
@@ -93,6 +93,28 @@
           </svg>
         </button>
         <div id="contentModal"><h1>TEST MODAL</h1></div>
+      </div>
+    </div>
+
+    <!-- Модальное окно 2 -->
+    <div class="backdrop is-hidden" data-modal-2>
+      <div class="modal">
+        <button data-modal-close-2>
+          <svg class="icon-cross" width="24" height="24">
+            <use href="./img/sprite.svg#icon-cross"></use>
+          </svg>
+        </button>
+        <div id="contentModal"><h1>Конвертер валют</h1></div>
+        <div class="currency-converter">
+          <input type="text" data-input-1 />
+          <select selected>
+            <option value="EUR">EUR</option>
+            <option value="USD">USD</option>
+            <option value="PLN">PLN</option>
+            <!-- <option value="UAN">UAN</option> -->
+          </select>
+          <p>= <span data-input-2>0</span>ГРН</p>
+        </div>
       </div>
     </div>
 

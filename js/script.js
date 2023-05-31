@@ -6,6 +6,14 @@ const weatherWeek = document.querySelector("#weather-week");
 const weather = document.querySelector("#weather-hour");
 const currencyUsd = document.querySelector("#currency-usd");
 const currencyEur = document.querySelector("#currency-eur");
+const openModalBtn = document.querySelector("[data-modal-open-2-eur]");
+const openModalBtn2 = document.querySelector("[data-modal-open-2-usd]");
+const closeModalBtn = document.querySelector("[data-modal-close-2]");
+const modal = document.querySelector("[data-modal-2]");
+const dataInput = document.querySelector("[data-input-1]");
+const dataInput2 = document.querySelector("[data-input-2]");
+const selected = document.querySelector("[selected]");
+//data-input-1  selected
 let meLocation = "Kharkiv";
 
 function locationWeather() {
@@ -289,6 +297,52 @@ function currencyA(data) {
       4
     )} &#36; | продажа: ${eurTOusaBuy.toFixed(4)} &#36;</p>
     </div>`;
+
+  // }
+  // !!!!! MODAL OPEN/CLOSED
+
+  openModalBtn.addEventListener("click", toggleModal);
+  openModalBtn2.addEventListener("click", toggleModal);
+  closeModalBtn.addEventListener("click", toggleModal);
+
+  // let toggleTimer = true;
+  function toggleModal() {
+    //   console.log(dataInput.value);
+    //   if (toggleTimer) {
+    //     // stopTimer();
+    //     toggleTimer = false;
+    //   } else {
+    //     // startTimer();
+    //     toggleTimer = true;
+    //   }
+
+    document.body.classList.toggle("modal-open");
+    modal.classList.toggle("is-hidden");
+  }
+
+  function converterCurrency() {
+    let eee = dataInput.value * EUR.rateBuy;
+    if (selected.value === "EUR") {
+      eee = dataInput.value * EUR.rateBuy;
+    } else if (selected.value === "USD") {
+      eee = dataInput.value * USD.rateBuy;
+    } else if (selected.value === "PLN") {
+      eee = dataInput.value * PLN.rateCross;
+    }
+
+    console.log(dataInput.value);
+    console.log(selected.value);
+    dataInput2.innerHTML = `${eee}`;
+  }
+
+  selected.oninput = function () {
+    converterCurrency();
+  };
+
+  dataInput.oninput = function () {
+    converterCurrency();
+  };
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 setInterval(() => {
   fetchUsers7().then((data) => {
@@ -316,4 +370,3 @@ setInterval(() => {
 
 // function currencyObmennik(data) {
 //   console.log(data);
-// }
