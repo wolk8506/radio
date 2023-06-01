@@ -13,6 +13,7 @@ const modal = document.querySelector("[data-modal-2]");
 const dataInput = document.querySelector("[data-input-1]");
 const dataInput2 = document.querySelector("[data-input-2]");
 const selected = document.querySelector("[selected]");
+const selected2 = document.querySelector("[selected2]");
 //data-input-1  selected
 let meLocation = "Kharkiv";
 
@@ -259,18 +260,7 @@ function currencyA(data) {
   const PLN = arr.find((el) => el.currencyCodeA == 985);
   const EUR = arr.find((el) => el.currencyCodeA == 978);
   const RUB = arr.find((el) => el.currencyCodeA == 943);
-  console.log(
-    `USD продажа: ${USD.rateBuy} | покупка: ${USD.rateSell} | ставка кросс ${USD.rateCross}`
-  );
-  console.log(
-    `PLN продажа: ${PLN.rateBuy} | покупка: ${PLN.rateSell} | ставка кросс ${PLN.rateCross}`
-  );
-  console.log(
-    `EUR продажа: ${EUR.rateBuy} | покупка: ${EUR.rateSell} | ставка кросс ${EUR.rateCross}`
-  );
-  console.log(
-    `RUB продажа: ${RUB.rateBuy} | покупка: ${RUB.rateSell} | ставка кросс ${RUB.rateCross}`
-  );
+
   const eurTOusaSell = EUR.rateSell / USD.rateSell;
   const eurTOusaBuy = EUR.rateBuy / USD.rateBuy;
   const usdTOeurSell = USD.rateSell / EUR.rateSell;
@@ -307,41 +297,58 @@ function currencyA(data) {
 
   // let toggleTimer = true;
   function toggleModal() {
-    //   console.log(dataInput.value);
-    //   if (toggleTimer) {
-    //     // stopTimer();
-    //     toggleTimer = false;
-    //   } else {
-    //     // startTimer();
-    //     toggleTimer = true;
-    //   }
-
     document.body.classList.toggle("modal-open");
     modal.classList.toggle("is-hidden");
   }
-
+  let a1 = EUR.rateBuy;
+  let b1 = 1;
   function converterCurrency() {
-    let eee = dataInput.value * EUR.rateBuy;
-    if (selected.value === "EUR") {
-      eee = dataInput.value * EUR.rateBuy;
-    } else if (selected.value === "USD") {
-      eee = dataInput.value * USD.rateBuy;
-    } else if (selected.value === "PLN") {
-      eee = dataInput.value * PLN.rateCross;
-    }
+    let eee = dataInput.value * (a1 / b1);
 
-    console.log(dataInput.value);
-    console.log(selected.value);
-    dataInput2.innerHTML = `${eee}`;
+    dataInput2.innerHTML = `${eee.toFixed(4)}`;
+  }
+
+  function converterCurrency2() {
+    if (selected.value === "EUR") {
+      a1 = EUR.rateBuy;
+    } else if (selected.value === "USD") {
+      a1 = USD.rateBuy;
+    } else if (selected.value === "PLN") {
+      a1 = PLN.rateCross;
+    } else if (selected.value === "UAH") {
+      a1 = 1;
+    }
+    console.log("a1", a1);
+    converterCurrency();
+  }
+  function converterCurrency3() {
+    if (selected2.value === "UAH") {
+      b1 = 1;
+    } else if (selected2.value === "USD") {
+      b1 = USD.rateBuy;
+    } else if (selected2.value === "PLN") {
+      b1 = PLN.rateCross;
+    } else if (selected2.value === "EUR") {
+      b1 = EUR.rateBuy;
+    }
+    console.log("b1", b1);
+    converterCurrency();
   }
 
   selected.oninput = function () {
-    converterCurrency();
+    converterCurrency2();
+    converterCurrency3();
+  };
+
+  selected2.oninput = function () {
+    converterCurrency3();
+    converterCurrency2();
   };
 
   dataInput.oninput = function () {
     converterCurrency();
   };
+  converterCurrency();
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 setInterval(() => {
