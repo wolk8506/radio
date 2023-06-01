@@ -777,6 +777,9 @@ svg{
 
 
 /* ***** MODAL CURENCY */
+.modal-currency{
+    width: 370px;
+}
 
 .currency-converter{
     display: flex;

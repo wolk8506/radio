@@ -98,7 +98,7 @@
 
     <!-- Модальное окно 2 -->
     <div class="backdrop is-hidden" data-modal-2>
-      <div class="modal">
+      <div class="modal modal-currency">
         <button data-modal-close-2>
           <svg class="icon-cross" width="24" height="24">
             <use href="./img/sprite.svg#icon-cross"></use>
@@ -106,7 +106,7 @@
         </button>
         <div id="contentModal"><h1>Конвертер валют</h1></div>
         <div class="currency-converter">
-          <input type="text" value="1" data-input-1 />
+          <input type="number" min="0" value="1" data-input-1 />
           <select selected>
             <option value="EUR">EUR</option>
             <option value="USD">USD</option>

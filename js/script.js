@@ -303,9 +303,9 @@ function currencyA(data) {
   let a1 = EUR.rateBuy;
   let b1 = 1;
   function converterCurrency() {
-    let eee = dataInput.value * (a1 / b1);
+    let eee = dataInput.value.trim() * (a1 / b1);
 
-    dataInput2.innerHTML = `${eee.toFixed(4)}`;
+    dataInput2.innerHTML = `${eee.toFixed(2)}`;
   }
 
   function converterCurrency2() {
@@ -337,12 +337,12 @@ function currencyA(data) {
 
   selected.oninput = function () {
     converterCurrency2();
-    converterCurrency3();
+    // converterCurrency3();
   };
 
   selected2.oninput = function () {
     converterCurrency3();
-    converterCurrency2();
+    // converterCurrency2();
   };
 
   dataInput.oninput = function () {
