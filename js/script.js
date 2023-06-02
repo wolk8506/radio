@@ -1,5 +1,6 @@
 console.log("fix-w-1.0.1");
-import myJson from "./condition.json" assert { type: "json" };
+import myJson from "../data/condition.json" assert { type: "json" };
+import myJsonCurrency from "../data/currency.json" assert { type: "json" };
 
 const weatherDay = document.querySelector("#weather-day");
 const weatherWeek = document.querySelector("#weather-week");
@@ -14,7 +15,19 @@ const dataInput = document.querySelector("[data-input-1]");
 const dataInput2 = document.querySelector("[data-input-2]");
 const selected = document.querySelector("[selected]");
 const selected2 = document.querySelector("[selected2]");
-//data-input-1  selected
+const expand = document.querySelector("#expand");
+const icon_currency_1 = document.querySelector(".icon-currency-1");
+const icon_currency_2 = document.querySelector(".icon-currency-2");
+
+
+const option_1_3 = document.querySelector(".option-1-3");
+const option_1_4 = document.querySelector(".option-1-4");
+const option_2_1 = document.querySelector(".option-2-1");
+const option_2_2 = document.querySelector(".option-2-2");
+const option_2_3 = document.querySelector(".option-2-3");
+const option_2_4 = document.querySelector(".option-2-4");
+
+//data-input-1  selected  option-2-1
 let meLocation = "Kharkiv";
 
 function locationWeather() {
@@ -223,6 +236,7 @@ function weatherD(data) {
 const currency = async () => {
   const response = await fetch("https://api.monobank.ua/bank/currency");
   const data = await response.json();
+  // const data =myJsonCurrency
   return data;
 };
 
@@ -260,13 +274,16 @@ function currencyA(data) {
   const PLN = arr.find((el) => el.currencyCodeA == 985);
   const EUR = arr.find((el) => el.currencyCodeA == 978);
   const RUB = arr.find((el) => el.currencyCodeA == 943);
+  
 
   const eurTOusaSell = EUR.rateSell / USD.rateSell;
   const eurTOusaBuy = EUR.rateBuy / USD.rateBuy;
   const usdTOeurSell = USD.rateSell / EUR.rateSell;
   const usdTOeurBuy = USD.rateBuy / EUR.rateBuy;
 
-  currencyUsd.innerHTML = `<div class="currency"><img src="./img/usa.png" width="24">
+  currencyUsd.innerHTML = `<div class="currency"><svg class="icon-USD" width="96" height="72">
+          <use href="./img/sprite.svg#icon-USD"></use>
+        </svg>
   <div>
   <p class="currencyUsd">1 &#36; покупка: ${USD.rateBuy} ₴ | продажа: ${
     USD.rateSell
@@ -277,8 +294,9 @@ function currencyA(data) {
   </div>
   </div>`;
 
-  currencyEur.innerHTML = `<div class="currency">
-  <img src="./img/eur.png" width="24"><div>
+  currencyEur.innerHTML = `<div class="currency"><svg class="icon-EUR" width="96" height="72">
+          <use href="./img/sprite.svg#icon-EUR"></use>
+        </svg><div>
   <div>
     <p class="currencyEur">1 &#8364; покупка: ${EUR.rateBuy} ₴ | продажа: ${
     EUR.rateSell
@@ -308,6 +326,69 @@ function currencyA(data) {
     dataInput2.innerHTML = `${eee.toFixed(2)}`;
   }
 
+  const arr1 =["UAH","EUR","USD","PLN","RUB"]
+  const arr2 =["EUR","UAH","USD","PLN","RUB"]
+
+
+
+  expand.addEventListener("click", expandCurrency)
+let expanrOn =false
+  function expandCurrency(){
+    expanrOn =true
+    f11()
+    // converterCurrency();
+    converterCurrency2();
+    converterCurrency3();
+  }
+
+  function f11(){
+    
+    let a1 = [...arr1]  
+    let d1 = [...a1.splice(a1.indexOf(selected.value) , 1),...a1];   
+    const e1 = d1.indexOf(selected2.value) 
+    d1.splice(e1, 1)
+    console.log("Q7", d1);
+    // --------------------
+    let a2 = [...arr2]  
+    let d2 = [...a2.splice(a2.indexOf(selected2.value) , 1),...a2];   
+    const e2 = d2.indexOf(selected.value) 
+    d2.splice(e2, 1)
+    console.log("K7", d2);
+
+    if(expanrOn){
+
+      let arr1_1 = [...d1]
+      let arr2_1 = [...d2]
+      d1=arr2_1
+      d2=arr1_1
+      expanrOn =false
+    }
+    icon_currency_1.innerHTML = `
+          <svg class="icon" width="64" height="48">
+            <use href="./img/sprite.svg#icon-${d1[0]}"></use>
+          </svg>`
+   
+    selected.innerHTML = `
+          <option value="${d1[0]}">${d1[0]}</option>
+          <option value="${d1[1]}">${d1[1]}</option>
+          <option value="${d1[2]}">${d1[2]}</option>`
+
+    icon_currency_2.innerHTML = `
+          <svg class="icon" width="64" height="48">
+            <use href="./img/sprite.svg#icon-${d2[0]}"></use>
+          </svg>`
+
+    selected2.innerHTML = `
+          <option value="${d2[0]}">${d2[0]}</option>
+          <option value="${d2[1]}">${d2[1]}</option>
+          <option value="${d2[2]}">${d2[2]}</option>`;
+
+console.log("EUR.rateBuy:",d2[0].rateBuy);
+
+
+  }
+  
+
   function converterCurrency2() {
     if (selected.value === "EUR") {
       a1 = EUR.rateBuy;
@@ -317,8 +398,7 @@ function currencyA(data) {
       a1 = PLN.rateCross;
     } else if (selected.value === "UAH") {
       a1 = 1;
-    }
-    console.log("a1", a1);
+    } 
     converterCurrency();
   }
   function converterCurrency3() {
@@ -330,25 +410,27 @@ function currencyA(data) {
       b1 = PLN.rateCross;
     } else if (selected2.value === "EUR") {
       b1 = EUR.rateBuy;
-    }
-    console.log("b1", b1);
+    } 
     converterCurrency();
   }
 
   selected.oninput = function () {
     converterCurrency2();
-    // converterCurrency3();
+f11()
+  
   };
 
   selected2.oninput = function () {
     converterCurrency3();
-    // converterCurrency2();
+  
+    f11()
   };
 
   dataInput.oninput = function () {
     converterCurrency();
   };
   converterCurrency();
+
   // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
 setInterval(() => {

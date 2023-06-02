@@ -1,3 +1,39 @@
+var rad_backcolor = "#434242";
+var rad_logo = "black";
+var rad_autoplay = true;
+var rad_width = "fixed";
+var rad_width_px = 340;
+var rad_stations = [
+  ["https://getradio.me/spdeep", "SOUNDPARK DEEP", "soundparkdeep"],
+  [
+    "https://ep256.hostingradio.ru:8052/europaplus256.mp3",
+    "Европа плюс",
+    "europaplus",
+  ],
+  ["https://listen.181fm.com/181-rock_128k.mp3", "Rock 181"],
+  [
+    "https://radiorecord.hostingradio.ru/rr_main96.aacp",
+    "Радио Рекорд",
+    "radiorecord",
+  ],
+  [
+    "https://pub0202.101.ru:8443/stream/air/aac/64/99",
+    "Радио Energy",
+    "nrj",
+  ],
+  [
+    "https://link.smmbox.ru/http://online.kissfm.ua/KissFM_HD",
+    "Kiss FM",
+    "kissfm",
+  ],
+  [
+    "https://radio7.hostingradio.ru:8040/radio7256.mp3",
+    "Радио 7",
+    "radio7",
+  ],
+];
+
+
 var g_volume = 80;
 var g_link = rad_stations[0][0];
 var is_play = false;
@@ -123,7 +159,7 @@ if (rad_width == "responsive") {
   var style_rad_width = g_rad_width_px + "px";
 }
 
-document.getElementById("radiobells_container").innerHTML =
+document.getElementById("radio_container").innerHTML =
   '<div style="background-color: ' +
   rad_backcolor +
   "; width: " +

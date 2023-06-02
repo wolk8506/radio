@@ -100,7 +100,7 @@ body{
     margin-right: auto;
 }
 
-#radiobells_container{
+#radio_container{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
     border-radius: 10px;
     padding: 10px;
@@ -563,7 +563,7 @@ svg{
 @media screen and (max-width: 420px) {
     
     
-    #radiobells_container {
+    #radio_container {
         margin-top: 20px;
         margin-bottom: 20px;
         padding-left: 30px;
@@ -638,6 +638,12 @@ svg{
         .icon-time {
             display: none;
         }
+
+    .icon-EUR, .icon-USD{
+        width: 56px;
+        height: 42px;
+        margin-right: 0;
+    }
 }
 
 /* ***MODAL */
@@ -783,11 +789,78 @@ svg{
 
 .currency-converter{
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+ 
+    
+    flex-direction: column;
 }
 .currency-converter input{
     border: none;
     border-bottom: 1px solid #000;
-    width: 50px;
+    width: 100px;
+    font-size: 24px;
+    text-align: right;
+}
+/* option{
+    width: 100px;
+    display: block;
+}
+select{
+    width: 100px;
+} */
+.selected-none{
+    display: none;
+}
+#expand{
+    display: block;
+    /* margin: 20px; */
+    position: relative;
+    /* color: #000; */
+    /* font-weight: 900; */
+    background-color: whitesmoke;
+    /* width: 30px; */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    margin-top: 15px;
+    z-index: 2;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.currency-line{
+    content: '';
+    background-color: rgba(0, 0, 0, 0.05);
+    height: 1px;
+    width: 100%;
+    display: block;
+    position: absolute;
+    top:180px;
+    z-index: -1;
+    left: 0px;
+}
+
+.currency-blok-1,
+.currency-blok-2
+
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 24px;
+}
+
+.currency-blok-2 p{
+    margin-right: 15px;
+}
+
+.currency-blok-icon{
+    display: flex;
+}
+.icon-swap_vert{
+    fill: aqua;
+    margin: 0;
+    display: block;
+}
+select{
+    cursor: pointer;
 }

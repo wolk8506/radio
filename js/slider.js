@@ -56,12 +56,6 @@ const news = async () => {
 };
 
 news().then((data) => {
-  // if (data === "error") {
-  //   console.log("привышен лимит запроса новостей");
-  //   sliderNews.classList.add("limit-request");
-  //   return;
-  // }
-
   dataNews = data;
   newsMarkup();
   console.log(data);
