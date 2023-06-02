@@ -282,7 +282,7 @@ function currencyA(data) {
   const usdTOeurBuy = USD.rateBuy / EUR.rateBuy;
 
   currencyUsd.innerHTML = `<div class="currency"><svg class="icon-USD" width="96" height="72">
-          <use href="./img/sprite.svg#icon-USD"></use>
+          <use href="img/sprite.svg#icon-USD"></use>
         </svg>
   <div>
   <p class="currencyUsd">1 &#36; покупка: ${USD.rateBuy} ₴ | продажа: ${
