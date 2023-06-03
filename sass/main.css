@@ -1,0 +1,1544 @@
+@charset "UTF-8";
+/*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
+/*
+Document
+========
+*/
+/**
+Use a better box model (opinionated).
+*/
+*,
+::before,
+::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/**
+1. Correct the line height in all browsers.
+2. Prevent adjustments of font size after orientation changes in iOS.
+3. Use a more readable tab size (opinionated).
+*/
+html {
+  line-height: 1.15;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -moz-tab-size: 4;
+  /* 3 */
+  -o-tab-size: 4;
+     tab-size: 4;
+  /* 3 */
+}
+
+/*
+Sections
+========
+*/
+/**
+1. Remove the margin in all browsers.
+2. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+*/
+body {
+  margin: 0;
+  /* 1 */
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  /* 2 */
+}
+
+/*
+Grouping content
+================
+*/
+/**
+1. Add the correct height in Firefox.
+2. Correct the inheritance of border color in Firefox. (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+*/
+hr {
+  height: 0;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+}
+
+/*
+Text-level semantics
+====================
+*/
+/**
+Add the correct text decoration in Chrome, Edge, and Safari.
+*/
+abbr[title] {
+  -webkit-text-decoration: underline dotted;
+          text-decoration: underline dotted;
+}
+
+/**
+Add the correct font weight in Edge and Safari.
+*/
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+2. Correct the odd 'em' font sizing in all browsers.
+*/
+code,
+kbd,
+samp,
+pre {
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */
+}
+
+/**
+Add the correct font size in all browsers.
+*/
+small {
+  font-size: 80%;
+}
+
+/**
+Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+*/
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/*
+Tabular data
+============
+*/
+/**
+1. Remove text indentation from table contents in Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=999088, https://bugs.webkit.org/show_bug.cgi?id=201297)
+2. Correct table border color inheritance in all Chrome and Safari. (https://bugs.chromium.org/p/chromium/issues/detail?id=935729, https://bugs.webkit.org/show_bug.cgi?id=195016)
+*/
+table {
+  text-indent: 0;
+  /* 1 */
+  border-color: inherit;
+  /* 2 */
+}
+
+/*
+Forms
+=====
+*/
+/**
+1. Change the font styles in all browsers.
+2. Remove the margin in Firefox and Safari.
+*/
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */
+}
+
+/**
+Remove the inheritance of text transform in Edge and Firefox.
+*/
+button,
+select {
+  text-transform: none;
+}
+
+/**
+Correct the inability to style clickable types in iOS and Safari.
+*/
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+Remove the inner border and padding in Firefox.
+*/
+::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+Restore the focus styles unset by the previous rule.
+*/
+:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+Remove the additional ':invalid' styles in Firefox.
+See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737
+*/
+:-moz-ui-invalid {
+  box-shadow: none;
+}
+
+/**
+Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers.
+*/
+legend {
+  padding: 0;
+}
+
+/**
+Add the correct vertical alignment in Chrome and Firefox.
+*/
+progress {
+  vertical-align: baseline;
+}
+
+/**
+Correct the cursor style of increment and decrement buttons in Safari.
+*/
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+1. Correct the odd appearance in Chrome and Safari.
+2. Correct the outline style in Safari.
+*/
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */
+}
+
+/**
+Remove the inner padding in Chrome and Safari on macOS.
+*/
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+1. Correct the inability to style clickable types in iOS and Safari.
+2. Change font properties to 'inherit' in Safari.
+*/
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */
+}
+
+/*
+Interactive
+===========
+*/
+/*
+Add the correct display in Chrome and Safari.
+*/
+summary {
+  display: list-item;
+}
+
+.rad_selection {
+  color: #ffffff;
+  font-family: tahoma;
+  font-size: 11px;
+  height: 34px;
+  overflow: hidden;
+  cursor: pointer;
+  border-bottom: 1px solid #434242;
+}
+
+.rad_selection img {
+  width: 22px;
+  height: 22px;
+  padding: 6px;
+  vertical-align: middle;
+  border: none;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+#rad_block_play {
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 4px;
+  padding: 12px;
+  float: left;
+}
+
+#rad_select_main_text,
+#rad_stationname,
+#rad_select_main_image {
+  vertical-align: middle;
+}
+
+#rad_play_btn {
+  cursor: pointer;
+  margin: 0px;
+  vertical-align: middle;
+  border: none;
+}
+
+#rad_select {
+  font-size: 12px;
+  font-family: tahoma;
+  cursor: pointer;
+  width: 170px;
+}
+
+#rad_stationname {
+  float: left;
+  width: 155px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#rad_select_main_image {
+  width: 36px;
+  height: 36px;
+  padding: 6px 16px 6px;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+.rad_select_small_image {
+  width: 22px;
+  height: 22px;
+  padding: 6px;
+}
+
+#rad_dropdown {
+  float: left;
+  padding-top: 18px;
+}
+
+#rad_list {
+  position: absolute;
+  z-index: 1000;
+  background-color: #2c2c2c;
+  margin-top: 48px;
+  margin-left: 9px;
+  max-height: 210px;
+  width: 170px;
+  overflow: auto;
+}
+
+#rad_block_select {
+  display: inline-block;
+  float: left;
+}
+
+#rad_block_volume {
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 4px;
+  padding: 12px;
+  float: right;
+}
+
+#rad_sound_btn {
+  cursor: pointer;
+  margin: 0px;
+  vertical-align: middle;
+  border: none;
+}
+
+#rad_volume {
+  position: absolute;
+  z-index: 1000;
+  background-color: #2c2c2c;
+  padding: 14px;
+  margin-top: 12px;
+  margin-left: -4px;
+  height: 100px;
+  width: 6px;
+  overflow: hidden;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+#rad_volume_range {
+  background-color: #999;
+  width: 6px;
+  height: 100px;
+  margin: 15px 13px;
+  display: table-cell;
+  vertical-align: bottom;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+#rad_volume_bar {
+  background-color: #eb65df;
+  width: 6px;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
+}
+
+#rad_block_logo {
+  padding-top: 0px;
+  margin-top: 12px;
+  float: left;
+  margin-left: 50px;
+}
+
+#rad_logo {
+  border: none;
+}
+
+#rad_player {
+  height: 48px;
+  min-width: 180px;
+  -webkit-box-sizing: content-box !important;
+          box-sizing: content-box !important;
+}
+
+.rad-list::-webkit-scrollbar {
+  width: 5px;
+}
+
+.rad-list::-webkit-scrollbar-track {
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+  background: #2c2c2c;
+}
+
+.rad-list::-webkit-scrollbar-thumb {
+  background-color: #eb65df;
+  /* Цвет бегунка */
+  border-radius: 20px;
+  /* Округление бегунка */
+  border: 3px solid #eb65df;
+  /* Оформление границ бегунка */
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  /* Ширина всего элемента навигации */
+}
+
+body::-webkit-scrollbar-track {
+  background: #434242;
+  /* Цвет дорожки */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #eb65df;
+  /* Цвет бегунка */
+  border-radius: 20px;
+  /* Округление бегунка */
+  border: 3px solid #eb65df;
+  /* Оформление границ бегунка */
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  margin-bottom: 20px;
+  padding-top: 10px;
+}
+
+.currency {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.currency div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.currency img {
+  width: 56px;
+  height: 48px;
+  margin-right: 15px;
+}
+
+.currency-usd {
+  margin: 3px;
+  font-size: 20px;
+  color: aqua;
+  font-family: 'DotGothic16', sans-serif;
+}
+
+.currency-eur {
+  font-family: 'DotGothic16', sans-serif;
+  margin: 3px;
+  font-size: 20px;
+  color: #eb65df;
+}
+
+/* !!!PLAYER */
+/* #rad-list.rad-list{
+    background-color: #434242!important;
+} */
+/* 
+.rad_selection{
+    border-radius: 5px!important;
+    margin-bottom: 5px !important;
+} */
+/* !!!!!!!!!! */
+body {
+  background-color: #434242;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#rad_player {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#radio_container {
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+ul {
+  font-size: 18px;
+  color: aliceblue;
+}
+
+li {
+  list-style: none;
+}
+
+.block-day {
+  max-width: 1600px;
+  margin-right: auto;
+  margin-left: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+#weather-hour {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  max-width: 800px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.ico-location {
+  fill: #f9f9fd;
+  margin-right: 10px;
+}
+
+.ico-thermometer {
+  margin: 0;
+}
+
+svg {
+  fill: #f9f9fd;
+  margin-right: 7px;
+}
+
+.hour-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 250px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  height: 62px;
+  /* margin-left: 15px; */
+  color: aliceblue;
+  border-radius: 10px;
+  padding-left: 20px;
+}
+
+.hour-item-temp {
+  font-size: 24px;
+}
+
+.first-day {
+  color: aqua;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.undefined {
+  color: #eb65df;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.icon-time {
+  fill: currentColor;
+}
+
+/* ************ */
+#weather-week {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  color: aliceblue;
+  font-size: 10px;
+  max-width: 1600px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#weather-week ul {
+  /* border: 1px solid coral; */
+  margin: 0;
+  padding: 10px;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  width: 220px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+#weather-week li {
+  margin: 0;
+  font-size: 14px;
+}
+
+.condition-week {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 50px;
+  font-weight: 700;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.condition-week p {
+  /* margin: 25px; */
+  font-size: 26px;
+}
+
+.condition-week img {
+  width: 96px;
+  height: 96px;
+}
+
+.week-first-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.week-first-item p {
+  font-size: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.week-humidity {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.week-humidity img {
+  width: 32px;
+  height: 32px;
+}
+
+/* ** Стили для текущего дня */
+.day {
+  /* border: 1px solid coral; */
+  max-width: 580px;
+  padding: 10px;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.day-list {
+  /* border: 1px solid coral; */
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  padding-left: 15px;
+  border-radius: 5px;
+  /* width: 500px; */
+}
+
+.update-time {
+  font-size: 12px;
+}
+
+.condition {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 50px;
+  font-weight: 700;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.condition p {
+  margin: 25px;
+}
+
+.condition img {
+  width: 160px;
+  height: 160px;
+}
+
+.day-num {
+  font-family: 'DotGothic16', sans-serif;
+}
+
+/* !!! */
+.card-day {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 130px;
+  height: 120px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 3px;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  margin-bottom: 10px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 5px;
+}
+
+.card-day span {
+  font-size: 28px;
+  font-weight: 600;
+  /* margin-bottom: 10px; */
+  margin-right: 10px;
+}
+
+.card-day p {
+  font-size: 18px;
+  margin-bottom: 5px;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.card-day {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* border: 1px solid coral; */
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 30px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 3px;
+  margin-bottom: 3px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.card-day span {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.card-day p {
+  font-size: 16px;
+  margin: 0;
+  text-align: center;
+}
+
+/* !!!!!!!!!!!!!!!!!!!1 */
+.card-day p span {
+  font-size: 18px;
+  margin-bottom: 5px;
+  text-align: center;
+  font-weight: 400;
+}
+
+.card-day-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 0;
+  margin: 0;
+}
+
+.day-wind {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.day-wind p {
+  margin-top: 7px;
+  margin-right: 15px;
+}
+
+/*!!! slider */
+#slider-news {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-width: 1600px;
+  height: 350px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 20px;
+}
+
+.limit-request {
+  display: none !important;
+}
+
+#news {
+  width: 1200px;
+  -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.spinner-news {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 240px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.news-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.news-card img {
+  margin-right: 20px;
+}
+
+/* ****************************************************************************************** */
+.news-card-content::-webkit-scrollbar {
+  width: 10px;
+  /* Ширина всего элемента навигации */
+}
+
+.news-card-content::-webkit-scrollbar-track {
+  background: #434242;
+  /* Цвет дорожки */
+}
+
+.news-card-content::-webkit-scrollbar-thumb {
+  background-color: #eb65df;
+  /* Цвет бегунка */
+  border-radius: 20px;
+  /* Округление бегунка */
+  border: 3px solid #eb65df;
+  /* Оформление границ бегунка */
+}
+
+.news-card-content {
+  overflow-y: scroll;
+  height: 200px;
+  padding-right: 5px;
+}
+
+.scrol-slider-ico {
+  fill: rgba(0, 255, 255, 0.151);
+}
+
+.scrol-slider-ico:hover {
+  fill: aqua;
+}
+
+#slider-news button {
+  background-color: transparent;
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.news-link {
+  color: #8495e0;
+}
+
+.news-card-text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.publishedAt {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.totalnews {
+  margin-top: 10px;
+  text-align: right;
+  color: #ec5360;
+}
+
+/* ?????? spinner */
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  -webkit-animation-timing-function: cubic-bezier(0, 1, 1, 0);
+          animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  -webkit-animation: lds-ellipsis1 0.6s infinite;
+          animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  -webkit-animation: lds-ellipsis2 0.6s infinite;
+          animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  -webkit-animation: lds-ellipsis2 0.6s infinite;
+          animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  -webkit-animation: lds-ellipsis3 0.6s infinite;
+          animation: lds-ellipsis3 0.6s infinite;
+}
+
+@-webkit-keyframes lds-ellipsis1 {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
+
+@-webkit-keyframes lds-ellipsis3 {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  100% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+  }
+}
+
+@-webkit-keyframes lds-ellipsis2 {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(24px, 0);
+            transform: translate(24px, 0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(24px, 0);
+            transform: translate(24px, 0);
+  }
+}
+
+@media screen and (max-width: 420px) {
+  #radio_container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  #weather-week ul {
+    width: 185px;
+    margin: 10px;
+    padding: 5px;
+  }
+  .block-day {
+    display: block;
+  }
+  #weather-hour {
+    padding-left: 0;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .currency p {
+    font-size: 15px;
+  }
+  .currency img {
+    width: 36px;
+    height: 32px;
+    margin-right: 5px;
+  }
+  .hour-item {
+    width: calc(100% / 6);
+    margin-right: 0;
+    margin: 0;
+    margin-bottom: 3px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    height: 150px;
+    padding: 3px;
+  }
+  .hour-item-temp {
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+  .day {
+    margin-top: 3px;
+  }
+  .card-day {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    height: 30px;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 3px;
+    margin-bottom: 3px;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .card-day span {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 0;
+  }
+  .card-day p {
+    font-size: 16px;
+    margin: 0;
+    text-align: center;
+  }
+  .header {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  #slider-news {
+    display: none;
+  }
+  .icon-time {
+    display: none;
+  }
+  .icon-EUR,
+  .icon-USD {
+    width: 56px;
+    height: 42px;
+    margin-right: 0;
+  }
+}
+
+/* ***MODAL */
+:root {
+  --accent-color: #2196f3;
+  --background-color: #ffffff;
+  --title--color: #212121;
+  --text--color: #757575;
+  --background-color-section: #2f303a;
+  --logo-top-color: #000000;
+  --contact-botom-color: rgba(255, 255, 255, 0.6);
+  --background-color-man-section: #f5f4fa;
+  --line-color: #ececec;
+  --border-color: #eeeeee;
+  --icon-color: #afb1b8;
+  --icon-color-footer: rgba(255, 255, 255, 0.1);
+  --hero-gradient: rgba(47, 48, 58, 0.4);
+  --button-hiro-hover: #188ce8;
+  --background-box: rgba(47, 48, 58, 0.8);
+  --background-color-project: rgba(33, 150, 243, 0.9);
+  --background-modal: rgba(0, 0, 0, 0.2);
+}
+
+/*! Модальное окно */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-modal);
+  -webkit-transition-property: opacity, visibility;
+  transition-property: opacity, visibility;
+  -webkit-transition-duration: 250ms;
+          transition-duration: 250ms;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.is-hidden .modal {
+  -webkit-transform: translate(-50%, -50%) scale(1.1);
+          transform: translate(-50%, -50%) scale(1.1);
+  opacity: 0;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: 15px;
+  background-color: var(--background-color);
+  -webkit-transform: translate(-50%, -50%) scale(1);
+          transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: opacity, transform;
+  transition-property: opacity, transform, -webkit-transform;
+  -webkit-transition-duration: 250ms;
+          transition-duration: 250ms;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+}
+
+.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.icon-modal {
+  display: block;
+}
+
+.modal-btn:hover,
+.modal-btn:focus {
+  fill: var(--accent-color);
+}
+
+.modal img {
+  /* width: 100vw; */
+  height: 100vh;
+}
+
+.news-card-modal img {
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.icon-cross {
+  fill: currentColor;
+  display: block;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: opacity, transform;
+  transition-property: opacity, transform, -webkit-transform;
+  -webkit-transition-duration: 250ms;
+          transition-duration: 250ms;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal button {
+  border: none;
+  background: transparent;
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  color: rgba(235, 101, 224, 0.5);
+}
+
+.modal button:hover {
+  color: #eb65df;
+}
+
+.icon-cross:hover {
+  fill: currentColor;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.news-card-content-modal::-webkit-scrollbar {
+  width: 10px;
+  /* Ширина всего элемента навигации */
+}
+
+.news-card-content-modal::-webkit-scrollbar-track {
+  background: rgba(67, 66, 66, 0.438);
+  /* Цвет дорожки */
+}
+
+.news-card-content-modal::-webkit-scrollbar-thumb {
+  background-color: #eb65df;
+  /* Цвет бегунка */
+  border-radius: 20px;
+  /* Округление бегунка */
+  border: 3px solid #eb65df;
+  /* Оформление границ бегунка */
+}
+
+.news-card-content-modal {
+  overflow-y: scroll;
+  height: 280px;
+  /* padding-right: 5px; */
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* ***** MODAL CURENCY */
+.modal-currency {
+  width: 370px;
+}
+
+.currency-converter {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.currency-converter input {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 100px;
+  font-size: 24px;
+  text-align: right;
+}
+
+/* option{
+    width: 100px;
+    display: block;
+}
+select{
+    width: 100px;
+} */
+.selected-none {
+  display: none;
+}
+
+#expand {
+  display: block;
+  /* margin: 20px; */
+  position: relative;
+  /* color: #000; */
+  /* font-weight: 900; */
+  background-color: whitesmoke;
+  /* width: 30px; */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  z-index: 2;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.currency-line {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.05);
+  height: 1px;
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 223px;
+  z-index: -1;
+  left: 0px;
+}
+
+.currency-blok-1,
+.currency-blok-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  font-size: 24px;
+}
+
+.currency-blok-2 p {
+  margin-right: 15px;
+}
+
+.currency-blok-icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.icon-swap_vert {
+  fill: aqua;
+  margin: 0;
+  display: block;
+}
+
+select {
+  cursor: pointer;
+}
+
+#city {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #bdbdbd;
+  color: aqua;
+}
+
+.button-search {
+  background: transparent;
+  border: none;
+  color: #bdbdbd;
+  cursor: pointer;
+}
+
+.button-location {
+  background: transparent;
+  border: none;
+  color: #bdbdbd;
+  cursor: pointer;
+  line-height: 1.71;
+  padding-bottom: 10px;
+  display: block;
+}
+
+.location {
+  /* border-bottom: 1px solid coral; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: 700;
+}
+
+.location::after {
+  content: ' ';
+  height: 2px;
+  color: red;
+  display: block;
+  background-image: -webkit-gradient(linear, left top, right top, from(#ff8052), to(rgba(255, 128, 82, 0)));
+  background-image: linear-gradient(90deg, #ff8052 0%, rgba(255, 128, 82, 0) 100%);
+}
+
+@media screen and (max-width: 420px) {
+  #city {
+    width: 150px;
+  }
+}
+
+.radiobutton-currency-buy-sell {
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  font-size: 18px;
+}
+
+.radiobutton-currency-buy-sell input {
+  width: 20px;
+}
+/*# sourceMappingURL=main.css.map */
