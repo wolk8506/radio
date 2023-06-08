@@ -1,0 +1,195 @@
+@media screen and (max-width: 420px) {
+  #radio_container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .day-list {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  // #weather-week ul {
+  //   width: 185px;
+  //   margin: 10px;
+  //   padding: 5px;
+  // }
+  .block-day {
+    display: block;
+  }
+  #weather-hour {
+    padding-left: 0;
+    justify-content: space-around;
+  }
+  .currency p {
+    font-size: 15px;
+  }
+  .currency img {
+    width: 36px;
+    height: 32px;
+    margin-right: 5px;
+  }
+  .hour-item {
+    width: calc((100% - 30px) / 6);
+    margin-right: 0;
+    margin: 0;
+    margin-bottom: 3px;
+    flex-direction: column;
+    height: 150px;
+    padding: 3px;
+  }
+  .hour-item img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .hour-item-temp {
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+
+  .day {
+    margin-top: 3px;
+  }
+  .card-day {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    height: 30px;
+    align-items: center;
+    padding: 3px;
+    margin-bottom: 3px;
+    justify-content: space-between;
+  }
+  .card-day span {
+    // font-size: 24px;
+    // font-weight: 700;
+    margin-bottom: 0;
+  }
+
+  .card-day p {
+    font-size: 16px;
+    margin: 0;
+    text-align: center;
+  }
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+  #slider-news {
+    display: none;
+  }
+  .icon-time {
+    display: none;
+  }
+
+  .icon-EUR,
+  .icon-USD {
+    width: 56px;
+    height: 42px;
+    margin-right: 0;
+  }
+  .condition-week {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .panel-weather-day {
+    // width: calc((100% - 40px) / 3);
+    height: 620px;
+    padding: 10px;
+    // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    // border-radius: 5px;
+    // margin-top: 0px;
+    // padding-bottom: 10px;
+    & .condition-text {
+      height: 40px;
+      text-align: center;
+    }
+  }
+  .block-hours-days {
+    padding-left: 10px;
+    padding-right: 10px;
+    // height: 1000px;
+  }
+  // ???????????????????????????????????????????????????????
+  // .block-weather-detail {
+  //   margin-bottom: 20px;
+  //   display: flex;
+  //   justify-content: center;
+  //   //   font-size: 18px;
+  // }
+
+  .tabs-weather {
+    // display: flex;
+    // position: relative;
+    // padding: 0.75rem;
+    // border-radius: 99px;
+
+    width: 90%;
+  }
+
+  // .tabs-weather * {
+  //   z-index: 2;
+  // }
+
+  // .container-radio-weather input[type='radio'] {
+  //   display: none;
+  // }
+
+  .tab-weather {
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // height: 30px;
+    // width: calc(100% / 2);
+    font-size: 16px;
+    // color: black;
+    // font-weight: 500;
+    // border-radius: 99px;
+    // cursor: pointer;
+    // transition: color 0.15s ease-in;
+    // padding-bottom: 3px;
+  }
+
+  // .container-radio-weather input[type='radio']:checked + label {
+  //   color: var(--accent-color-2);
+  // }
+
+  // .container-radio-weather input[type='radio']:checked + label > .notification {
+  //   background-color: #185ee0;
+  //   color: var(--accent-color-2);
+  //   margin: 0px;
+  // }
+
+  // .container-radio-weather
+  //   input[id='radio-1-weather']:checked
+  //   ~ .glider-weather {
+  //   transform: translateX(0);
+  // }
+
+  // .container-radio-weather
+  //   input[id='radio-2-weather']:checked
+  //   ~ .glider-weather {
+  //   transform: translateX(100%);
+  // }
+
+  // // .container-radio input[id='radio-3']:checked ~ .glider {
+  // //   transform: translateX(200%);
+  // // }
+
+  .glider-weather {
+    // position: absolute;
+    // display: flex;
+    // height: 30px;
+    width: calc((100% - 20px) / 2);
+    // z-index: 1;
+    // border-radius: 10px;
+    // transition: 0.25s ease-out;
+    // background: #434242;
+    // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  }
+}

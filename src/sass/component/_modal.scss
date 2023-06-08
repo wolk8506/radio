@@ -1,0 +1,287 @@
+/*! Модальное окно */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-modal);
+  transition-property: opacity, visibility;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 100;
+}
+
+.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(1.1);
+  opacity: 0;
+}
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  padding: 15px;
+  background-color: var(--background-color);
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  transition-property: opacity, transform;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 10px;
+  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+  color: #e0e0e0;
+}
+
+.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.icon-modal {
+  display: block;
+}
+
+.modal-btn:hover,
+.modal-btn:focus {
+  fill: var(--accent-color);
+}
+
+.modal img {
+  /* width: 100vw; */
+  height: 100vh;
+}
+
+.icon-cross {
+  fill: currentColor;
+  display: block;
+  transition-property: opacity, transform;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.modal button {
+  border: none;
+  background: transparent;
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  color: rgba(235, 101, 224, 0.5);
+}
+.modal button:hover {
+  color: #eb65df;
+}
+
+.icon-cross:hover {
+  fill: currentColor;
+  transform: rotate(90deg);
+}
+
+/* ***** MODAL CURENCY */
+.modal-currency {
+  width: 370px;
+}
+
+.selected-none {
+  display: none;
+}
+#expand {
+  display: block;
+  position: relative;
+  //   background-color: whitesmoke;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  z-index: 2;
+  cursor: pointer;
+  border-radius: 5px;
+  background: #434242;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+}
+// !!!!!        MODAL NEWS      !!!!!
+
+.news-card-modal h2 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.news-card-modal img {
+  height: 450px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.news-card-content-modal::-webkit-scrollbar {
+  width: 10px;
+  /* Ширина всего элемента навигации */
+}
+
+.news-card-content-modal::-webkit-scrollbar-track {
+  background: hsla(0, 1%, 26%, 0.438);
+  /* Цвет дорожки */
+}
+
+.news-card-content-modal::-webkit-scrollbar-thumb {
+  background-color: #eb65df;
+  /* Цвет бегунка */
+  border-radius: 20px;
+  /* Округление бегунка */
+  border: 3px solid #eb65df;
+  /* Оформление границ бегунка */
+}
+
+.news-card-content-modal {
+  overflow-y: scroll;
+  height: 280px;
+  /* padding-right: 5px; */
+  padding: 10px;
+  margin-top: 10px;
+}
+
+// !!!!!        MODAL CURRENCY      !!!!!
+
+#sell,
+#buy {
+  width: 40px;
+}
+
+.currency-converter {
+  display: flex;
+
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.currency-converter input {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 150px;
+  font-size: 24px;
+  text-align: right;
+  background: #434242;
+}
+
+select {
+  background: #434242;
+  border-radius: 10px;
+}
+
+.currency-line {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 1px;
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 256px;
+  z-index: -1;
+  left: 0px;
+}
+
+.currency-blok-1,
+.currency-blok-2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 24px;
+}
+
+.currency-blok-2 p {
+  margin-right: 15px;
+}
+
+.currency-blok-icon {
+  display: flex;
+}
+
+.icon-swap_vert {
+  fill: aqua;
+  margin: 0;
+  display: block;
+}
+select {
+  cursor: pointer;
+}
+
+.radiobutton-currency-buy-sell {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  //   font-size: 18px;
+}
+
+// ????????????????????????????????????????????????????????
+
+.tabs {
+  display: flex;
+  position: relative;
+  padding: 0.75rem;
+  border-radius: 99px;
+  width: 260px;
+}
+
+.tabs * {
+  z-index: 2;
+}
+
+.container-radio input[type='radio'] {
+  display: none;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 100px;
+  font-size: 20px;
+  color: black;
+  font-weight: 500;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: color 0.15s ease-in;
+  padding-bottom: 3px;
+}
+
+.container-radio input[type='radio']:checked + label {
+  color: var(--accent-color-2);
+}
+
+.container-radio input[type='radio']:checked + label > .notification {
+  background-color: #185ee0;
+  color: var(--accent-color-2);
+  margin: 0px;
+}
+
+.container-radio input[id='radio-1']:checked ~ .glider {
+  transform: translateX(0);
+}
+
+.container-radio input[id='radio-2']:checked ~ .glider {
+  transform: translateX(100%);
+}
+
+// .container-radio input[id='radio-3']:checked ~ .glider {
+//   transform: translateX(200%);
+// }
+
+.glider {
+  position: absolute;
+  display: flex;
+  height: 30px;
+  width: 100px;
+  z-index: 1;
+  border-radius: 99px;
+  transition: 0.25s ease-out;
+  background: #434242;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+}
+
+// @media (max-width: 700px) {
+//   .tabs {
+//     transform: scale(0.7);
+//   }
+// }

@@ -1,4 +1,5 @@
-import myJsonCurrency from '../data/currency.json' assert { type: 'json' };
+import sprite from '../images/sprite.svg';
+import axios from 'axios';
 
 const currencyUsd = document.querySelector('#currency-usd');
 const currencyEur = document.querySelector('#currency-eur');
@@ -8,37 +9,30 @@ const closeModalBtn = document.querySelector('[data-modal-close-2]');
 const modal = document.querySelector('[data-modal-2]');
 const dataInput_1 = document.querySelector('[data-input-1]');
 const dataInput_2 = document.querySelector('[data-input-2');
-
 const selected = document.querySelector('[selected]');
 const selected2 = document.querySelector('[selected2]');
 const expand = document.querySelector('#expand');
 const icon_currency_1 = document.querySelector('.icon-currency-1');
 const icon_currency_2 = document.querySelector('.icon-currency-2');
+const buy = document.querySelector('#radio-1');
+const sell = document.querySelector('#radio-2');
 
-const buy = document.querySelector('#buy');
-const sell = document.querySelector('#sell');
+currencyMono();
 
-const fetchCurrency = async () => {
-  const response = await fetch('https://api.monobank.ua/bank/currency');
-  const data = await response.json();
-  // const data = myJsonCurrency;
-  return data;
-};
-
-function f1() {
-  fetchCurrency()
-    .then(data => {
-      currencyA(data);
+function currencyMono() {
+  axios
+    .request('https://api.monobank.ua/bank/currency')
+    .then(function (response) {
+      currencyA(response.data);
     })
-    .catch(error => {
-      console.log('error load currency');
+    .catch(function (error) {
       currencyA('error');
-    });
+      console.log('Error: ', error.message);
+    })
+    .finally(function () {});
 }
 
-f1();
-
-setInterval(f1, 3600000);
+setInterval(currencyMono, 3600000);
 currencyUsd.innerHTML = `<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`;
 currencyEur.innerHTML = `<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`;
 let timeout = 5000;
@@ -46,7 +40,7 @@ let timeout = 5000;
 function currencyA(data) {
   if (data == 'error') {
     timeout = timeout + 1000;
-    setTimeout(f1, timeout);
+    setTimeout(currencyMono, timeout);
     return;
   }
 
@@ -68,23 +62,27 @@ function currencyA(data) {
   const usdTOeurBuy = USD.rateBuy / EUR.rateBuy;
 
   currencyUsd.innerHTML = `<div class="currency"><svg class="icon-USD" width="96" height="72">
-          <use href="./img/sprite.svg#icon-USD"></use>
+          <use href="${sprite}#icon-USD"></use>
         </svg>
   <div>
-  <p class="currency-usd">1 &#36; покупка: ${USD.rateBuy} ₴ | продажа: ${USD.rateSell} ₴</p>
+  <p class="currency-usd">1 &#36; покупка: ${USD.rateBuy} ₴ | продажа: ${
+    USD.rateSell
+  } ₴</p>
   <p class="currency-usd">1 &#36; покупка: ${usdTOeurSell.toFixed(
-    4,
+    4
   )} &#8364; | продажа: ${usdTOeurBuy.toFixed(4)} &#8364;</p>
   </div>
   </div>`;
 
   currencyEur.innerHTML = `<div class="currency"><svg class="icon-EUR" width="96" height="72">
-          <use href="./img/sprite.svg#icon-EUR"></use>
+          <use href="${sprite}#icon-EUR"></use>
         </svg><div>
   <div>
-    <p class="currency-eur">1 &#8364; покупка: ${EUR.rateBuy} ₴ | продажа: ${EUR.rateSell} ₴</p>
+    <p class="currency-eur">1 &#8364; покупка: ${EUR.rateBuy} ₴ | продажа: ${
+    EUR.rateSell
+  } ₴</p>
     <p class="currency-eur">1 &#8364; покупка: ${eurTOusaSell.toFixed(
-      4,
+      4
     )} &#36; | продажа: ${eurTOusaBuy.toFixed(4)} &#36;</p>
     </div>`;
 
@@ -108,6 +106,8 @@ function currencyA(data) {
   function toggleModal() {
     document.body.classList.toggle('modal-open');
     modal.classList.toggle('is-hidden');
+    const data2 = [USD, EUR, PLN];
+    nbu(data2);
   }
 
   let valueCurB = EUR.rateBuy;
@@ -170,13 +170,13 @@ function currencyA(data) {
     let d1 = [...a1.splice(a1.indexOf(selected.value), 1), ...a1];
     const e1 = d1.indexOf(selected2.value);
     d1.splice(e1, 1);
-    console.log('Q7', d1);
+    // console.log('Q7', d1);
     // --------------------
     let a2 = [...arr2];
     let d2 = [...a2.splice(a2.indexOf(selected2.value), 1), ...a2];
     const e2 = d2.indexOf(selected.value);
     d2.splice(e2, 1);
-    console.log('K7', d2);
+    // console.log('K7', d2);
 
     if (expanrOn) {
       let arr1_1 = [...d1];
@@ -188,7 +188,7 @@ function currencyA(data) {
 
     icon_currency_1.innerHTML = `
           <svg class="icon" width="64" height="48">
-            <use href="./img/sprite.svg#icon-${d1[0]}"></use>
+            <use href="${sprite}#icon-${d1[0]}"></use>
           </svg>`;
 
     selected.innerHTML = `
@@ -198,7 +198,7 @@ function currencyA(data) {
 
     icon_currency_2.innerHTML = `
           <svg class="icon" width="64" height="48">
-            <use href="./img/sprite.svg#icon-${d2[0]}"></use>
+            <use href="${sprite}#icon-${d2[0]}"></use>
           </svg>`;
 
     selected2.innerHTML = `
@@ -258,27 +258,65 @@ function currencyA(data) {
     }
   }
   f11();
-
-  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 }
+// *********************************************************************************
+const date = new Date();
+const dateSearch = date.toISOString().split('T')[0].split('-').join('');
+axios
+  .request(
+    `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${dateSearch}&json`
+  )
 
-// setInterval(() => {
-//   fetchCurrency().then(data => currencyA(data));
-// }, 600000);
-// const currency2 = async () => {
-//   const response = await fetch(
-//     "https://kurstoday.com.ua/api/chart?from=2000-01&to=2020-05&exchanger_id=9&currency=usd",
-//     {
-//       referrerPolicy: "unsafe-url",
-//     }
-//   );
-//   const data = await response.json();
-//   return data;
-// };
+  .then(function (response) {
+    // handle success
+    dataNBU = response.data;
+    // nbu(response.data);
+    // nbu(response.data);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  });
 
-// currency2()
-//   .then((data) => currencyObmennik(data))
-//   .catch((error) => console.log(error, "error load currency"));
+const table = document.querySelector('#table');
 
-// function currencyObmennik(data) {
-//   console.log(data);
+function nbu(data2) {
+  const data = dataNBU;
+  const USD = data.find(el => el.cc == 'USD').rate;
+  const EUR = data.find(el => el.cc == 'EUR').rate;
+  const PLN = data.find(el => el.cc == 'PLN').rate;
+  // console.log('НБУ', data);
+  console.log('НБУ USD', USD);
+  console.log('НБУ USD', EUR);
+  console.log('НБУ USD', PLN);
+
+  // table.innerHTML = `<table>
+  //       <tr>
+  //         <th>Валюта</th>
+  //         <th>Покупка MONO</th>
+  //         <th>Продажа MONO</th>
+  //         <th>Курс НБУ</th>
+  //       </tr>
+  //       <tr>
+  //         <th>USD</th>
+  //         <td>${data2[0].rateBuy}</td>
+  //         <td>${data2[0].rateSell}</td>
+  //         <td>${USD}</td>
+  //       </tr>
+  //       <tr>
+  //         <th>EUR</th>
+  //         <td>${data2[1].rateBuy}</td>
+  //         <td>${data2[1].rateSell}</td>
+  //         <td>${EUR}</td>
+  //       </tr>
+  //       <tr>
+  //         <th>PLZ</th>
+  //         <td>${data2[2].rateBuy}</td>
+  //         <td>${data2[2].rateSell}</td>
+  //         <td>${PLN}</td>
+  //       </tr>
+  //     </table>`;
+}

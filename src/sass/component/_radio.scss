@@ -125,7 +125,7 @@
 }
 
 #rad_volume_bar {
-  background-color: $color-acent-1;
+  background-color: var(--accent-color-1);
   width: 6px;
   box-sizing: content-box;
 }
@@ -147,6 +147,7 @@
   box-sizing: content-box !important;
 }
 
+// ***** NEW STYLE *****
 .rad-list::-webkit-scrollbar {
   width: 5px;
 }
@@ -157,10 +158,21 @@
 }
 
 .rad-list::-webkit-scrollbar-thumb {
-  background-color: $color-acent-1;
+  background-color: var(--accent-color-1);
   /* Цвет бегунка */
   border-radius: 20px;
   /* Округление бегунка */
-  border: 3px solid $color-acent-1;
+  border: 3px solid var(--accent-color-1);
   /* Оформление границ бегунка */
+}
+
+// #rad_player {
+//   margin-left: auto;
+//   margin-right: auto;
+// }
+
+#radio_container {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 10px;
 }

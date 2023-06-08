@@ -6,11 +6,23 @@ var rad_width_px = 340;
 var rad_stations = [
   ['https://getradio.me/spdeep', 'SOUNDPARK DEEP', 'soundparkdeep'],
   ['https://listen.181fm.com/181-rock_128k.mp3', 'Rock 181'],
-  ['https://radiorecord.hostingradio.ru/rr_main96.aacp', 'Радио Рекорд', 'radiorecord'],
+  [
+    'https://radiorecord.hostingradio.ru/rr_main96.aacp',
+    'Радио Рекорд',
+    'radiorecord',
+  ],
   ['https://pub0202.101.ru:8443/stream/air/aac/64/99', 'Радио Energy', 'nrj'],
-  ['https://link.smmbox.ru/http://online.kissfm.ua/KissFM_HD', 'Kiss FM', 'kissfm'],
+  [
+    'https://link.smmbox.ru/http://online.kissfm.ua/KissFM_HD',
+    'Kiss FM',
+    'kissfm',
+  ],
   ['https://radio7.hostingradio.ru:8040/radio7256.mp3', 'Радио 7', 'radio7'],
-  ['https://ep256.hostingradio.ru:8052/europaplus256.mp3', 'Европа плюс', 'europaplus'],
+  [
+    'https://ep256.hostingradio.ru:8052/europaplus256.mp3',
+    'Европа плюс',
+    'europaplus',
+  ],
 ];
 
 var g_volume = 80;
@@ -85,7 +97,8 @@ var select =
   '_70.jpg" align="absmiddle" id="rad_select_main_image"><span id="rad_select_main_text">' +
   rad_stations[0][1] +
   '</span></div><div id="rad_dropdown"></div></div>';
-select += '<div id="rad_list" class="rad-list" style="display: none;" align="left">';
+select +=
+  '<div id="rad_list" class="rad-list" style="display: none;" align="left">';
 
 for (var i = 0; i < rad_stations.length; i++) {
   if (rad_stations[i][2] != undefined) {
@@ -176,7 +189,8 @@ if (g_rad_player_width <= 300) {
   document.getElementById('rad_block_volume').style.marginRight = '0px';
   document.getElementById('rad_block_volume').style.marginLeft = '0px';
 } else {
-  document.getElementById('rad_select_main_text').style.display = 'inline-block';
+  document.getElementById('rad_select_main_text').style.display =
+    'inline-block';
   document.getElementById('rad_stationname').style.width = '180px';
   document.getElementById('rad_select').style.width = '179px';
   document.getElementById('rad_block_play').style.marginRight = '10px';
@@ -203,7 +217,9 @@ function rad_selectthis(t) {
     .getElementById('rad_select_main_image')
     .setAttribute(
       'src',
-      'https://radiobells.com/stations/' + t.getAttribute('data-img') + '_70.jpg',
+      'https://radiobells.com/stations/' +
+        t.getAttribute('data-img') +
+        '_70.jpg'
     );
   rad_loadmusic();
   return false;
@@ -215,10 +231,15 @@ function rad_show_stations() {
       ? document.documentElement.clientHeight
       : document.body.clientHeight;
 
-  if (win_height - document.getElementById('rad_player').getBoundingClientRect().bottom > 220) {
+  if (
+    win_height -
+      document.getElementById('rad_player').getBoundingClientRect().bottom >
+    220
+  ) {
     document.getElementById('rad_list').style.marginTop = '48px';
   } else {
-    document.getElementById('rad_list').style.marginTop = '-' + rad_stations.length * 35 + 'px';
+    document.getElementById('rad_list').style.marginTop =
+      '-' + rad_stations.length * 35 + 'px';
   }
 
   if (document.getElementById('rad_list').style.display == 'none') {
@@ -236,7 +257,11 @@ function rad_show_volume() {
       ? document.documentElement.clientHeight
       : document.body.clientHeight;
 
-  if (win_height - document.getElementById('rad_player').getBoundingClientRect().bottom > 220) {
+  if (
+    win_height -
+      document.getElementById('rad_player').getBoundingClientRect().bottom >
+    220
+  ) {
     g_volume_position = 'bottom';
     document.getElementById('rad_volume').style.marginTop = '12px';
     document.getElementById('rad_volume_range').style.verticalAlign = 'top';
@@ -280,12 +305,16 @@ var g_volume_position = 'top';
 
 function volumemove(event) {
   if (g_volume_position == 'bottom') {
-    var top = document.getElementById('rad_volume_range').getBoundingClientRect().top;
+    var top = document
+      .getElementById('rad_volume_range')
+      .getBoundingClientRect().top;
     if (window.event) event = window.event;
     var mousey = event.clientY - top;
     var newvol = Math.floor(mousey);
   } else {
-    var bottom = document.getElementById('rad_volume_range').getBoundingClientRect().bottom;
+    var bottom = document
+      .getElementById('rad_volume_range')
+      .getBoundingClientRect().bottom;
     if (window.event) event = window.event;
     var mousey = bottom - event.clientY;
     var newvol = Math.floor(mousey);

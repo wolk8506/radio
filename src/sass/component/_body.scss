@@ -1,0 +1,32 @@
+body {
+  background-color: #434242;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+  /* Ширина всего элемента навигации */
+}
+
+body::-webkit-scrollbar-track {
+  background: #434242;
+  /* Цвет дорожки */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #eb65df;
+  /* Цвет бегунка */
+  border-radius: 20px;
+  /* Округление бегунка */
+  border: 3px solid #eb65df;
+  /* Оформление границ бегунка */
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  padding-top: 10px;
+}
