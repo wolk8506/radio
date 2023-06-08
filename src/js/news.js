@@ -65,7 +65,7 @@ function newsMarkup() {
 
   function startTimer() {
     if (!nIntervId) {
-      nIntervId = setInterval(nextSlide, 10000);
+      nIntervId = setInterval(nextSlide, 15000);
     }
   }
 
