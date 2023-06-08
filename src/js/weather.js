@@ -145,7 +145,7 @@ function weatherW(data) {
         <li> <p>max t: ${maxtemp_c}°C</p></li>
         <li> <p>min t: ${mintemp_c}°C</p></li>
         <!-- <li> <p>Будет дождь: ${daily_will_it_rain}</p></li> -->
-        <li> <p>Вероятность осадков: ${precipitation}%</p></li>
+        <li> <p class="month-precipitation">Вероятность осадков: ${precipitation}%</p></li>
         <!-- <li> <p>Будет снег ${daily_will_it_snow}%</p></li> -->
         <!-- <li> <p>Вероятность снега ${daily_chance_of_snow}</p></li> -->
         <li class="condition-block-item">
@@ -269,31 +269,32 @@ function weatherD(data) {
       </div>
       <button class="button-search" type="button" value="search">🔍︎</button>
     </div>
+    <div class="location-line"></div>
     <div>${timeZone}, ${dayAndMonth}</div>
     <p class="condition-text">${conditionText}</p>
     <div class="condition">
       <div class="condition-block-left">
         <span>${temperature}°</span>
         <div class="condition-block-small">
-          <p class="condition-block-item">
+          <p title="Количество осадков" class="condition-block-item">
             <svg width="32" height="32">
               <use href="${sprite}#icon-umbrella"></use></svg
           >${precip_mm} мм
         </p>
 
-          <p class="condition-block-item">
+          <p  title="Облачность" class="condition-block-item">
             <svg width="32" height="32">
               <use href="${sprite}#icon-clouds"></use>
             </svg>
             ${cloud} %
           </p>
-          <p class="condition-block-item">
+          <p title="Видимость" class="condition-block-item">
             <svg width="32" height="32">
               <use href="${sprite}#icon-eye3"></use>
             </svg>
             ${vis_km} км
           </p>
-          <p class="condition-block-item">
+          <p title="Влажность" class="condition-block-item">
             <svg width="32" height="32">
               <use href="${sprite}#icon-raindrop1"></use>
             </svg>
@@ -308,29 +309,29 @@ function weatherD(data) {
     </div>
     <div class="condition-block-bottom">
       <div>
-        <p class="condition-block-item">
+        <p title="Восход солнца" class="condition-block-item">
           <svg width="32" height="32">
             <use href="${sprite}#icon-sunrise"></use></svg
           >${sunrise}
         </p>
-        <p class="condition-block-item">
+        <p title="Закат солнца" class="condition-block-item">
           <svg width="32" height="32">
             <use href="${sprite}#icon-sunset"></use></svg
           >${sunsetH}:${sunsetM}
         </p>
-         <p class="condition-block-item">
+         <p title="Восход луны" class="condition-block-item">
           <svg width="32" height="32">
             <use href="${sprite}#icon-moonrise"></use></svg
           >${moonrise24}
         </p>
-        <p class="condition-block-item">
+        <p title="Закат луны" class="condition-block-item">
           <svg width="32" height="32">
             <use href="${sprite}#icon-moonset"></use></svg
           >${moonset24}
         </p>
       </div>
       <div>
-        <p class="condition-block-item">
+        <p title="Скорость и направление ветра" class="condition-block-item">
           <svg width="32" height="32">
             <use href="${sprite}#icon-air-sock"></use></svg
           >${wind_ms} м/с &#160;
@@ -340,18 +341,18 @@ function weatherD(data) {
             <use href="${sprite}#icon-wind-w"></use>
           </svg>
         </p>
-        <p class="condition-block-item">
+        <p  title="Ультрофиолет" class="condition-block-item">
           <svg width="32" height="32">
             <use href="${sprite}#icon-sun"></use></svg
           >${uv}/10 UV
         </p>
-        <p class="condition-block-item">
+        <p title="Порывы ветра" class="condition-block-item">
           <svg width="32" height="32">
             <use href="${sprite}#icon-wind"></use></svg
           >${maxwind_ms} м/с
         </p>
      
-        <p class="condition-block-item">
+        <p  title="Давление" class="condition-block-item">
             <svg width="32" height="32">
               <use href="${sprite}#icon-barometer"></use>
             </svg>

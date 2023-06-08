@@ -1,30 +1,25 @@
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 412px) {
   #radio_container {
+    width: 100%;
     margin-top: 20px;
     margin-bottom: 20px;
-    padding-left: 30px;
-    padding-right: 30px;
   }
 
-  .day-list {
-    margin-right: 10px;
-    margin-left: 10px;
+  #radio_container div {
+    margin-right: auto;
+    margin-left: auto;
   }
 
-  // #weather-week ul {
-  //   width: 185px;
-  //   margin: 10px;
-  //   padding: 5px;
-  // }
   .block-day {
     display: block;
   }
-  #weather-hour {
-    padding-left: 0;
-    justify-content: space-around;
+
+  .currency {
+    width: 100%;
   }
   .currency p {
-    font-size: 15px;
+    font-size: 12px;
+    // font-size: calc(1em - 1vw);
   }
   .currency img {
     width: 36px;
@@ -65,8 +60,6 @@
     justify-content: space-between;
   }
   .card-day span {
-    // font-size: 24px;
-    // font-weight: 700;
     margin-bottom: 0;
   }
 
@@ -98,98 +91,24 @@
   }
 
   .panel-weather-day {
-    // width: calc((100% - 40px) / 3);
-    height: 620px;
+    // height: 100%;
     padding: 10px;
-    // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
-    // border-radius: 5px;
-    // margin-top: 0px;
-    // padding-bottom: 10px;
     & .condition-text {
       height: 40px;
       text-align: center;
     }
   }
-  .block-hours-days {
-    padding-left: 10px;
-    padding-right: 10px;
-    // height: 1000px;
-  }
-  // ???????????????????????????????????????????????????????
-  // .block-weather-detail {
-  //   margin-bottom: 20px;
-  //   display: flex;
-  //   justify-content: center;
-  //   //   font-size: 18px;
-  // }
-
-  .tabs-weather {
-    // display: flex;
-    // position: relative;
-    // padding: 0.75rem;
-    // border-radius: 99px;
-
-    width: 90%;
-  }
-
-  // .tabs-weather * {
-  //   z-index: 2;
-  // }
-
-  // .container-radio-weather input[type='radio'] {
-  //   display: none;
-  // }
 
   .tab-weather {
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // height: 30px;
-    // width: calc(100% / 2);
-    font-size: 16px;
-    // color: black;
-    // font-weight: 500;
-    // border-radius: 99px;
-    // cursor: pointer;
-    // transition: color 0.15s ease-in;
-    // padding-bottom: 3px;
+    font-size: 18px;
   }
 
-  // .container-radio-weather input[type='radio']:checked + label {
-  //   color: var(--accent-color-2);
-  // }
-
-  // .container-radio-weather input[type='radio']:checked + label > .notification {
-  //   background-color: #185ee0;
-  //   color: var(--accent-color-2);
-  //   margin: 0px;
-  // }
-
-  // .container-radio-weather
-  //   input[id='radio-1-weather']:checked
-  //   ~ .glider-weather {
-  //   transform: translateX(0);
-  // }
-
-  // .container-radio-weather
-  //   input[id='radio-2-weather']:checked
-  //   ~ .glider-weather {
-  //   transform: translateX(100%);
-  // }
-
-  // // .container-radio input[id='radio-3']:checked ~ .glider {
-  // //   transform: translateX(200%);
-  // // }
-
   .glider-weather {
-    // position: absolute;
-    // display: flex;
-    // height: 30px;
     width: calc((100% - 20px) / 2);
-    // z-index: 1;
-    // border-radius: 10px;
-    // transition: 0.25s ease-out;
-    // background: #434242;
-    // box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  }
+
+  #currency-eur,
+  #currency-usd {
+    width: 100%;
   }
 }

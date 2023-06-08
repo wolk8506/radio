@@ -1,7 +1,7 @@
 <!-- Модальное окно -->
 <div class="backdrop is-hidden" data-modal-1>
   <div class="modal">
-    <button data-modal-close-1>
+    <button type="button" class="btn-close" data-modal-close-1>
       <svg class="icon-cross" width="24" height="24">
         <use href="./images/sprite.svg#icon-cross"></use>
       </svg>
@@ -13,14 +13,33 @@
 <!-- Модальное окно 2 -->
 <div class="backdrop is-hidden" value="backdrop-currecy" data-modal-2>
   <div class="modal modal-currency">
-    <button data-modal-close-2>
+    <button type="button" class="btn-close" data-modal-close-2>
       <svg class="icon-cross" width="24" height="24">
         <use href="./images/sprite.svg#icon-cross"></use>
       </svg>
     </button>
-    <div id="contentModal"><h1>Конвертер валют</h1></div>
+    <div class="radiobutton-currency-buy-sell container-radio-cc">
+      <div class="tabs-cc">
+        <input
+          type="radio"
+          name="currency-converter"
+          id="radio-1-cc"
+          value="buy"
+          checked
+        /><label class="tab-cc" for="radio-1-cc">Конвертер</label>
 
-    <div class="currency-converter">
+        <input
+          type="radio"
+          name="currency-converter"
+          id="radio-2-cc"
+          value="sell"
+        />
+        <label class="tab-cc" for="radio-2-cc">Курс</label>
+        <span class="glider-cc"></span>
+      </div>
+    </div>
+
+    <div class="currency-converter" js-converter-hidden>
       <div class="radiobutton-currency-buy-sell container-radio">
         <div class="tabs">
           <input
@@ -50,7 +69,7 @@
             <option value="PLN">PLN</option>
           </select>
         </div>
-        <input type="number" step="0.01" min="0" value="1.00" data-input-1 />
+        <input type="number" step="1" min="0" value="1.00" data-input-1 />
       </div>
       <div class="currency-line"></div>
       <button id="expand">
@@ -71,8 +90,37 @@
             <option value="PLN">PLN</option>
           </select>
         </div>
-        <input type="number" step="0.01" min="0" value="1.00" data-input-2 />
+        <input type="number" step="1" min="0" value="1.00" data-input-2 />
       </div>
+      <!--  -->
+    </div>
+    <div id="table" class="is-hidden2">
+      <table>
+        <tr>
+          <td>Валюта</td>
+          <td>Покупка</td>
+          <td>Продажа</td>
+          <td>Курс НБУ</td>
+        </tr>
+        <tr>
+          <td>USD</td>
+          <td>25.00</td>
+          <td>26.00</td>
+          <td>20 нбу</td>
+        </tr>
+        <tr>
+          <td>EUR</td>
+          <td>25.00</td>
+          <td>26.00</td>
+          <td>20 нбу</td>
+        </tr>
+        <tr>
+          <td>PLZ</td>
+          <td>25.00</td>
+          <td>26.00</td>
+          <td>20 нбу</td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>

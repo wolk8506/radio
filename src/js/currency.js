@@ -16,6 +16,10 @@ const icon_currency_1 = document.querySelector('.icon-currency-1');
 const icon_currency_2 = document.querySelector('.icon-currency-2');
 const buy = document.querySelector('#radio-1');
 const sell = document.querySelector('#radio-2');
+const btnConverter = document.querySelector('#radio-1-cc');
+const btnCurrency = document.querySelector('#radio-2-cc');
+const table = document.querySelector('#table');
+const converterHidden = document.querySelector('[js-converter-hidden]');
 
 currencyMono();
 
@@ -106,9 +110,22 @@ function currencyA(data) {
   function toggleModal() {
     document.body.classList.toggle('modal-open');
     modal.classList.toggle('is-hidden');
-    const data2 = [USD, EUR, PLN];
-    nbu(data2);
+    // const data2 = [USD, EUR, PLN];
+    // nbu(data2);
   }
+
+  btnConverter.oninput = function () {
+    const data2 = [USD, EUR, PLN];
+    table.classList.toggle('is-hidden2');
+    converterHidden.classList.toggle('is-hidden3');
+    nbu(data2);
+  };
+  btnCurrency.oninput = function () {
+    const data2 = [USD, EUR, PLN];
+    table.classList.toggle('is-hidden2');
+    converterHidden.classList.toggle('is-hidden3');
+    nbu(data2);
+  };
 
   let valueCurB = EUR.rateBuy;
   let valueCurA = 1;
@@ -281,8 +298,6 @@ axios
     // always executed
   });
 
-const table = document.querySelector('#table');
-
 function nbu(data2) {
   const data = dataNBU;
   const USD = data.find(el => el.cc == 'USD').rate;
@@ -293,30 +308,30 @@ function nbu(data2) {
   console.log('НБУ USD', EUR);
   console.log('НБУ USD', PLN);
 
-  // table.innerHTML = `<table>
-  //       <tr>
-  //         <th>Валюта</th>
-  //         <th>Покупка MONO</th>
-  //         <th>Продажа MONO</th>
-  //         <th>Курс НБУ</th>
-  //       </tr>
-  //       <tr>
-  //         <th>USD</th>
-  //         <td>${data2[0].rateBuy}</td>
-  //         <td>${data2[0].rateSell}</td>
-  //         <td>${USD}</td>
-  //       </tr>
-  //       <tr>
-  //         <th>EUR</th>
-  //         <td>${data2[1].rateBuy}</td>
-  //         <td>${data2[1].rateSell}</td>
-  //         <td>${EUR}</td>
-  //       </tr>
-  //       <tr>
-  //         <th>PLZ</th>
-  //         <td>${data2[2].rateBuy}</td>
-  //         <td>${data2[2].rateSell}</td>
-  //         <td>${PLN}</td>
-  //       </tr>
-  //     </table>`;
+  table.innerHTML = `<table>
+        <tr>
+          <th>Валюта</th>
+          <th>Покупка MONO</th>
+          <th>Продажа MONO</th>
+          <th>Курс НБУ</th>
+        </tr>
+        <tr>
+          <th>USD</th>
+          <td>${data2[0].rateBuy}</td>
+          <td>${data2[0].rateSell}</td>
+          <td>${USD}</td>
+        </tr>
+        <tr>
+          <th>EUR</th>
+          <td>${data2[1].rateBuy}</td>
+          <td>${data2[1].rateSell}</td>
+          <td>${EUR}</td>
+        </tr>
+        <tr>
+          <th>PLZ</th>
+          <td>${data2[2].rateBuy}</td>
+          <td>${data2[2].rateSell}</td>
+          <td>${PLN}</td>
+        </tr>
+      </table>`;
 }

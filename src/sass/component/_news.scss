@@ -3,12 +3,13 @@
 #slider-news {
   display: flex;
   align-items: center;
-  max-width: 1600px;
+  // max-width: 1600px;
   height: 350px;
   justify-content: space-between;
-  margin-right: auto;
-  margin-left: auto;
+  // margin-right: auto;
+  // margin-left: auto;
   margin-bottom: 20px;
+  color: var(--font-color);
 }
 .limit-request {
   display: none !important;

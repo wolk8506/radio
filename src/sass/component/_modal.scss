@@ -21,7 +21,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-
+  // height: 400px;
   padding: 15px;
   background-color: var(--background-color);
   transform: translate(-50%, -50%) scale(1);
@@ -31,13 +31,35 @@
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 10px;
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
-  color: #e0e0e0;
+  color: var(--font-color);
+  & input,
+  & select {
+    color: var(--font-color);
+  }
 }
 
 .is-hidden {
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
+}
+
+.is-hidden2 {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  display: none;
+}
+.is-hidden3 {
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  display: none;
+}
+
+#table {
+  margin-bottom: 144px;
 }
 
 .icon-modal {
@@ -61,7 +83,7 @@
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
-.modal button {
+.modal .btn-close {
   border: none;
   background: transparent;
   position: absolute;
@@ -69,7 +91,7 @@
   cursor: pointer;
   color: rgba(235, 101, 224, 0.5);
 }
-.modal button:hover {
+.modal .btn-close:hover {
   color: #eb65df;
 }
 
@@ -79,6 +101,7 @@
 }
 
 /* ***** MODAL CURENCY */
+
 .modal-currency {
   width: 370px;
 }
@@ -89,7 +112,7 @@
 #expand {
   display: block;
   position: relative;
-  //   background-color: whitesmoke;
+
   margin-left: auto;
   margin-right: auto;
   padding: 0;
@@ -176,7 +199,7 @@ select {
   width: 100%;
   display: block;
   position: absolute;
-  top: 256px;
+  top: 283px;
   z-index: -1;
   left: 0px;
 }
@@ -187,6 +210,16 @@ select {
   align-items: center;
   justify-content: space-between;
   font-size: 24px;
+  & input:focus,
+  & input:hover {
+    outline: none;
+  }
+  & input::-webkit-outer-spin-button,
+  & input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+  }
 }
 
 .currency-blok-2 p {
@@ -214,13 +247,82 @@ select {
 }
 
 // ????????????????????????????????????????????????????????
+.container-radio-cc {
+  padding-top: 30px;
+}
+.tabs-cc {
+  display: flex;
+  position: relative;
+  padding: 0.75rem;
+  border-radius: 99px;
+  width: 100%;
+}
+
+.tabs-cc * {
+  z-index: 2;
+}
+
+.container-radio-cc input[type='radio'] {
+  display: none;
+}
+
+.tab-cc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: calc((100% / 2));
+  font-size: 20px;
+  color: var(--font-color);
+  font-weight: 500;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: color 0.15s ease-in;
+  padding-bottom: 3px;
+}
+
+.container-radio-cc input[type='radio']:checked + label {
+  color: var(--accent-color-2);
+}
+
+.container-radio-cc input[type='radio']:checked + label > .notification {
+  background-color: #185ee0;
+  color: var(--accent-color-2);
+  margin: 0px;
+}
+
+.container-radio-cc input[id='radio-1-cc']:checked ~ .glider-cc {
+  transform: translateX(0);
+}
+
+.container-radio-cc input[id='radio-2-cc']:checked ~ .glider-cc {
+  transform: translateX(100%);
+}
+
+// .container-radio input[id='radio-3']:checked ~ .glider {
+//   transform: translateX(200%);
+// }
+
+.glider-cc {
+  position: absolute;
+  display: flex;
+  height: 30px;
+  width: calc((100% - 20px) / 2);
+  z-index: 1;
+  border-radius: 99px;
+  transition: 0.25s ease-out;
+  background: #434242;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+}
+
+// ------------------------
 
 .tabs {
   display: flex;
   position: relative;
   padding: 0.75rem;
   border-radius: 99px;
-  width: 260px;
+  width: 225px;
 }
 
 .tabs * {
@@ -238,7 +340,7 @@ select {
   height: 30px;
   width: 100px;
   font-size: 20px;
-  color: black;
+  color: var(--font-color);
   font-weight: 500;
   border-radius: 99px;
   cursor: pointer;
@@ -271,6 +373,7 @@ select {
 .glider {
   position: absolute;
   display: flex;
+  justify-content: center;
   height: 30px;
   width: 100px;
   z-index: 1;
@@ -280,8 +383,6 @@ select {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
 }
 
-// @media (max-width: 700px) {
-//   .tabs {
-//     transform: scale(0.7);
-//   }
-// }
+#tamle {
+  display: none;
+}
