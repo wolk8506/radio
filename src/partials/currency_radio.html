@@ -1,11 +1,88 @@
 <div class="header">
   <div id="currency-eur" data-modal-open-2-eur></div>
-  <div id="radio_container"><input id="city" /></div>
+  <div class="radio">
+    <div class="radio__img" id="image-station"></div>
+
+    <div class="radio__control">
+      <div class="radio__volume">
+        <svg id="volume_off" width="32" height="32">
+          <use
+            id="icon-volume_down"
+            href="./images/sprite.svg#icon-volume_down"
+          ></use>
+          <use
+            id="icon-volume_off"
+            class="is-hidden"
+            href="./images/sprite.svg#icon-volume_off"
+          ></use>
+        </svg>
+        <input id="volume" type="range" min="0" max="100" value="80" />
+        <svg width="32" height="32">
+          <use href="./images/sprite.svg#icon-volume_up"></use>
+        </svg>
+      </div>
+      <div class="control__time">
+        <svg id="ico-alarms" width="24" height="24">
+          <use href="./images/sprite.svg#icon-alarms"></use></svg
+        ><span class="radio__time" id="duration" data-modal-open-radio
+          >--:--</span
+        >
+      </div>
+
+      <select id="select-station" selected>
+        <option value="0">Rock 181</option>
+        <option value="1">SOUNDPARK DEEP</option>
+        <option value="2">Радио Energy</option>
+        <option value="3">KissFM_HD</option>
+      </select>
+    </div>
+    <div>
+      <button class="ripple" id="play" type="button" value="Play">
+        <svg width="64" height="64">
+          <use id="ico-play" href="./images/sprite.svg#icon-play"></use>
+          <use
+            id="ico-pause"
+            class="is-hidden"
+            href="./images/sprite.svg#icon-pause"
+          ></use>
+        </svg>
+      </button>
+    </div>
+    <div class="backdrop is-hidden" data-modal-radio>
+      <div class="modal radio__modal">
+        <button type="button" class="btn-close" data-modal-close-radio>
+          <svg class="icon-cross" width="24" height="24">
+            <use href="./images/sprite.svg#icon-cross"></use>
+          </svg>
+        </button>
+        <div class="block__timer">
+          <h1>
+            <svg width="24" height="24">
+              <use href="./images/sprite.svg#icon-alarms"></use></svg
+            >timer
+          </h1>
+          <span class="radio__time" id="duration2" data-modal-open-radio
+            >--:--:--</span
+          >
+          <div class="block__timer-set">
+            <input
+              class="input__timer"
+              type="time"
+              max="24:00"
+              min="00:00"
+              data-input-radio
+            />
+            <button id="start-timer" type="button">Старт таймер</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div id="currency-usd" data-modal-open-2-usd></div>
 </div>
 
-<script
+<!-- <script
   type="text/javascript"
   src="./js/radio_v2_1.js"
   charset="UTF-8"
-></script>
+></script> -->

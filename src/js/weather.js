@@ -251,9 +251,9 @@ function weatherD(data) {
   if (moonrise.slice(6) == 'PM') {
     moonrise24 = `${Number(moonrise.slice(0, 2)) + 12}:${moonrise.slice(3, 5)}`;
   } else moonrise24 = moonrise.slice(0, 5);
-
+  console.log(moonset);
   if (moonset.slice(6) == 'PM') {
-    moonrise24 = `${Number(moonset.slice(0, 2)) + 12}:${moonset.slice(3, 5)}`;
+    moonset24 = `${Number(moonset.slice(0, 2)) + 12}:${moonset.slice(3, 5)}`;
   } else moonset24 = moonset.slice(0, 5);
 
   weatherDay.innerHTML = `

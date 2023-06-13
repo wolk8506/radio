@@ -9,8 +9,8 @@ const closeModalBtn = document.querySelector('[data-modal-close-2]');
 const modal = document.querySelector('[data-modal-2]');
 const dataInput_1 = document.querySelector('[data-input-1]');
 const dataInput_2 = document.querySelector('[data-input-2');
-const selected = document.querySelector('[selected]');
-const selected2 = document.querySelector('[selected2]');
+const selected = document.querySelector('#selected');
+const selected2 = document.querySelector('#selected2');
 const expand = document.querySelector('#expand');
 const icon_currency_1 = document.querySelector('.icon-currency-1');
 const icon_currency_2 = document.querySelector('.icon-currency-2');
@@ -96,11 +96,11 @@ function currencyA(data) {
   openModalBtn.addEventListener('click', toggleModal);
   openModalBtn2.addEventListener('click', toggleModal);
   closeModalBtn.addEventListener('click', toggleModal);
-  document.addEventListener('keyup', e => {
-    if (e.key === 'Escape') {
-      toggleModal();
-    }
-  });
+  // document.addEventListener('keyup', e => {
+  //   if (e.key === 'Escape') {
+  //     toggleModal();
+  //   }
+  // });
   modal.addEventListener('click', e => {
     if (e.target.classList.value === 'backdrop') {
       toggleModal();

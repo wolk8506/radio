@@ -386,3 +386,20 @@ select {
 #tamle {
   display: none;
 }
+
+td {
+  text-align: center;
+  border: 1px solid #000;
+  // background-color: rgba(0, 0, 0, 0.1);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+th {
+  border: 1px solid #000;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+table {
+  border: 2px solid #000;
+}
