@@ -1,3 +1,10 @@
+const initialState = JSON.parse(localStorage.getItem('initialState'));
+if (initialState === null) {
+  localStorage.setItem('startPlayStationNumber', 0);
+  localStorage.setItem('initialState', true);
+  console.log('initialState -- "OK"');
+}
+
 const logo = [
   'https://i.ibb.co/CbKVPLF/img-181-fm.jpg',
   'https://i.ibb.co/HNRLK8M/img-soundpark-deep.jpg',
@@ -11,36 +18,36 @@ const radioStation = [
   'https://link.smmbox.ru/http://online.kissfm.ua/KissFM_HD',
 ];
 const name = ['Rock 181', 'SOUNDPARK DEEP', 'Радио Energy', 'KissFM_HD'];
-
+const audio = new Audio();
 const selectStation = document.querySelector('#select-station');
 const imageStation = document.querySelector('#image-station');
 const icoPlay = document.querySelector('#ico-play');
 const icoPause = document.querySelector('#ico-pause');
-const audio = new Audio();
-// const audio = document.createElement('audio');
-
+const play = document.getElementById('play');
+const volume = document.getElementById('volume');
+const volume_off = document.querySelector('#volume_off');
+const icon_volume_down = document.querySelector('#icon-volume_down');
+const icon_volume_off = document.querySelector('#icon-volume_off');
+const openModalBtn = document.querySelector('[data-modal-open-radio]');
+const closeModalBtn = document.querySelector('[data-modal-close-radio]');
+const modal = document.querySelector('[data-modal-radio]');
+const inputTimer = document.querySelector('[data-input-radio]');
+const startTimer = document.querySelector('#start-timer');
+const icoAlarms = document.querySelector('#ico-alarms');
+let volumeOnOff = true;
+let timer = 0;
+let onPlay = true;
+let volumeLevel = 80;
 let startPlayStationNumber = JSON.parse(
   localStorage.getItem('startPlayStationNumber')
-); //!!!!! STORAGE  !!!!!
+);
 let StartPlayStationOnLoad = JSON.parse(
   localStorage.getItem('StartPlayStationOnLoad')
-); //!!!!! STORAGE  !!!!!
+);
+let numberStation = startPlayStationNumber;
 
 selectStation.value = startPlayStationNumber;
 
-let numberStation = startPlayStationNumber;
-
-let onPlay = true;
-
-// if (StartPlayStationOnLoad) {
-//   console.log(StartPlayStationOnLoad);
-//   console.log(false);
-//   // audio.autoplay = true;
-//   setTimeout(startPlay, 1000);
-//   // startPlay();
-// }
-
-const play = document.getElementById('play');
 play.addEventListener('click', startPlay);
 
 function startPlay() {
@@ -62,6 +69,7 @@ function startPlay() {
 }
 
 renderImage(numberStation);
+
 function renderImage(numberStation) {
   imageStation.innerHTML = `<img
       class="img4"
@@ -90,15 +98,6 @@ selectStation.oninput = function () {
     icoPause.classList.toggle('is-hidden');
   }
 };
-
-const volume = document.getElementById('volume');
-const volume_off = document.querySelector('#volume_off');
-const icon_volume_down = document.querySelector('#icon-volume_down');
-const icon_volume_off = document.querySelector('#icon-volume_off');
-
-let volumeOnOff = true;
-
-let volumeLevel = 80;
 
 volume_off.addEventListener('click', () => {
   icon_volume_down.classList.toggle('is-hidden');
@@ -147,21 +146,9 @@ audio.addEventListener(
   false
 );
 
-// ***********************************************************************
-const openModalBtn = document.querySelector('[data-modal-open-radio]');
-const closeModalBtn = document.querySelector('[data-modal-close-radio]');
-const modal = document.querySelector('[data-modal-radio]');
-const inputTimer = document.querySelector('[data-input-radio]');
-const startTimer = document.querySelector('#start-timer');
-const icoAlarms = document.querySelector('#ico-alarms');
-
 openModalBtn.addEventListener('click', toggleModalRadio);
 closeModalBtn.addEventListener('click', toggleModalRadio);
-// modal.addEventListener('keyup', e => {
-//   if (e.key === 'Escape') {
-//     toggleModalRadio();
-//   }
-// });
+
 modal.addEventListener('click', e => {
   if (e.target.classList.value === 'backdrop') {
     toggleModalRadio();
@@ -173,7 +160,6 @@ function toggleModalRadio() {
   modal.classList.toggle('is-hidden');
 }
 
-let timer = 0;
 inputTimer.addEventListener('input', e => {
   let time = e.target.value;
   let h = Number(time.slice(0, 2)) * 60 * 60 * 1000;
@@ -189,24 +175,22 @@ startTimer.addEventListener('click', () => {
   timerStopPlay(timer);
 });
 
-f1();
-function f1() {
-  let currentTimeStartTimer = JSON.parse(
+(function () {
+  const currentTimeStartTimer = JSON.parse(
     localStorage.getItem('currentTimeStartTimer')
   );
-  let timeDurationTimer = JSON.parse(localStorage.getItem('timeDurationTimer'));
+  const timeDurationTimer = JSON.parse(
+    localStorage.getItem('timeDurationTimer')
+  );
   const currentTime = Date.now();
-
-  let timeDifference = currentTime - currentTimeStartTimer;
-
+  const timeDifference = currentTime - currentTimeStartTimer;
   if (timeDifference > timeDurationTimer) {
     return;
   } else {
     const remainder = timeDurationTimer - timeDifference;
-
     timerStopPlay(remainder);
   }
-}
+})();
 
 function timerStopPlay(timer) {
   let endsAfter = timer;
@@ -237,13 +221,13 @@ function timerStopPlay(timer) {
     timer
   );
 
-  var interval = setInterval(function () {
+  const interval = setInterval(function () {
     endsAfter -= step;
     if (endsAfter <= 0) {
       clearInterval(interval);
     }
 
-    var duration2 = document.getElementById('duration2');
+    const duration2 = document.getElementById('duration2');
 
     let s = Math.floor((endsAfter / 1000) % 60);
     let m = Math.floor((endsAfter / (1000 * 60)) % 60);
