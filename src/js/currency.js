@@ -65,42 +65,50 @@ function currencyA(data) {
   const usdTOeurSell = USD.rateSell / EUR.rateSell;
   const usdTOeurBuy = USD.rateBuy / EUR.rateBuy;
 
-  currencyUsd.innerHTML = `<div class="currency"><svg class="icon-USD" width="96" height="72">
+  currencyUsd.innerHTML = `
+  <div class="currency-card"><svg class="icon-USD" width="96" height="72">
           <use href="${sprite}#icon-USD"></use>
         </svg>
-  <div>
-  <p class="currency-usd">1 &#36; покупка: ${USD.rateBuy} ₴ | продажа: ${
-    USD.rateSell
-  } ₴</p>
-  <p class="currency-usd">1 &#36; покупка: ${usdTOeurSell.toFixed(
-    4
-  )} &#8364; | продажа: ${usdTOeurBuy.toFixed(4)} &#8364;</p>
-  </div>
+    <div class="currency-block">
+      <div>
+        <p class="currency-text currency-name-muy-sell">покупка</p>
+        <p class="currency-text">1 $ = ${USD.rateBuy} ₴</p>
+        <p class="currency-text">1 $ = ${usdTOeurSell.toFixed(4)} € </p>
+      </div>
+      <div>
+        <p class="currency-text currency-name-muy-sell">продажа</p>
+        <p class="currency-text">1 $ = ${USD.rateSell} ₴</p>
+        <p class="currency-text">1 $ = ${usdTOeurBuy.toFixed(4)} €</p>
+      </div>
+    </div>
+    <div></div>
   </div>`;
 
-  currencyEur.innerHTML = `<div class="currency"><svg class="icon-EUR" width="96" height="72">
+  currencyEur.innerHTML = `
+  <div class="currency-card"><svg class="icon-EUR" width="96" height="72">
           <use href="${sprite}#icon-EUR"></use>
-        </svg><div>
-  <div>
-    <p class="currency-eur">1 &#8364; покупка: ${EUR.rateBuy} ₴ | продажа: ${
-    EUR.rateSell
-  } ₴</p>
-    <p class="currency-eur">1 &#8364; покупка: ${eurTOusaSell.toFixed(
-      4
-    )} &#36; | продажа: ${eurTOusaBuy.toFixed(4)} &#36;</p>
-    </div>`;
+        </svg>
+    <div class="currency-block">
+      <div>
+        <p class="currency-text currency-name-muy-sell">покупка</p>
+        <p class="currency-text">1 € = ${EUR.rateBuy} ₴ </p>
+        <p class="currency-text">1 € = ${eurTOusaSell.toFixed(4)} $ </p>
+      </div>
+      <div>
+        <p class="currency-text currency-name-muy-sell">продажа</p>
+        <p class="currency-text">1 €  = ${EUR.rateSell} ₴</p>
+        <p class="currency-text">1 €  = ${eurTOusaBuy.toFixed(4)} $</p>
+      </div>
+    </div>
+    <div></div>
+  </div>`;
 
-  // }
   // !!!!! MODAL OPEN/CLOSED -------------------------------------------------------------------------------
 
   openModalBtn.addEventListener('click', toggleModal);
   openModalBtn2.addEventListener('click', toggleModal);
   closeModalBtn.addEventListener('click', toggleModal);
-  // document.addEventListener('keyup', e => {
-  //   if (e.key === 'Escape') {
-  //     toggleModal();
-  //   }
-  // });
+
   modal.addEventListener('click', e => {
     if (e.target.classList.value === 'backdrop') {
       toggleModal();
@@ -110,8 +118,6 @@ function currencyA(data) {
   function toggleModal() {
     document.body.classList.toggle('modal-open');
     modal.classList.toggle('is-hidden');
-    // const data2 = [USD, EUR, PLN];
-    // nbu(data2);
   }
 
   btnConverter.oninput = function () {
@@ -187,13 +193,11 @@ function currencyA(data) {
     let d1 = [...a1.splice(a1.indexOf(selected.value), 1), ...a1];
     const e1 = d1.indexOf(selected2.value);
     d1.splice(e1, 1);
-    // console.log('Q7', d1);
-    // --------------------
+
     let a2 = [...arr2];
     let d2 = [...a2.splice(a2.indexOf(selected2.value), 1), ...a2];
     const e2 = d2.indexOf(selected.value);
     d2.splice(e2, 1);
-    // console.log('K7', d2);
 
     if (expanrOn) {
       let arr1_1 = [...d1];
@@ -279,34 +283,29 @@ function currencyA(data) {
 // *********************************************************************************
 const date = new Date();
 const dateSearch = date.toISOString().split('T')[0].split('-').join('');
+console.log('dateSearch НБУ', dateSearch);
 axios
   .request(
     `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${dateSearch}&json`
   )
 
   .then(function (response) {
-    // handle success
     dataNBU = response.data;
-    // nbu(response.data);
-    // nbu(response.data);
   })
   .catch(function (error) {
-    // handle error
     console.log(error);
   })
-  .finally(function () {
-    // always executed
-  });
+  .finally(function () {});
 
 function nbu(data2) {
   const data = dataNBU;
   const USD = data.find(el => el.cc == 'USD').rate;
   const EUR = data.find(el => el.cc == 'EUR').rate;
   const PLN = data.find(el => el.cc == 'PLN').rate;
-  // console.log('НБУ', data);
-  console.log('НБУ USD', USD);
-  console.log('НБУ USD', EUR);
-  console.log('НБУ USD', PLN);
+
+  // console.log('НБУ USD', USD);
+  // console.log('НБУ USD', EUR);
+  // console.log('НБУ USD', PLN);
 
   table.innerHTML = `<table>
         <tr>

@@ -14,16 +14,23 @@
     display: block;
   }
 
-  .currency {
-    width: 100%;
+  .currency-card {
+    // width: 100%;
   }
-  .currency p {
-    font-size: 12px;
+  .currency-block {
+    display: flex;
+    & div + div {
+      margin-left: 20px;
+    }
+  }
+
+  .currency-card p {
+    font-size: 16px;
     // font-size: calc(1em - 1vw);
   }
-  .currency img {
-    width: 36px;
-    height: 32px;
+  .currency-card img {
+    width: 48px;
+    height: 36px;
     margin-right: 5px;
   }
   .hour-item {
@@ -81,8 +88,8 @@
 
   .icon-EUR,
   .icon-USD {
-    width: 56px;
-    height: 42px;
+    width: 64px;
+    height: 48px;
     margin-right: 0;
   }
   .condition-week {

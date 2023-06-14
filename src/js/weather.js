@@ -1,9 +1,10 @@
 import sprite from '../images/sprite.svg';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import axios from 'axios';
+console.log(555);
 
 localStorage.setItem('default-city', 'Киев');
 const weatherDay = document.querySelector('#weather-day');
-// const weatherWeek = document.querySelector('#weather-week');
 const weather = document.querySelector('#weather-hour');
 const btnWeatherHour = document.querySelector('#radio-1-weather');
 const btnWeatherWeek = document.querySelector('#radio-2-weather');
@@ -446,3 +447,45 @@ weatherDay.addEventListener('click', event => {
     locationWeather();
   }
 });
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// *  b8b2f3c187f97d30e013b6b54969cb8c
+
+//*   https://api.openweathermap.org/data/2.5/forecast?lat=49.982&lon=36.2566&appid=b8b2f3c187f97d30e013b6b54969cb8c&lang=ru
+
+//*   https://api.openweathermap.org/data/2.5/forecast?q=%D0%9A%D0%B8%D0%B5%D0%B2&appid=b8b2f3c187f97d30e013b6b54969cb8c&lang=ru
+
+//*   https://openweathermap.org/img/wn/10d@4x.png
+
+//*   https://ipapi.co/json/
+
+let q1 = 'q=Харьков';
+let q2 = 'lat=49.982&lon=36.2566';
+
+axios
+  .request(
+    `https://api.openweathermap.org/data/2.5/forecast?${q1}&appid=b8b2f3c187f97d30e013b6b54969cb8c&lang=ru`
+  )
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log('Error: ', error.message);
+  })
+  .finally(function () {});
+
+axios
+  .request(`https://ipapi.co/json/`)
+  .then(function (response) {
+    console.log(
+      'lat=',
+      response.data.latitude,
+      'lon=',
+      response.data.longitude
+    );
+  })
+  .catch(function (error) {
+    console.log('Error: ', error.message);
+  })
+  .finally(function () {});

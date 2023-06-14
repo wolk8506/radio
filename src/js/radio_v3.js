@@ -140,7 +140,6 @@ audio.addEventListener(
     const duration = document.getElementById('duration');
     let s = parseInt(audio.currentTime % 60);
     let m = parseInt((audio.currentTime / 60) % 60);
-
     duration.innerHTML = `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
   },
   false
