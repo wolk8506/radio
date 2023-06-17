@@ -202,6 +202,7 @@ if (g_rad_player_width <= 300) {
 var g_audio = document.createElement('audio');
 
 document.onreadystatechange = function () {
+  console.log(123);
   if (document.readyState == 'complete') {
     if (rad_autoplay) {
       rad_loadmusic();

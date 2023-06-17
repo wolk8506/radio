@@ -1,22 +1,19 @@
 @media screen and (max-width: 420px) {
-  #radio_container {
-    width: 100%;
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
+  // #radio_container {
+  //   width: 100%;
+  //   margin-top: 20px;
+  //   margin-bottom: 20px;
+  // }
 
-  #radio_container div {
-    margin-right: auto;
-    margin-left: auto;
-  }
+  // #radio_container div {
+  //   margin-right: auto;
+  //   margin-left: auto;
+  // }
 
   .block-day {
     display: block;
   }
 
-  .currency-card {
-    // width: 100%;
-  }
   .currency-block {
     display: flex;
     & div + div {
@@ -26,7 +23,6 @@
 
   .currency-card p {
     font-size: 16px;
-    // font-size: calc(1em - 1vw);
   }
   .currency-card img {
     width: 48px;
@@ -56,25 +52,33 @@
   .day {
     margin-top: 3px;
   }
-  .card-day {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    height: 30px;
-    align-items: center;
-    padding: 3px;
-    margin-bottom: 3px;
-    justify-content: space-between;
+  .day-list {
+    margin-bottom: 30px;
   }
-  .card-day span {
-    margin-bottom: 0;
+  #weather-hour {
+    // overflow-x: scroll;
+    margin: 5px;
   }
 
-  .card-day p {
-    font-size: 16px;
-    margin: 0;
-    text-align: center;
-  }
+  // .card-day {
+  //   display: flex;
+  //   width: 100%;
+  //   flex-direction: row;
+  //   height: 30px;
+  //   align-items: center;
+  //   padding: 3px;
+  //   margin-bottom: 3px;
+  //   justify-content: space-between;
+  // }
+  // .card-day span {
+  //   margin-bottom: 0;
+  // }
+
+  // .card-day p {
+  //   font-size: 16px;
+  //   margin: 0;
+  //   text-align: center;
+  // }
   .header {
     flex-direction: column;
     align-items: center;
@@ -117,5 +121,18 @@
   #currency-eur,
   #currency-usd {
     width: 100%;
+  }
+}
+
+.update-time {
+  margin-top: 30px;
+}
+
+@media (min-width: 421px) and (max-width: 1600px) {
+  header {
+    display: none;
+  }
+  .block-day {
+    display: none;
   }
 }

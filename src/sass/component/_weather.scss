@@ -261,21 +261,24 @@
 
 // ???????????????????????????????????????????????????????????????
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-.panel-weather-day {
-  width: calc((100% - 40px) / 3);
-  // height: 100%;
-  padding: 20px;
-  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.6);
-  border-radius: 5px;
-  margin-top: 0px;
-  padding-bottom: 10px;
+#weather-day {
+  margin-top: 60px;
 }
+
+// .panel-weather-day {
+//   width: calc((100% - 40px) / 3);
+//   // height: 100%;
+//   padding: 20px;
+//   box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.6);
+//   border-radius: 5px;
+//   margin-top: 0px;
+//   padding-bottom: 10px;
+// }
 
 #weather-hour {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1000px;
+  max-width: 1090px;
   justify-content: space-between;
 }
 

@@ -1,4 +1,3 @@
-console.log('fix-s-2.1.0');
 const idNews = document.querySelector('#news');
 const btnMinus = document.querySelector('#btn-minus');
 const btnPlus = document.querySelector('#btn-plus');
@@ -7,8 +6,6 @@ const contentModal = document.querySelector('#contentModal');
 const openModalBtn = document.querySelector('[data-modal-open-1]');
 const closeModalBtn = document.querySelector('[data-modal-close-1]');
 const modal = document.querySelector('[data-modal-1]');
-
-// import myJson from "./news.json" assert { type: "json" };
 
 let count = 0;
 let totalnews = 0;
@@ -46,10 +43,9 @@ news()
   .then(data => {
     dataNews = data;
     newsMarkup();
-    console.log(data);
   })
   .catch(error => {
-    console.log('много запросов');
+    console.log('много запросов новостей');
     currencyA('error');
   });
 

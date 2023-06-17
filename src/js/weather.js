@@ -1,61 +1,133 @@
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// *  b8b2f3c187f97d30e013b6b54969cb8c
+
+//*   https://api.openweathermap.org/data/2.5/forecast?lat=49.982&lon=36.2566&appid=b8b2f3c187f97d30e013b6b54969cb8c&lang=ru
+
+//*   https://api.openweathermap.org/data/2.5/forecast?q=%D0%9A%D0%B8%D0%B5%D0%B2&appid=b8b2f3c187f97d30e013b6b54969cb8c&lang=ru
+
+//*   https://openweathermap.org/img/wn/10d@4x.png
+
+//*   https://ipapi.co/json/
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 import sprite from '../images/sprite.svg';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 import axios from 'axios';
-console.log(555);
 
-localStorage.setItem('default-city', 'Киев');
 const weatherDay = document.querySelector('#weather-day');
 const weather = document.querySelector('#weather-hour');
 const btnWeatherHour = document.querySelector('#radio-1-weather');
 const btnWeatherWeek = document.querySelector('#radio-2-weather');
-let weatherDayTest = `<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`;
-let weatherHourTest = `<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`;
+let weatherHourTest = '';
+let weatherDayTest = '';
+let city = '';
+let oNwriteCity = false;
+let onRender = true;
+const initialStateWeather = JSON.parse(
+  localStorage.getItem('initialStateWeather')
+);
 
-let meLocation = 'умань';
+setInterval(() => {
+  startSearch();
+}, 600000);
+
+startSearch();
+function startSearch() {
+  const latitude = JSON.parse(localStorage.getItem('latitude'));
+  const longitude = JSON.parse(localStorage.getItem('longitude'));
+  const search_city = localStorage.getItem('search_city');
+  if (
+    initialStateWeather === null ||
+    (latitude === null && search_city === 'null')
+  ) {
+    console.log('gthdfz bybwbfkbpfwbz');
+    axios
+      .request(`https://ipapi.co/json/`)
+      .then(function (response) {
+        localStorage.setItem('latitude', response.data.latitude);
+        localStorage.setItem('longitude', response.data.longitude);
+        weatherFourDay(
+          `lat=${response.data.latitude}&lon=${response.data.longitude}`
+        );
+        weatherOneDay(`${response.data.latitude},${response.data.longitude}`);
+      })
+      .catch(function (error) {
+        console.log('❌ Error: ', error.message);
+      })
+      .finally(function () {});
+    localStorage.setItem('initialStateWeather', true);
+  } else {
+    if (search_city && search_city !== 'null') {
+      weatherFourDay(`q=${search_city}`);
+      weatherOneDay(search_city);
+    } else if (latitude) {
+      weatherFourDay(`lat=${latitude}&lon=${longitude}`);
+      weatherOneDay(`${latitude},${longitude}`);
+    } else {
+      weatherFourDay(`q=Харьков`);
+      weatherOneDay(`Харьков`);
+    }
+  }
+}
+
+function weatherOneDay(q) {
+  weather.innerHTML = `<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`;
+
+  axios
+    .request(
+      `https://api.weatherapi.com/v1/forecast.json?key=02f4d3b9a4c141c6b73150514232405&q=${q}&days=14&lang=ru`
+    )
+    .then(function (response) {
+      weatherD(response.data);
+      weatherH(response.data);
+      renderHourDay();
+      if (oNwriteCity) {
+        localStorage.setItem('search_city', city);
+        oNwriteCity = false;
+      }
+    })
+    .catch(function (error) {
+      console.log('❌ Error: ', error.message);
+      if (oNwriteCity) {
+        Notify.failure('Такой город не найден');
+        oNwriteCity = false;
+      }
+      startSearch();
+    })
+    .finally(function () {});
+}
+
+function weatherFourDay(q) {
+  axios
+    .request(
+      `https://api.openweathermap.org/data/2.5/forecast?${q}&appid=b8b2f3c187f97d30e013b6b54969cb8c&lang=ru`
+    )
+    .then(function (response) {
+      console.log(response);
+      fourDayWeather(response.data);
+    })
+    .catch(function (error) {
+      console.log('Error: ', error.message);
+    })
+    .finally(function () {});
+}
 
 function locationWeather() {
   function success(position) {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
-
-    localStorage.setItem('location-city', `${latitude},${longitude}`);
-
-    const searchCity = localStorage.getItem('search-city');
-    if (searchCity === null) {
-      meLocation = `${latitude},${longitude}`;
-    } else if (searchCity === 'null') {
-      meLocation = `${latitude},${longitude}`;
-    } else {
-      meLocation = searchCity;
-    }
-
-    fetchUsers7().then(data => {
-      weatherW(data);
-      weatherH(data);
-      weatherD(data);
-      renderHourDay();
-    });
+    localStorage.setItem('latitude', latitude);
+    localStorage.setItem('longitude', longitude);
+    weatherFourDay(`lat=${latitude}&lon=${longitude}`);
+    weatherOneDay(`${latitude},${longitude}`);
+    localStorage.setItem('search_city', null);
   }
 
   function error() {
-    const searchCity = localStorage.getItem('search-city');
-    const locationCity = localStorage.getItem('location-city');
-
-    meLocation = searchCity;
-
-    if (searchCity === 'null') {
-      meLocation = 'Харьков';
-    } else if (locationCity === null) {
-      meLocation = 'Харьков';
-    }
-
     Notify.warning('Невозможно получить ваше местоположение');
-    fetchUsers7().then(data => {
-      weatherW(data);
-      weatherH(data);
-      weatherD(data);
-      renderHourDay();
-    });
   }
 
   if (!navigator.geolocation) {
@@ -65,17 +137,56 @@ function locationWeather() {
     navigator.geolocation.getCurrentPosition(success, error);
   }
 }
-locationWeather();
 
-const fetchUsers7 = async () => {
-  const response = await fetch(
-    // `https://api.weatherapi.com/v1/forecast.json?key=02f4d3b9a4c141c6b73150514232405&q=Харьков&days=14&lang=ru`,
-    `https://api.weatherapi.com/v1/forecast.json?key=02f4d3b9a4c141c6b73150514232405&q=${meLocation}&days=14&lang=ru`,
-    { referrerPolicy: 'origin-when-cross-origin' }
-  );
-  const data = await response.json();
-  return data;
+renderHourDay();
+
+function renderHourDay() {
+  if (onRender) {
+    weather.innerHTML = weatherHourTest;
+  } else {
+    weather.innerHTML = weatherDayTest;
+  }
+}
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+btnWeatherHour.oninput = function () {
+  onRender = true;
+  renderHourDay();
 };
+
+btnWeatherWeek.oninput = function () {
+  onRender = false;
+  renderHourDay();
+};
+
+weatherDay.addEventListener('keyup', e => {
+  if (e.target.id === 'city') {
+    city = e.target.value;
+    if (e.target.value.length > 2 && e.key == 'Enter') {
+      oNwriteCity = true;
+      weatherFourDay(`q=${city}`);
+      weatherOneDay(city);
+    }
+  }
+});
+
+weatherDay.addEventListener('click', event => {
+  if (event.target.value === 'search') {
+    oNwriteCity = true;
+    weatherFourDay(`q=${city}`);
+    weatherOneDay(city);
+  }
+  if (event.target.value === 'location') {
+    locationWeather();
+  }
+});
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// !!!!!          Р Е Н Д Е Р         H T M L
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// ?????????????????????????????????????????????????          Погода на 24 часа       ??????????????????????????????
 
 function weatherH(data) {
   const hourTwoDays = [];
@@ -105,109 +216,8 @@ function weatherH(data) {
   weatherHourTest = hour;
 }
 
-function weatherW(data) {
-  const week = data.forecast.forecastday
-    .map(i => {
-      // **************************************************************************
-      const {
-        avghumidity = i.day.avghumidity,
-        avgtemp_c = i.day.avgtemp_c,
-        maxtemp_c = i.day.maxtemp_c,
-        mintemp_c = i.day.mintemp_c,
-        icon = i.day.condition.icon,
-        conditionText = i.day.condition.text,
-        daily_will_it_rain = i.day.daily_will_it_rain,
-        daily_chance_of_rain = i.day.daily_chance_of_rain,
-        daily_will_it_snow = i.day.daily_will_it_snow,
-        daily_chance_of_snow = i.day.daily_chance_of_snow,
-      } = i;
-      const dayAndMonth = new Date(
-        i.date.split('-').join(', ')
-      ).toLocaleDateString('ru-RU', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        weekday: 'long',
-      });
-      let precipitation = 0;
-      if (daily_will_it_rain == 1) {
-        precipitation = daily_chance_of_rain;
-      } else if (daily_will_it_snow == 1) {
-        precipitation = daily_chance_of_snow;
-      } else precipitation = 0;
-      // ****************************************************************************
+// ?????????????????????????????????????????????????          Погода на 1 день        ??????????????????????????????
 
-      return `<ul class="panel-weather-day">
-        <li class="week-first-item"><p><svg class="icon-calendar" width="20" height="20">
-          <use href="${sprite}#icon-calendar"></use>
-        </svg>${dayAndMonth}</p><div class="week-humidity">
-        <li class="condition-text">${conditionText}</li>
-        <li class="condition-week"> <p>${avgtemp_c}°C</p><img src='${icon}'></li>
-        <li> <p>max t: ${maxtemp_c}°C</p></li>
-        <li> <p>min t: ${mintemp_c}°C</p></li>
-        <!-- <li> <p>Будет дождь: ${daily_will_it_rain}</p></li> -->
-        <li> <p class="month-precipitation">Вероятность осадков: ${precipitation}%</p></li>
-        <!-- <li> <p>Будет снег ${daily_will_it_snow}%</p></li> -->
-        <!-- <li> <p>Вероятность снега ${daily_chance_of_snow}</p></li> -->
-        <li class="condition-block-item">
-            <svg width="32" height="32">
-              <use href="${sprite}#icon-umbrella"></use></svg
-          >${i.day.totalprecip_mm} мм
-        </li>
-
-          <p class="condition-block-item">
-            <svg width="32" height="32">
-              <use href="${sprite}#icon-clouds"></use>
-            </svg>
-            ${i.day.maxtemp_c} %
-          </p>
-          <p class="condition-block-item">
-            <svg width="32" height="32">
-              <use href="${sprite}#icon-eye3"></use>
-            </svg>
-            ${i.day.avgvis_km} км
-          </p>
-          <p class="condition-block-item">
-            <svg width="32" height="32">
-              <use href="${sprite}#icon-raindrop1"></use>
-            </svg>
-            ${avghumidity} %
-          </p>
-      
-        
-        
-    </ul>`;
-    })
-    .join('');
-  weatherDayTest = week;
-}
-// ????????????????????????????????????????????????????
-
-let onRender = true;
-
-btnWeatherHour.oninput = function () {
-  onRender = true;
-  renderHourDay();
-};
-
-btnWeatherWeek.oninput = function () {
-  onRender = false;
-  renderHourDay();
-};
-
-renderHourDay();
-
-function renderHourDay() {
-  if (onRender) {
-    weather.innerHTML = weatherHourTest;
-  } else {
-    weather.innerHTML = weatherDayTest;
-  }
-}
-
-// ???????????????????????????????????????????????????
-
-//Карточка с погодой на текущее время
 function weatherD(data) {
   const date = new Date();
   const options2 = {
@@ -216,8 +226,6 @@ function weatherD(data) {
     weekday: 'long',
   };
   const dayAndMonth = date.toLocaleDateString('ru-RU', options2);
-
-  console.log(dayAndMonth); // Выведет текущий день недели
 
   const {
     country = data.location.country, //Страна
@@ -252,29 +260,18 @@ function weatherD(data) {
   if (moonrise.slice(6) == 'PM') {
     moonrise24 = `${Number(moonrise.slice(0, 2)) + 12}:${moonrise.slice(3, 5)}`;
   } else moonrise24 = moonrise.slice(0, 5);
-  console.log(moonset);
+
   if (moonset.slice(6) == 'PM') {
     moonset24 = `${Number(moonset.slice(0, 2)) + 12}:${moonset.slice(3, 5)}`;
   } else moonset24 = moonset.slice(0, 5);
 
   weatherDay.innerHTML = `
-
-  <style scoped>
-     .progress::after {
-  
-  width: ${humidity}%;
-
-}
-    </style>
-  
+  <style scoped>.progress::after {width: ${humidity}%;}</style>
   <div class="day-list">
     <div class="location">
-      <button class="button-location" value="location" type="button">
-        &#128204;
-      </button>
+      <button class="button-location" value="location" type="button">&#128204;</button>
       <div class="inputbox">
-        <input required="required" id="city" /><span>${country}, ${city} </span
-        ><i></i>
+        <input required="required" id="city" /><span>${country}, ${city} </span><i></i>
       </div>
       <button class="button-search" type="button" value="search">🔍︎</button>
     </div>
@@ -285,30 +282,10 @@ function weatherD(data) {
       <div class="condition-block-left">
         <span>${temperature}°</span>
         <div class="condition-block-small">
-          <p title="Количество осадков" class="condition-block-item">
-            <svg width="32" height="32">
-              <use href="${sprite}#icon-umbrella"></use></svg
-          >${precip_mm} мм
-        </p>
-
-          <p  title="Облачность" class="condition-block-item">
-            <svg width="32" height="32">
-              <use href="${sprite}#icon-clouds"></use>
-            </svg>
-            ${cloud} %
-          </p>
-          <p title="Видимость" class="condition-block-item">
-            <svg width="32" height="32">
-              <use href="${sprite}#icon-eye3"></use>
-            </svg>
-            ${vis_km} км
-          </p>
-          <p title="Влажность" class="condition-block-item">
-            <svg width="32" height="32">
-              <use href="${sprite}#icon-raindrop1"></use>
-            </svg>
-            ${humidity} %
-          </p>
+          <p title="Количество осадков" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-umbrella"></use></svg>${precip_mm} мм</p>
+          <p  title="Облачность" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-clouds"></use></svg>${cloud} %</p>
+          <p title="Видимость" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-eye3"></use></svg>${vis_km} км</p>
+          <p title="Влажность" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-raindrop1"></use></svg>${humidity} %</p>
         </div>
       </div>
 
@@ -318,174 +295,136 @@ function weatherD(data) {
     </div>
     <div class="condition-block-bottom">
       <div>
-        <p title="Восход солнца" class="condition-block-item">
-          <svg width="32" height="32">
-            <use href="${sprite}#icon-sunrise"></use></svg
-          >${sunrise}
-        </p>
-        <p title="Закат солнца" class="condition-block-item">
-          <svg width="32" height="32">
-            <use href="${sprite}#icon-sunset"></use></svg
-          >${sunsetH}:${sunsetM}
-        </p>
-         <p title="Восход луны" class="condition-block-item">
-          <svg width="32" height="32">
-            <use href="${sprite}#icon-moonrise"></use></svg
-          >${moonrise24}
-        </p>
-        <p title="Закат луны" class="condition-block-item">
-          <svg width="32" height="32">
-            <use href="${sprite}#icon-moonset"></use></svg
-          >${moonset24}
-        </p>
+        <p title="Восход солнца" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-sunrise"></use></svg>${sunrise}</p>
+        <p title="Закат солнца" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-sunset"></use></svg>${sunsetH}:${sunsetM}</p>
+         <p title="Восход луны" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-moonrise"></use></svg>${moonrise24}</p>
+        <p title="Закат луны" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-moonset"></use></svg>${moonset24}</p>
       </div>
       <div>
-        <p title="Скорость и направление ветра" class="condition-block-item">
-          <svg width="32" height="32">
-            <use href="${sprite}#icon-air-sock"></use></svg
-          >${wind_ms} м/с &#160;
-          <svg width="32" height="32"
-            style="transform: rotate(${wind_degree}deg)"
-          >
-            <use href="${sprite}#icon-wind-w"></use>
-          </svg>
-        </p>
-        <p  title="Ультрофиолет" class="condition-block-item">
-          <svg width="32" height="32">
-            <use href="${sprite}#icon-sun"></use></svg
-          >${uv}/10 UV
-        </p>
-        <p title="Порывы ветра" class="condition-block-item">
-          <svg width="32" height="32">
-            <use href="${sprite}#icon-wind"></use></svg
-          >${maxwind_ms} м/с
-        </p>
-     
-        <p  title="Давление" class="condition-block-item">
-            <svg width="32" height="32">
-              <use href="${sprite}#icon-barometer"></use>
-            </svg>
-            ${pressure_mb}мм
-          </p>
+        <p title="Скорость и направление ветра" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-air-sock"></use></svg
+          >${wind_ms} м/с &#160;<svg width="32" height="32"style="transform: rotate(${wind_degree}deg)"><use href="${sprite}#icon-wind-w"></use></svg></p>
+        <p title="Ультрофиолет" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-sun"></use></svg>${uv}/10 UV</p>
+        <p title="Порывы ветра" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-wind"></use></svg>${maxwind_ms} м/с</p>
+        <p title="Давление" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-barometer"></use></svg>${pressure_mb}мм</p>
       </div>
     </div>
-  </div>
-
-  <p class="update-time">
-    Последнее обновление:
-    ${last_updated}
-  </p>
-
-    `;
+    <p class="update-time">Последнее обновление: ${last_updated}</p>
+  </div>`;
 }
 
-setInterval(() => {
-  fetchUsers7().then(data => {
-    weatherW(data);
-    weatherH(data);
-    weatherD(data);
-  });
-}, 600000);
+// ?????????????????????????????????????????????????          Погода на 4 дня         ??????????????????????????????
 
-let city = '';
-weatherDay.addEventListener('keyup', event => {
-  if (event.target.id === 'city') {
-    city = event.target.value;
-    // console.log(event.key);
+function fourDayWeather(data) {
+  const arr = [[], [], [], []];
 
-    if (event.target.value.length > 2 && event.key == 'Enter') {
-      localStorage.setItem('search-city', city);
-      meLocation = city;
-      // console.log('event');
-      fetchUsers7()
-        .then(data => {
-          weatherW(data);
-          weatherH(data);
-          weatherD(data);
-        })
-        .catch(error => {
-          localStorage.setItem('search-city', null);
-          Notify.warning('Такой город не найден');
-          const defaultCity = localStorage.getItem('default-city');
-          const locationCity = localStorage.getItem('location-city');
-          if (locationCity === null) {
-            meLocation = defaultCity;
-          } else if (searchCity === null) {
-            meLocation = defaultCity;
-          }
+  for (n = 0; n < 4; n++) {
+    const date = new Date();
+    date.setDate(date.getDate() + 1 + n);
+    const day = date.getDate();
+    const dayWeekday = date.toLocaleDateString('ru-RU', { weekday: 'long' });
+    const dayMonthDay = date.toLocaleDateString('ru-RU', {
+      month: 'long',
+      day: 'numeric',
+    });
+    data.list.map(i => {
+      if (Number(i.dt_txt.slice(8, 10)) === day) {
+        arr[n].push({
+          hour: i,
+          day: { dayWeekday, dayMonthDay },
         });
-    }
+      }
+    });
   }
-});
+  weatherFourDayRender(arr);
+}
 
-weatherDay.addEventListener('click', event => {
-  if (event.target.value === 'search') {
-    localStorage.setItem('search-city', city);
-    meLocation = city;
-    fetchUsers7()
-      .then(data => {
-        weatherW(data);
-        weatherH(data);
-        weatherD(data);
-      })
-      .catch(error => {
-        localStorage.setItem('search-city', null);
-        Notify.warning('Такой город не найден');
-        const defaultCity = localStorage.getItem('default-city');
-        const locationCity = localStorage.getItem('location-city');
-        if (locationCity === null) {
-          meLocation = defaultCity;
-        } else if (searchCity === null) {
-          meLocation = defaultCity;
-        }
-      });
-  }
+function weatherFourDayRender(data) {
+  const weekOne = data
+    .map(i => {
+      const dayWeekday = i[0].day.dayWeekday;
+      const dayMonthDay = i[0].day.dayMonthDay;
+      const dayOne = i
+        .map(ii => {
+          let k = ii.hour;
+          const {
+            time = k.dt_txt.slice(11, 16), //* Время
+            cloud = k.clouds.all, //* Облачность
+            feels_like = (k.main.feels_like - 273.15).toFixed(1), //* Температура. Этот температурный параметр определяет человеческое восприятие погоды. Единица измерения по умолчанию: Кельвин
+            grnd_level = k.main.grnd_level, //* Атмосферное давление на уровне земли, гПа
+            humidity = k.main.humidity, //* Влажность, %
+            pressure = k.main.pressure, //* Атмосферное давление (на уровне моря, если нет данных sea_level или grnd_level), гПа
+            sea_level = k.main.sea_level, //* Атмосферное давление на уровне моря, гПа
+            temp = (k.main.temp - 273.15).toFixed(1), //* Температура. Единица по умолчанию: Кельвин, Метрическая система: Цельсий, Имперская система: Фаренгейт.
+            visibility_km = k.visibility / 1000, //* Видимость, метр. Максимальное значение видимости 10км
+            description = k.weather[0].description, //* Погодные условия в группе. Вы можете получить вывод на своем языке
+            icon = k.weather[0].icon, //* Идентификатор значка погоды
+            deg = k.wind.deg, //* Направление ветра, градусы (метеорологические)
+            gust = k.wind.gust, //* Порывы ветра. Единица измерения по умолчанию: метр/сек,
+            speed = k.wind.speed, //* Скорость ветра. Единица измерения по умолчанию: метр/сек
+          } = k;
 
-  if (event.target.value === 'location') {
-    // console.log('location');
-    localStorage.setItem('search-city', null);
-    locationWeather();
-  }
-});
-
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// *  b8b2f3c187f97d30e013b6b54969cb8c
-
-//*   https://api.openweathermap.org/data/2.5/forecast?lat=49.982&lon=36.2566&appid=b8b2f3c187f97d30e013b6b54969cb8c&lang=ru
-
-//*   https://api.openweathermap.org/data/2.5/forecast?q=%D0%9A%D0%B8%D0%B5%D0%B2&appid=b8b2f3c187f97d30e013b6b54969cb8c&lang=ru
-
-//*   https://openweathermap.org/img/wn/10d@4x.png
-
-//*   https://ipapi.co/json/
-
-let q1 = 'q=Харьков';
-let q2 = 'lat=49.982&lon=36.2566';
-
-axios
-  .request(
-    `https://api.openweathermap.org/data/2.5/forecast?${q1}&appid=b8b2f3c187f97d30e013b6b54969cb8c&lang=ru`
-  )
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log('Error: ', error.message);
-  })
-  .finally(function () {});
-
-axios
-  .request(`https://ipapi.co/json/`)
-  .then(function (response) {
-    console.log(
-      'lat=',
-      response.data.latitude,
-      'lon=',
-      response.data.longitude
+          return `
+        <div class="day-hour">
+          <div class="day-hour__item day-hour__item-time"><p>${time}</p></div>
+          <div class="day-hour__item day-hour__item-img"><img title="${description}" src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="#" width="100"/></div>
+          <div class="day-hour__item day-hour__item-icon-text"><p>${cloud} %</p></div>
+          <div class="day-hour__item day-hour__item-icon-text mobile"><p>${feels_like}°</p></div>
+          <div class="day-hour__item day-hour__item-icon-text"><p>${grnd_level}</p></div>
+          <div class="day-hour__item day-hour__item-icon-text"><p>${humidity} %</p></div>
+          <div class="day-hour__item day-hour__item-icon-text"><p>${temp}°</p></div>
+          <div class="day-hour__item day-hour__item-icon-text mobile"><p>${visibility_km} км</p></div>
+          <div class="day-hour__item day-hour__item-icon-text mobile"><p>${gust}</p></div>
+          <div class="day-hour__item day-hour__item-icon-text"><p>${speed}</p></div> 
+          <div class="day-hour__item  day-hour__item-icon-text"><svg width="32" height="32" style="transform: rotate(${deg}deg)"><use href="${sprite}#icon-wind-w"></use></svg>
+          </div>     
+        </div>
+      `;
+        })
+        .join('');
+      return (
+        `<div class="card-day"><div><div class="card-day__name-day"><h3>${dayWeekday}</h3>
+        <h3>${dayMonthDay}</h3></div>
+        </div><div class="block-hour">
+        
+        <div class="day-hour day-hour-name">
+          <div class="day-hour__item"><!-- <p>Время:</p> --></div>
+          <div class="day-hour__item day-hour__item-img"><!-- <p>img</p> --></div>
+          <div class="day-hour__item day-hour__item-icon-text day-hour__name"><svg width="32" height="32"><use href="${sprite}#icon-clouds"></use></svg></div>
+          <div class="day-hour__item day-hour__item-icon-text day-hour__name mobile"><p>Температура восприятия:</p></div>
+          <div class="day-hour__item day-hour__item-icon-text day-hour__name"><svg width="32" height="32"><use href="${sprite}#icon-barometer"></use></svg></div>
+          <div class="day-hour__item day-hour__item-icon-text day-hour__name"><svg width="32" height="32"><use href="${sprite}#icon-raindrop1"></use></svg></div>
+          <div class="day-hour__item day-hour__item-icon-text day-hour__name"><svg width="32" height="32"><use href="${sprite}#icon-thermometer"></use></svg></div>
+          <div class="day-hour__item  day-hour__item-icon-text day-hour__name mobile"><svg width="32" height="32"><use href="${sprite}#icon-eye3"></use></svg></div>
+          <div class="day-hour__item day-hour__item-icon-text day-hour__name mobile"><svg width="32" height="32"><use href="${sprite}#icon-wind"></use></svg></div>
+          <div class="day-hour__item day-hour__item-icon-text day-hour__name mobile2"><svg width="32" height="32"><use href="${sprite}#icon-air-sock"></use></svg></div>    
+          <div class="day-hour__item day-hour__item-icon-text day-hour__name mobile"><p>Направление ветра</p></div>  
+        </div>
+        ` +
+        dayOne +
+        '</div></div> '
+      );
+    })
+    .join('');
+  weatherDayTest = '<div class="card-week">' + weekOne + '</div>';
+}
+window.matchMedia('(min-width: 1600px)').addEventListener('change', e => {
+  if (!e.matches) {
+    Report.failure(
+      'Ваша ширина экрана менее 1600px',
+      'Для отображения всего контенты измените разрешение экрана, или масштаб страницы'
     );
-  })
-  .catch(function (error) {
-    console.log('Error: ', error.message);
-  })
-  .finally(function () {});
+  }
+  return;
+});
+screenWidth();
+function screenWidth() {
+  const screenWidth = window.innerWidth;
+  if (screenWidth < 420) {
+    return;
+  } else if (screenWidth < 1600) {
+    Report.failure(
+      'Ваша ширина экрана менее 1600px',
+      'Для отображения всего контенты измените разрешение экрана, или масштаб страницы'
+    );
+  }
+}
