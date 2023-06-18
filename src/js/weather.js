@@ -31,7 +31,17 @@ const initialStateWeather = JSON.parse(
 );
 
 setInterval(() => {
-  startSearch();
+  const latitude = JSON.parse(localStorage.getItem('latitude'));
+  const longitude = JSON.parse(localStorage.getItem('longitude'));
+  const search_city = localStorage.getItem('search_city');
+
+  if (search_city && search_city !== 'null') {
+    weatherOneDay(search_city);
+  } else if (latitude) {
+    weatherOneDay(`${latitude},${longitude}`);
+  } else {
+    weatherOneDay(`Харьков`);
+  }
 }, 600000);
 
 startSearch();
