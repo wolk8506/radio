@@ -18,9 +18,8 @@ const radioStation = [
   'https://link.smmbox.ru/http://online.kissfm.ua/KissFM_HD',
 ];
 const name = ['Rock 181', 'SOUNDPARK DEEP', 'Радио Energy', 'KissFM_HD'];
-// const audio = new Audio();
-const audio = document.createElement('audio');
-// = document.createElement('audio');
+const audio = new Audio();
+// const audio = document.createElement('audio');
 const selectStation = document.querySelector('#select-station');
 const imageStation = document.querySelector('#image-station');
 const icoPlay = document.querySelector('#ico-play');
@@ -37,7 +36,7 @@ const inputTimer = document.querySelector('[data-input-radio]');
 const startTimer = document.querySelector('#start-timer');
 const icoAlarms = document.querySelector('#ico-alarms');
 let volumeOnOff = true;
-let rad_autoplay = true;
+let autoplay = true;
 let timer = 0;
 let onPlay = true;
 let volumeLevel = 80;
@@ -47,21 +46,21 @@ let startPlayStationNumber = JSON.parse(
 let StartPlayStationOnLoad = JSON.parse(
   localStorage.getItem('StartPlayStationOnLoad')
 );
+// autoplay = StartPlayStationOnLoad;//!!!!!  Запоминать нажатую кнопку воспроизведения   !!!!!
 let numberStation = startPlayStationNumber;
 
 selectStation.value = startPlayStationNumber;
 
 play.addEventListener('click', startPlay);
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 document.onreadystatechange = function () {
   if (document.readyState == 'complete') {
-    if (rad_autoplay) {
+    if (autoplay) {
       startPlay();
     }
   }
 };
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function startPlay() {
   if (onPlay) {
     audio.src = radioStation[numberStation];

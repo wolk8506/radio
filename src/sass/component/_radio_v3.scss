@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Alarm Clock';
+  src: url('../font/alarm_clock.ttf') format('truetype');
+}
+
 .radio {
   display: flex;
   align-items: center;
@@ -82,7 +87,8 @@
 }
 .radio__time {
   font-size: 24px;
-  font-family: 'Orbitron', sans-serif;
+  // font-family: 'Orbitron', sans-serif;
+  font-family: 'Alarm Clock', Arial, serif;
   width: 115px;
   text-align: center;
   margin-bottom: 10px;
@@ -181,12 +187,14 @@
   flex-direction: column;
 
   & .radio__time {
+    font-family: 'Alarm Clock', Arial, serif;
     width: 100%;
     margin-top: 50px;
     margin-bottom: 50px;
     font-size: 28px;
   }
   & .input__timer {
+    font-family: 'Orbitron', sans-serif;
     background-color: transparent;
     width: 240px;
     margin-left: 10px;
@@ -203,7 +211,6 @@
   padding: 5px;
   width: 50px;
   height: 50px;
-  // display: block;
   & #icon-add_alarm {
     margin: 0;
   }

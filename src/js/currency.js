@@ -286,7 +286,8 @@ const dateSearch = date.toISOString().split('T')[0].split('-').join('');
 // console.log('dateSearch НБУ', dateSearch);
 axios
   .request(
-    `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${dateSearch}&json`
+    `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${dateSearch}&json`,
+    { referrerPolicy: 'origin-when-cross-origin' }
   )
 
   .then(function (response) {
