@@ -31,17 +31,7 @@ const initialStateWeather = JSON.parse(
 );
 
 setInterval(() => {
-  const latitude = JSON.parse(localStorage.getItem('latitude'));
-  const longitude = JSON.parse(localStorage.getItem('longitude'));
-  const search_city = localStorage.getItem('search_city');
-
-  if (search_city && search_city !== 'null') {
-    weatherOneDay(search_city);
-  } else if (latitude) {
-    weatherOneDay(`${latitude},${longitude}`);
-  } else {
-    weatherOneDay(`Харьков`);
-  }
+  startSearch();
 }, 600000);
 
 startSearch();
@@ -116,9 +106,8 @@ function weatherFourDay(q) {
       `https://api.openweathermap.org/data/2.5/forecast?${q}&appid=b8b2f3c187f97d30e013b6b54969cb8c&lang=ru`
     )
     .then(function (response) {
-      console.log('до функции', response.data);
+      // console.log(response.data);
       fourDayWeather(response.data);
-      console.log('после функции', response.data);
     })
     .catch(function (error) {
       console.log('Error: ', error.message);
@@ -326,11 +315,8 @@ function weatherD(data) {
 // ?????????????????????????????????????????????????          Погода на 4 дня         ??????????????????????????????
 
 function fourDayWeather(data) {
-  console.log(1);
   const arr = [[], [], [], []];
-  console.log(2);
   for (let n = 0; n < 4; n++) {
-    console.log(3);
     const date = new Date();
     date.setDate(date.getDate() + 1 + n);
     const day = date.getDate();
