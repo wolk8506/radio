@@ -284,6 +284,7 @@ function currencyA(data) {
 const date = new Date();
 const dateSearch = date.toISOString().split('T')[0].split('-').join('');
 // console.log('dateSearch НБУ', dateSearch);
+let dataNBU = [];
 axios
   .request(
     `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${dateSearch}&json`,

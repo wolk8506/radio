@@ -345,6 +345,7 @@ function fourDayWeather(data) {
       }
     });
   }
+  console.log(arr);
   weatherFourDayRender(arr);
 }
 
