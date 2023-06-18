@@ -116,8 +116,9 @@ function weatherFourDay(q) {
       `https://api.openweathermap.org/data/2.5/forecast?${q}&appid=b8b2f3c187f97d30e013b6b54969cb8c&lang=ru`
     )
     .then(function (response) {
-      console.log(response);
+      console.log('до функции', response.data);
       fourDayWeather(response.data);
+      console.log('после функции', response.data);
     })
     .catch(function (error) {
       console.log('Error: ', error.message);
