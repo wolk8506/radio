@@ -368,10 +368,10 @@ function weatherFourDayRender(data) {
           <div class="day-hour__item day-hour__item-time"><p>${time}</p></div>
           <div class="day-hour__item day-hour__item-img"><img title="${description}" src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="#" width="100"/></div>
           <div class="day-hour__item day-hour__item-icon-text"><p>${cloud} %</p></div>
+          <div class="day-hour__item day-hour__item-icon-text"><p>${temp}°</p></div>
           <div class="day-hour__item day-hour__item-icon-text mobile"><p>${feels_like}°</p></div>
           <div class="day-hour__item day-hour__item-icon-text"><p>${grnd_level}</p></div>
           <div class="day-hour__item day-hour__item-icon-text"><p>${humidity} %</p></div>
-          <div class="day-hour__item day-hour__item-icon-text"><p>${temp}°</p></div>
           <div class="day-hour__item day-hour__item-icon-text mobile"><p>${visibility_km} км</p></div>
           <div class="day-hour__item day-hour__item-icon-text mobile"><p>${gust}</p></div>
           <div class="day-hour__item day-hour__item-icon-text"><p>${speed}</p></div> 
@@ -389,15 +389,15 @@ function weatherFourDayRender(data) {
         <div class="day-hour day-hour-name">
           <div class="day-hour__item"><!-- <p>Время:</p> --></div>
           <div class="day-hour__item day-hour__item-img"><!-- <p>img</p> --></div>
-          <div class="day-hour__item day-hour__item-icon-text day-hour__name"><svg width="32" height="32"><use href="${sprite}#icon-clouds"></use></svg></div>
-          <div class="day-hour__item day-hour__item-icon-text day-hour__name mobile"><p>Температура восприятия:</p></div>
-          <div class="day-hour__item day-hour__item-icon-text day-hour__name"><svg width="32" height="32"><use href="${sprite}#icon-barometer"></use></svg></div>
-          <div class="day-hour__item day-hour__item-icon-text day-hour__name"><svg width="32" height="32"><use href="${sprite}#icon-raindrop1"></use></svg></div>
-          <div class="day-hour__item day-hour__item-icon-text day-hour__name"><svg width="32" height="32"><use href="${sprite}#icon-thermometer"></use></svg></div>
-          <div class="day-hour__item  day-hour__item-icon-text day-hour__name mobile"><svg width="32" height="32"><use href="${sprite}#icon-eye3"></use></svg></div>
-          <div class="day-hour__item day-hour__item-icon-text day-hour__name mobile"><svg width="32" height="32"><use href="${sprite}#icon-wind"></use></svg></div>
-          <div class="day-hour__item day-hour__item-icon-text day-hour__name mobile2"><svg width="32" height="32"><use href="${sprite}#icon-air-sock"></use></svg></div>    
-          <div class="day-hour__item day-hour__item-icon-text day-hour__name mobile"><p>Направление ветра</p></div>  
+          <div title="Облачность" class="day-hour__item day-hour__item-icon-text day-hour__name"><svg width="32" height="32"><use href="${sprite}#icon-clouds"></use></svg></div>
+          <div title="Температура" class="day-hour__item day-hour__item-icon-text day-hour__name"><svg width="32" height="32"><use href="${sprite}#icon-thermometer"></use></svg></div>
+          <div title="Температура ощущения" class="day-hour__item day-hour__item-icon-text day-hour__name mobile"><svg width="32" height="32"><use href="${sprite}#icon-temperature-feels-like"></use></svg></div>
+          <div title="Давление" class="day-hour__item day-hour__item-icon-text day-hour__name"><svg width="32" height="32"><use href="${sprite}#icon-barometer"></use></svg></div>
+          <div title="Влажность" class="day-hour__item day-hour__item-icon-text day-hour__name"><svg width="32" height="32"><use href="${sprite}#icon-raindrop1"></use></svg></div>
+          <div title="Видимость" class="day-hour__item  day-hour__item-icon-text day-hour__name mobile"><svg width="32" height="32"><use href="${sprite}#icon-eye3"></use></svg></div>
+          <div title="Порывы ветра" class="day-hour__item day-hour__item-icon-text day-hour__name mobile"><svg width="32" height="32"><use href="${sprite}#icon-wind"></use></svg></div>
+          <div title="Скорость ветра" class="day-hour__item day-hour__item-icon-text day-hour__name mobile2"><svg width="32" height="32"><use href="${sprite}#icon-air-sock"></use></svg></div>    
+          <div title="Направление ветра" class="day-hour__item day-hour__item-icon-text day-hour__name mobile"><svg width="32" height="32"><use href="${sprite}#icon-compass2"></use></svg></div>  
         </div>
         ` +
         dayOne +

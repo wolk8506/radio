@@ -304,15 +304,17 @@ svg {
   width: calc((100% - 100px) / 8);
   margin-right: 0;
   margin: 0;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   flex-direction: column;
-  padding: 5px 10px;
+  padding: 10px 10px;
 }
 
 .hour-item-temp {
   font-size: 16px;
   margin-top: 0px;
   margin-bottom: 5px;
+  margin-top: 7px;
+  margin-bottom: 15px;
 }
 
 .hour-item-temp {

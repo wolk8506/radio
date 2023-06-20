@@ -1,5 +1,6 @@
 import sprite from '../images/sprite.svg';
 import axios from 'axios';
+import { Block } from 'notiflix/build/notiflix-block-aio';
 
 const currencyUsd = document.querySelector('#currency-usd');
 const currencyEur = document.querySelector('#currency-eur');
@@ -21,6 +22,12 @@ const btnCurrency = document.querySelector('#radio-2-cc');
 const table = document.querySelector('#table');
 const converterHidden = document.querySelector('[js-converter-hidden]');
 
+Block.init({
+  backgroundColor: 'rgba(0,0,0,0.0)',
+  svgColor: '#f8f8f8',
+  messageMaxLength: 19,
+});
+
 currencyMono();
 
 function currencyMono() {
@@ -37,8 +44,11 @@ function currencyMono() {
 }
 
 setInterval(currencyMono, 3600000);
-currencyUsd.innerHTML = `<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`;
-currencyEur.innerHTML = `<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`;
+currencyUsd.innerHTML = `<div class="js-spinner js-loading"></div>`;
+currencyEur.innerHTML = `<div class="js-spinner js-loading"></div>`;
+Block.pulse('.js-loading');
+
+// currencyEur.innerHTML = `<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`;
 let timeout = 5000;
 
 function currencyA(data) {
@@ -64,7 +74,7 @@ function currencyA(data) {
   const eurTOusaBuy = EUR.rateBuy / USD.rateBuy;
   const usdTOeurSell = USD.rateSell / EUR.rateSell;
   const usdTOeurBuy = USD.rateBuy / EUR.rateBuy;
-
+  Block.remove('.js-loading');
   currencyUsd.innerHTML = `
   <div class="currency-card"><svg class="icon-USD" width="96" height="72">
           <use href="${sprite}#icon-USD"></use>
