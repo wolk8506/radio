@@ -24,7 +24,7 @@ const converterHidden = document.querySelector('[js-converter-hidden]');
 
 Block.init({
   backgroundColor: 'rgba(0,0,0,0.0)',
-  svgColor: '#f8f8f8',
+  svgColor: 'coral',
   messageMaxLength: 19,
 });
 

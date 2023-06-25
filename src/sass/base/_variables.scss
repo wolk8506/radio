@@ -1,14 +1,17 @@
 :root {
-  --accent-color-1: #eb65df;
-  --accent-color-2: #0064db;
+  --accent-color-1: rgb(235, 101, 223);
+  --accent-color-1-rgb: 235, 101, 223;
+  --accent-color-2: rgb(0, 100, 219);
+  --rgba-alfa: 0.8;
 
-  --accent-color-2-2: rgba(0, 255, 255, 0.2);
-  --background-color: #e0e0e0;
+  --accent-color-2-2: rgba(0, 100, 219, 0.2);
+  --background-color: #e6decf; //#e0e0e0;
   --font-color: #000;
   --font-color: #505050;
   --color-box-shadow-0-8: rgba(0, 0, 0, 0.8);
+  --background-modal: rgba(0, 0, 0, 0.4);
   // ???????????????????????
-  --box-shedow-1: 0px 0px 10px rgba(0, 0, 0, 0.8);
+  --box-shedow-1: 0px 0px 10px rgba(157, 169, 165, 1); //rgba(0, 0, 0, 0.8);
   --box-shedow-2: 0px 0px 5px rgba(0, 0, 0, 0.4);
   // clock 2
   --main-bg-color: #fff;
@@ -25,30 +28,13 @@
   // // ???????????????????????
   // --box-shedow-1: 0px 0px 10px rgba(0, 0, 0, 0.8);
   // --box-shedow-2: 0px 0px 5px rgba(0, 0, 0, 0.4);
-  // color-scheme: dark;
-
-  //**
-  // --title--color: #212121;
-  // --text--color: #757575;
-  // --background-color-section: #2f303a;
-  // --logo-top-color: #000000;
-  // --contact-botom-color: rgba(255, 255, 255, 0.6);
-  // --background-color-man-section: #f5f4fa;
-  // --line-color: #ececec;
-  // --border-color: #eeeeee;
-  // --icon-color: #afb1b8;
-  // --icon-color-footer: rgba(255, 255, 255, 0.1);
-  // --hero-gradient: rgba(47, 48, 58, 0.4);
-  // --button-hiro-hover: #188ce8;
-  // --background-box: rgba(47, 48, 58, 0.8);
-  // --background-color-project: rgba(33, 150, 243, 0.9);
-  // --background-modal: rgba(0, 0, 0, 0.2);
-  //   --accent-color-2: #185ee0;
 }
 
 .dark {
   --accent-color-1: #eb65df;
   --accent-color-2: aqua;
+  --accent-color-1-rgb: 235, 101, 223;
+  --rgba-alfa: 0.6;
   --accent-color-2-2: rgba(0, 255, 255, 0.2);
   // --background-color: #434242;
   --background-color: #1e1f26;

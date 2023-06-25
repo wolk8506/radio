@@ -38,11 +38,11 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #eb65df;
+  background-color: var(--accent-color-1);
   /* Цвет бегунка */
   border-radius: 20px;
   /* Округление бегунка */
-  border: 3px solid #eb65df;
+  border: 3px solid var(--accent-color-1);
   /* Оформление границ бегунка */
 }
 

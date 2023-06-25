@@ -21,7 +21,6 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  // height: 400px;
   padding: 15px;
   background-color: var(--background-color);
   transform: translate(-50%, -50%) scale(1);
@@ -216,7 +215,6 @@ select {
   }
   & input::-webkit-outer-spin-button,
   & input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
   }

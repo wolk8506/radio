@@ -1,3 +1,5 @@
+import { Block } from 'notiflix/build/notiflix-block-aio';
+
 const idNews = document.querySelector('#news');
 const btnMinus = document.querySelector('#btn-minus');
 const btnPlus = document.querySelector('#btn-plus');
@@ -11,7 +13,9 @@ let count = 0;
 let totalnews = 0;
 let dataNews = [];
 
-idNews.innerHTML = `<div class="spinner-news"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>`;
+// idNews.innerHTML = `<div class="spinner-news"><div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div></div>`;
+idNews.innerHTML = `<div class="spinner-news js-loading-news"></div>`;
+Block.pulse('.js-loading-news');
 const news = async () => {
   const response1 = await fetch(
     `https://newsdata.io/api/1/news?apikey=pub_23621b41ce6e76a43d01c3aee8de2c6346c71&country=ru,ua&language=ru&category=technology `,
@@ -172,6 +176,7 @@ function newsMarkup() {
         })
         .join('');
       console.log(renderNews);
+      Block.remove('.js-loading-news');
       idNews.innerHTML = `<div class="slider">${renderNews}</div>`;
     }
     // ???????????????????????????????????????????????????????????????????????????????????

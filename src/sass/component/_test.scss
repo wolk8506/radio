@@ -284,7 +284,10 @@
   }
   & .calendar__weekend,
   & .calendar__weekend2 {
-    color: rgba(235, 101, 224, 0.6);
+    color: rgba(
+      var(--accent-color-1-rgb),
+      var(--rgba-alfa)
+    ); //rgba(235, 101, 224, 0.6)
   }
 }
 .calendar__event {

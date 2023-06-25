@@ -3,11 +3,6 @@
     width: 90%;
   }
 
-  // #radio_container div {
-  //   margin-right: auto;
-  //   margin-left: auto;
-  // }
-
   .block-day {
     display: block;
   }
@@ -54,7 +49,6 @@
     margin-bottom: 30px;
   }
   #weather-hour {
-    // overflow-x: scroll;
     margin: 5px;
   }
 
@@ -87,7 +81,6 @@
   }
 
   .panel-weather-day {
-    // height: 100%;
     padding: 10px;
     & .condition-text {
       height: 40px;

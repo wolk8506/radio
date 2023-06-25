@@ -18,20 +18,9 @@
 #news {
   width: 1200px;
   box-shadow: var(--box-shedow-1);
-
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
-  // overflow: hidden;
-  // position: relative;
-  // height: 100%;
-  & .slider-content {
-    // width: 6000px;
-    // display: flex;
-    // transform: translateX(-1210px);
-    // // left: -2400px;
-    // position: absolute;
-  }
 }
 
 .spinner-news {
@@ -46,7 +35,6 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
-  // width: 1160px;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -67,11 +55,11 @@
 }
 
 .news-card-content::-webkit-scrollbar-thumb {
-  background-color: #eb65df;
+  background-color: var(--accent-color-1);
   /* Цвет бегунка */
   border-radius: 20px;
   /* Округление бегунка */
-  border: 3px solid #eb65df;
+  border: 3px solid var(--accent-color-1);
   /* Оформление границ бегунка */
 }
 
@@ -82,12 +70,12 @@
 }
 
 .scrol-slider-ico {
-  fill: rgba(0, 255, 255, 0.151);
+  fill: var(--accent-color-2-2);
   margin: 0;
 }
 
 .scrol-slider-ico:hover {
-  fill: aqua;
+  fill: var(--accent-color-2);
 }
 
 #slider-news button {
@@ -100,8 +88,8 @@
 }
 #slider-news button:active {
   border-radius: 50px;
-  background: linear-gradient(145deg, #3c3b3b, #484747);
-  box-shadow: 20px 20px 60px #393838, -20px -20px 60px #4d4c4c;
+  // background: linear-gradient(145deg, #3c3b3b, #484747);
+  // box-shadow: 20px 20px 60px #393838, -20px -20px 60px #4d4c4c;
 }
 
 .news-link {
