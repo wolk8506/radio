@@ -82,11 +82,11 @@ function newsMarkup() {
 
   openModalBtn.addEventListener('click', toggleModal);
   closeModalBtn.addEventListener('click', toggleModal);
-  document.addEventListener('keyup', e => {
-    if (e.key === 'Escape') {
-      toggleModal();
-    }
-  });
+  // document.addEventListener('keyup', e => {
+  //   if (e.key === 'Escape') {
+  //     toggleModal();
+  //   }
+  // });
   modal.addEventListener('click', e => {
     if (e.target.classList.value === 'backdrop') {
       toggleModal();
@@ -94,6 +94,7 @@ function newsMarkup() {
   });
 
   let toggleTimer = true;
+
   function toggleModal() {
     if (toggleTimer) {
       stopTimer();

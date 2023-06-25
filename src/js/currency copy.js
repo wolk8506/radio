@@ -204,7 +204,7 @@ function currencyA(data) {
     const e1 = d1.indexOf(selected2.value);
     d1.splice(e1, 1);
 
-    let a2 = [...arr1];
+    let a2 = [...arr2];
     let d2 = [...a2.splice(a2.indexOf(selected2.value), 1), ...a2];
     const e2 = d2.indexOf(selected.value);
     d2.splice(e2, 1);
@@ -347,16 +347,8 @@ function nbu(data2) {
       </table>`;
 }
 
-// const dateId = document.querySelector('#dateId');
-// const date1 = new Date();
-// dateId.max = date1.toISOString().split('T')[0];
-// dateId.value = date1.toISOString().split('T')[0];
+const dateId = document.querySelector('#dateId');
 
-// dateId.oninput = function (e) {
-// const date = new Date();
-// const dateSearch = date.toISOString().split('T')[0].split('-').join('');
-
-// const dateSearch = date.toISOString().split('T')[0];
-// console.log(dateSearch);
-// console.log(e.target.value);
-// };
+dateId.oninput = function (e) {
+  console.log(e.target.value);
+};

@@ -30,7 +30,7 @@
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 10px;
-  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--box-shedow-1);
   color: var(--font-color);
   & input,
   & select {
@@ -92,7 +92,7 @@
   color: rgba(235, 101, 224, 0.5);
 }
 .modal .btn-close:hover {
-  color: #eb65df;
+  color: var(--accent-color-1);
 }
 
 .icon-cross:hover {
@@ -121,8 +121,8 @@
   z-index: 2;
   cursor: pointer;
   border-radius: 5px;
-  background: #434242;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  background: var(--background-color);
+  box-shadow: var(--box-shedow-1);
 }
 // !!!!!        MODAL NEWS      !!!!!
 
@@ -149,11 +149,11 @@
 }
 
 .news-card-content-modal::-webkit-scrollbar-thumb {
-  background-color: #eb65df;
+  background-color: var(--accent-color-1);
   /* Цвет бегунка */
   border-radius: 20px;
   /* Округление бегунка */
-  border: 3px solid #eb65df;
+  border: 3px solid var(--accent-color-1);
   /* Оформление границ бегунка */
 }
 
@@ -184,11 +184,11 @@
   width: 150px;
   font-size: 24px;
   text-align: right;
-  background: #434242;
+  background: var(--background-color);
 }
 
 select {
-  background: #434242;
+  background: var(--background-color);
   border-radius: 10px;
 }
 
@@ -231,7 +231,7 @@ select {
 }
 
 .icon-swap_vert {
-  fill: aqua;
+  fill: var(--accent-color-2);
   margin: 0;
   display: block;
 }
@@ -311,8 +311,8 @@ select {
   z-index: 1;
   border-radius: 99px;
   transition: 0.25s ease-out;
-  background: #434242;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  background: var(--background-color);
+  box-shadow: var(--box-shedow-1);
 }
 
 // ------------------------
@@ -379,8 +379,8 @@ select {
   z-index: 1;
   border-radius: 99px;
   transition: 0.25s ease-out;
-  background: #434242;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  background: var(--background-color);
+  box-shadow: var(--box-shedow-1);
 }
 
 #tamle {

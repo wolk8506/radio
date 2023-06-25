@@ -4,6 +4,7 @@ if (initialState === null) {
   localStorage.setItem('initialState', true);
   console.log('initialState -- "OK"');
 }
+const settings_2_s = JSON.parse(localStorage.getItem('settings_2_s'));
 
 const logo = [
   'https://i.ibb.co/CbKVPLF/img-181-fm.jpg',
@@ -36,7 +37,7 @@ const inputTimer = document.querySelector('[data-input-radio]');
 const startTimer = document.querySelector('#start-timer');
 const icoAlarms = document.querySelector('#ico-alarms');
 let volumeOnOff = true;
-let autoplay = true;
+let autoplay = settings_2_s;
 let timer = 0;
 let onPlay = true;
 let volumeLevel = 80;

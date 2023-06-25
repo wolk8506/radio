@@ -1,7 +1,7 @@
 .currency-card {
   display: flex;
   align-items: center;
-  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--box-shedow-1);
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
@@ -16,14 +16,14 @@
 .currency-text {
   margin: 3px;
   font-size: 20px;
-  color: aqua;
+  color: var(--accent-color-2);
   font-family: 'DotGothic16', sans-serif;
 }
 .currency-eur {
   font-family: 'DotGothic16', sans-serif;
   margin: 3px;
   font-size: 20px;
-  color: #eb65df;
+  color: var(--accent-color-1);
 }
 .currency-block {
   display: flex;

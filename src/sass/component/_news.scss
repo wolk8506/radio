@@ -17,7 +17,7 @@
 
 #news {
   width: 1200px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--box-shedow-1);
 
   padding: 20px;
   border-radius: 10px;
@@ -62,7 +62,7 @@
 }
 
 .news-card-content::-webkit-scrollbar-track {
-  background: #434242;
+  background: var(--background-color);
   /* Цвет дорожки */
 }
 

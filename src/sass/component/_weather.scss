@@ -10,7 +10,7 @@
 /* ** Стили для текущего дня */
 .day-list {
   // border: 1px solid coral;
-  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--box-shedow-1);
   padding: 10px;
   padding-left: 15px;
   border-radius: 10px;
@@ -255,14 +255,14 @@
   z-index: 1;
   border-radius: 10px;
   transition: 0.25s ease-out;
-  background: #434242;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+  background: var(--background-color);
+  box-shadow: var(--box-shedow-1);
 }
 
 // ???????????????????????????????????????????????????????????????
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #weather-day {
-  margin-top: 60px;
+  margin-top: 65px;
 }
 
 // .panel-weather-day {
@@ -300,20 +300,24 @@ svg {
   justify-content: space-between;
   padding-left: 20px;
   border-radius: 10px;
-  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.6);
+  box-shadow: var(--box-shedow-1);
   width: calc((100% - 100px) / 8);
   margin-right: 0;
   margin: 0;
-  margin-bottom: 20px;
+  margin-bottom: 21px;
   flex-direction: column;
   padding: 10px 10px;
 }
 
+.hour-item:nth-last-child(-n + 8) {
+  margin-bottom: 0px;
+}
+
 .hour-item-temp {
   font-size: 16px;
-  margin-top: 0px;
-  margin-bottom: 5px;
-  margin-top: 7px;
+  // margin-top: 0px;
+  // margin-bottom: 5px;
+  margin-top: 8px;
   margin-bottom: 15px;
 }
 
@@ -322,7 +326,7 @@ svg {
 }
 
 .first-day {
-  color: aqua;
+  color: var(--accent-color-2);
   display: flex;
   align-items: center;
   margin: 14px;
