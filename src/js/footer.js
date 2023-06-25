@@ -69,18 +69,18 @@ const settings_3 = document.querySelector('#settings-3');
 
 settings_1.checked = settings_1_s;
 settings_1.addEventListener('change', function () {
-  some_var = this.checked;
+  some_var = settings_1.checked;
   localStorage.setItem('settings_1_s', some_var);
 });
 
 settings_2.checked = settings_2_s;
 settings_2.addEventListener('change', function () {
-  some_var = this.checked;
+  some_var = settings_2.checked;
   localStorage.setItem('settings_2_s', some_var);
 });
 
 settings_3.checked = settings_3_s;
 settings_3.addEventListener('change', function () {
-  some_var = this.checked;
+  some_var = settings_3.checked;
   localStorage.setItem('settings_3_s', some_var);
 });

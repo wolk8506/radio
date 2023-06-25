@@ -6,4 +6,4 @@ import './js/weather';
 import './js/clock';
 
 import './js/footer';
-console.log('v3.7');
+console.log('v3.8');
