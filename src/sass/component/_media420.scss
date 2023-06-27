@@ -14,6 +14,10 @@
     }
   }
 
+  .currency-card {
+    padding: 0;
+  }
+
   .currency-card p {
     font-size: 16px;
   }
@@ -107,10 +111,108 @@
 }
 
 @media (min-width: 421px) and (max-width: 1600px) {
-  header {
-    display: none;
+  .modal-settings {
+    width: 90%;
   }
+
   .block-day {
-    display: none;
+    display: block;
+  }
+
+  .currency-block {
+    display: flex;
+    & div + div {
+      margin-left: 20px;
+    }
+  }
+
+  .currency-card p {
+    font-size: 16px;
+  }
+  .currency-card img {
+    width: 48px;
+    height: 36px;
+    margin-right: 5px;
+  }
+  .hour-item {
+    width: calc((100% - 30px) / 6);
+    margin-right: 0;
+    margin: 0;
+    margin-bottom: 3px;
+    flex-direction: column;
+    height: 150px;
+    padding: 3px;
+  }
+  .hour-item img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .hour-item-temp {
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+
+  .day {
+    margin-top: 3px;
+  }
+  .day-list {
+    margin-bottom: 30px;
+  }
+  #weather-hour {
+    margin: 5px;
+  }
+
+  .calendar-clock-events {
+    // display: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: center;
+    // margin-bottom: -40px;
+  }
+  // #slider-news {
+  //   display: none;
+  // }
+  // .icon-time {
+  //   display: none;
+  // }
+
+  .icon-EUR,
+  .icon-USD {
+    // width: 64px;
+    // height: 48px;
+    margin-right: 0;
+  }
+  .condition-week {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .panel-weather-day {
+    padding: 10px;
+    & .condition-text {
+      height: 40px;
+      text-align: center;
+    }
+  }
+
+  .tab-weather {
+    font-size: 18px;
+  }
+
+  .glider-weather {
+    width: calc((100% - 20px) / 2);
+  }
+
+  #currency-eur,
+  #currency-usd {
+    width: 100%;
   }
 }

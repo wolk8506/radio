@@ -75,6 +75,96 @@ function currencyA(data) {
   const usdTOeurSell = USD.rateSell / EUR.rateSell;
   const usdTOeurBuy = USD.rateBuy / EUR.rateBuy;
   Block.remove('.js-loading');
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  var moment = require('moment');
+  let d1 = moment().format('DD-MM-YYYY');
+  let d2 = moment().subtract(1, 'days').format('DD-MM-YYYY');
+
+  let arr11 = JSON.parse(localStorage.getItem('storyCurrency'));
+  let arr12 = {};
+  if (arr11 === null) {
+    console.log('init state currency -- "OK"');
+    arr12 = {
+      [d2]: [
+        EUR.rateBuy,
+        EUR.rateSell,
+        USD.rateBuy,
+        USD.rateSell,
+        eurTOusaSell,
+        eurTOusaBuy,
+        usdTOeurSell,
+        usdTOeurBuy,
+      ],
+      [d1]: [
+        EUR.rateBuy,
+        EUR.rateSell,
+        USD.rateBuy,
+        USD.rateSell,
+        eurTOusaSell,
+        eurTOusaBuy,
+        usdTOeurSell,
+        usdTOeurBuy,
+      ],
+    };
+    localStorage.setItem('storyCurrency', JSON.stringify(arr12));
+    arr11 = arr12;
+  }
+  // console.log(arr11);
+
+  let differentCurrency = [];
+  let arrowCurrency = [];
+  if (arr11[d2] !== 'undefined') {
+    arr12 = {
+      [d2]: arr11[d2],
+      [d1]: [
+        EUR.rateBuy,
+        EUR.rateSell,
+        USD.rateBuy,
+        USD.rateSell,
+        eurTOusaSell,
+        eurTOusaBuy,
+        usdTOeurSell,
+        usdTOeurBuy,
+      ],
+    };
+    localStorage.setItem('storyCurrency', JSON.stringify(arr12));
+
+    for (let n = 0; n < 8; n++) {
+      const a = (arr12[d1][n] - arr12[d2][n]).toFixed(4);
+      differentCurrency[n] = Number(a);
+      if (a > 0) {
+        arrowCurrency[n] = 'up';
+      } else if (a < 0) {
+        arrowCurrency[n] = 'down';
+      } else arrowCurrency[n] = 'undefined';
+    }
+  } else {
+    arr12 = {
+      [d2]: [
+        EUR.rateBuy,
+        EUR.rateSell,
+        USD.rateBuy,
+        USD.rateSell,
+        eurTOusaSell,
+        eurTOusaBuy,
+        usdTOeurSell,
+        usdTOeurBuy,
+      ],
+      [d1]: [
+        EUR.rateBuy,
+        EUR.rateSell,
+        USD.rateBuy,
+        USD.rateSell,
+        eurTOusaSell,
+        eurTOusaBuy,
+        usdTOeurSell,
+        usdTOeurBuy,
+      ],
+    };
+    localStorage.setItem('storyCurrency', JSON.stringify(arr12));
+  }
+
+  // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   currencyUsd.innerHTML = `
   <div class="currency-card"><svg class="icon-USD" width="96" height="72">
           <use href="${sprite}#icon-USD"></use>
@@ -82,13 +172,37 @@ function currencyA(data) {
     <div class="currency-block">
       <div>
         <p class="currency-text currency-name-muy-sell">покупка</p>
-        <p class="currency-text">1 $ = ${USD.rateBuy} ₴</p>
-        <p class="currency-text">1 $ = ${usdTOeurSell.toFixed(4)} € </p>
+        <p title=${differentCurrency[2]}  class="currency-text">1 $ = ${
+    USD.rateBuy
+  } ₴ <svg width="18" height="18"><use href="${sprite}#icon-arrow-${
+    arrowCurrency[2]
+  }"></use>
+        </svg></p>
+        <p title=${
+          differentCurrency[6]
+        } class="currency-text">1 $ = ${usdTOeurSell.toFixed(
+    4
+  )} € <svg width="18" height="18"><use href="${sprite}#icon-arrow-${
+    arrowCurrency[6]
+  }"></use>
+        </svg> </p>
       </div>
       <div>
         <p class="currency-text currency-name-muy-sell">продажа</p>
-        <p class="currency-text">1 $ = ${USD.rateSell} ₴</p>
-        <p class="currency-text">1 $ = ${usdTOeurBuy.toFixed(4)} €</p>
+        <p title=${differentCurrency[3]} class="currency-text">1 $ = ${
+    USD.rateSell
+  } ₴ <svg  width="18" height="18"><use href="${sprite}#icon-arrow-${
+    arrowCurrency[3]
+  }"></use>
+        </svg></p>
+        <p title=${
+          differentCurrency[7]
+        } class="currency-text">1 $ = ${usdTOeurBuy.toFixed(
+    4
+  )} € <svg width="18" height="18"><use href="${sprite}#icon-arrow-${
+    arrowCurrency[7]
+  }"></use>
+        </svg></p>
       </div>
     </div>
     <div></div>
@@ -101,13 +215,37 @@ function currencyA(data) {
     <div class="currency-block">
       <div>
         <p class="currency-text currency-name-muy-sell">покупка</p>
-        <p class="currency-text">1 € = ${EUR.rateBuy} ₴ </p>
-        <p class="currency-text">1 € = ${eurTOusaSell.toFixed(4)} $ </p>
+        <p title=${differentCurrency[0]} class="currency-text">1 € = ${
+    EUR.rateBuy
+  } ₴ <svg  width="18" height="18"><use href="${sprite}#icon-arrow-${
+    arrowCurrency[0]
+  }"></use>
+        </svg></p>
+        <p title=${
+          differentCurrency[4]
+        } class="currency-text">1 € = ${eurTOusaSell.toFixed(
+    4
+  )} $ <svg width="18" height="18"><use href="${sprite}#icon-arrow-${
+    arrowCurrency[4]
+  }"></use>
+        </svg> </p>
       </div>
       <div>
         <p class="currency-text currency-name-muy-sell">продажа</p>
-        <p class="currency-text">1 €  = ${EUR.rateSell} ₴</p>
-        <p class="currency-text">1 €  = ${eurTOusaBuy.toFixed(4)} $</p>
+        <p title=${differentCurrency[1]} class="currency-text">1 €  = ${
+    EUR.rateSell
+  } ₴<svg  width="18" height="18"><use href="${sprite}#icon-arrow-${
+    arrowCurrency[1]
+  }"></use>
+        </svg></p>
+        <p title=${
+          differentCurrency[5]
+        } class="currency-text">1 €  = ${eurTOusaBuy.toFixed(
+    4
+  )} $<svg width="18" height="18"><use href="${sprite}#icon-arrow-${
+    arrowCurrency[5]
+  }"></use>
+        </svg></p>
       </div>
     </div>
     <div></div>

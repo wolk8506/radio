@@ -71,7 +71,6 @@
 }
 
 .modal img {
-  /* width: 100vw; */
   height: 100vh;
 }
 
@@ -139,27 +138,21 @@
 
 .news-card-content-modal::-webkit-scrollbar {
   width: 10px;
-  /* Ширина всего элемента навигации */
 }
 
 .news-card-content-modal::-webkit-scrollbar-track {
   background: hsla(0, 1%, 26%, 0.438);
-  /* Цвет дорожки */
 }
 
 .news-card-content-modal::-webkit-scrollbar-thumb {
   background-color: var(--accent-color-1);
-  /* Цвет бегунка */
   border-radius: 20px;
-  /* Округление бегунка */
   border: 3px solid var(--accent-color-1);
-  /* Оформление границ бегунка */
 }
 
 .news-card-content-modal {
   overflow-y: scroll;
   height: 280px;
-  /* padding-right: 5px; */
   padding: 10px;
   margin-top: 10px;
 }
@@ -241,7 +234,6 @@ select {
   margin-bottom: 20px;
   display: flex;
   justify-content: center;
-  //   font-size: 18px;
 }
 
 // ????????????????????????????????????????????????????????
@@ -296,10 +288,6 @@ select {
 .container-radio-cc input[id='radio-2-cc']:checked ~ .glider-cc {
   transform: translateX(100%);
 }
-
-// .container-radio input[id='radio-3']:checked ~ .glider {
-//   transform: translateX(200%);
-// }
 
 .glider-cc {
   position: absolute;
@@ -364,10 +352,6 @@ select {
   transform: translateX(100%);
 }
 
-// .container-radio input[id='radio-3']:checked ~ .glider {
-//   transform: translateX(200%);
-// }
-
 .glider {
   position: absolute;
   display: flex;
@@ -388,7 +372,6 @@ select {
 td {
   text-align: center;
   border: 1px solid #000;
-  // background-color: rgba(0, 0, 0, 0.1);
   padding-top: 5px;
   padding-bottom: 5px;
 }

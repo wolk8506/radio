@@ -6,28 +6,20 @@
 
   --accent-color-2-2: rgba(0, 100, 219, 0.2);
   --background-color: #e6decf; //#e0e0e0;
-  --font-color: #000;
+  // --font-color: #000;
   --font-color: #505050;
+  --font-color-0_6: rgba(80, 80, 80, 0.6);
   --color-box-shadow-0-8: rgba(0, 0, 0, 0.8);
   --background-modal: rgba(0, 0, 0, 0.4);
   // ???????????????????????
   --box-shedow-1: 0px 0px 10px rgba(157, 169, 165, 1); //rgba(0, 0, 0, 0.8);
   --box-shedow-2: 0px 0px 5px rgba(0, 0, 0, 0.4);
   // clock 2
-  --main-bg-color: #fff;
+  // --main-bg-color: #fff;
   --main-text-color: #888888;
+  --color-sec: #ff0000;
 
   color-scheme: light;
-  // **
-  // --accent-color-1: #eb65df;
-  // --accent-color-2: aqua;
-  // --accent-color-2-2: rgba(0, 255, 255, 0.2);
-  // --background-color: #434242;
-  // --font-color: #e0e0e0;
-  // --color-box-shadow-0-8: rgba(0, 0, 0, 0.8);
-  // // ???????????????????????
-  // --box-shedow-1: 0px 0px 10px rgba(0, 0, 0, 0.8);
-  // --box-shedow-2: 0px 0px 5px rgba(0, 0, 0, 0.4);
 }
 
 .dark {
@@ -46,7 +38,7 @@
   --box-shedow-1: 0px 0px 15px 5px rgba(0, 0, 0, 0.6);
   --box-shedow-2: 0px 0px 5px rgba(0, 0, 0, 0.4);
   // clock 2
-  --main-bg-color: #1e1f26;
+  // --main-bg-color: #1e1f26;
   --main-text-color: #ccc;
 
   color-scheme: dark;

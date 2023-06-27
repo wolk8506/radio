@@ -1,9 +1,10 @@
 import './js/radio_v3';
-
 import './js/currency';
 import './js/news';
 import './js/weather';
-import './js/clock';
-
+import './js/clock_calendar_events';
 import './js/footer';
-console.log('v3.9.2');
+
+// import './js/test';
+
+console.log('v4.0');

@@ -3,11 +3,8 @@
 #slider-news {
   display: flex;
   align-items: center;
-  // max-width: 1600px;
   height: 350px;
   justify-content: space-between;
-  // margin-right: auto;
-  // margin-left: auto;
   margin-bottom: 20px;
   color: var(--font-color);
 }
@@ -42,25 +39,19 @@
 .news-card img {
   margin-right: 20px;
 }
-/* ****************************************************************************************** */
 
 .news-card-content::-webkit-scrollbar {
   width: 10px;
-  /* Ширина всего элемента навигации */
 }
 
 .news-card-content::-webkit-scrollbar-track {
   background: var(--background-color);
-  /* Цвет дорожки */
 }
 
 .news-card-content::-webkit-scrollbar-thumb {
   background-color: var(--accent-color-1);
-  /* Цвет бегунка */
   border-radius: 20px;
-  /* Округление бегунка */
   border: 3px solid var(--accent-color-1);
-  /* Оформление границ бегунка */
 }
 
 .news-card-content {
@@ -88,8 +79,6 @@
 }
 #slider-news button:active {
   border-radius: 50px;
-  // background: linear-gradient(145deg, #3c3b3b, #484747);
-  // box-shadow: 20px 20px 60px #393838, -20px -20px 60px #4d4c4c;
 }
 
 .news-link {
