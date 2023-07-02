@@ -6,16 +6,13 @@
 
   --accent-color-2-2: rgba(0, 100, 219, 0.2);
   --background-color: #e6decf; //#e0e0e0;
-  // --font-color: #000;
   --font-color: #505050;
   --font-color-0_6: rgba(80, 80, 80, 0.6);
   --color-box-shadow-0-8: rgba(0, 0, 0, 0.8);
   --background-modal: rgba(0, 0, 0, 0.4);
-  // ???????????????????????
   --box-shedow-1: 0px 0px 10px rgba(157, 169, 165, 1); //rgba(0, 0, 0, 0.8);
   --box-shedow-2: 0px 0px 5px rgba(0, 0, 0, 0.4);
   // clock 2
-  // --main-bg-color: #fff;
   --main-text-color: #888888;
   --color-sec: #ff0000;
 
@@ -23,23 +20,60 @@
 }
 
 .dark {
-  --accent-color-1: #eb65df;
+  --accent-color-1: rgb(235, 101, 223);
   --accent-color-2: aqua;
   --accent-color-1-rgb: 235, 101, 223;
   --rgba-alfa: 0.6;
   --accent-color-2-2: rgba(0, 255, 255, 0.2);
-  // --background-color: #434242;
   --background-color: #1e1f26;
 
-  // --font-color: #e0e0e0;
   --font-color: #888888;
   --color-box-shadow-0-8: rgba(0, 0, 0, 0.8);
-  // ???????????????????????
   --box-shedow-1: 0px 0px 15px 5px rgba(0, 0, 0, 0.6);
   --box-shedow-2: 0px 0px 5px rgba(0, 0, 0, 0.4);
   // clock 2
-  // --main-bg-color: #1e1f26;
+
   --main-text-color: #ccc;
 
   color-scheme: dark;
 }
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  transition-property: box-shadow, background;
+  transition-duration: 500ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+
+  & {
+    background-position: center;
+    transition: background 0.6s;
+  }
+  &:hover {
+    box-shadow: var(--box-shedow-1);
+    background: rgba(0, 0, 0, 0.2)
+      radial-gradient(circle, transparent 1%, rgba(0, 0, 0, 0.2) 1%)
+      center/15000%;
+  }
+  & svg {
+    margin: 0;
+  }
+  &:active {
+    box-shadow: var(--box-shedow-1);
+    background-color: rgba(255, 255, 255, 0.8);
+    background-size: 100%;
+    transition: background 0s;
+  }
+}
+
+//  Пример
+// .btn {
+//   @extend .button;
+// }

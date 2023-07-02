@@ -5,17 +5,19 @@
 
     <div class="radio__control">
       <div class="radio__volume">
-        <svg id="volume_off" width="32" height="32">
-          <use
-            id="icon-volume_down"
-            href="./images/sprite.svg#icon-volume_down"
-          ></use>
-          <use
-            id="icon-volume_off"
-            class="is-hidden"
-            href="./images/sprite.svg#icon-volume_off"
-          ></use>
-        </svg>
+        <button class="btn" type="button">
+          <svg id="volume_off" width="32" height="32">
+            <use
+              id="icon-volume_down"
+              href="./images/sprite.svg#icon-volume_down"
+            ></use>
+            <use
+              id="icon-volume_off"
+              class="is-hidden"
+              href="./images/sprite.svg#icon-volume_off"
+            ></use>
+          </svg>
+        </button>
         <input id="volume" type="range" min="0" max="100" value="80" />
         <svg width="32" height="32">
           <use href="./images/sprite.svg#icon-volume_up"></use>
@@ -37,7 +39,7 @@
       </select>
     </div>
     <div>
-      <button class="ripple" id="play" type="button" value="Play">
+      <button class="btn" id="play" type="button" value="Play">
         <svg width="64" height="64">
           <use id="ico-play" href="./images/sprite.svg#icon-play"></use>
           <use

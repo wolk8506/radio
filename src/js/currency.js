@@ -431,7 +431,7 @@ function currencyA(data) {
 // *********************************************************************************
 const date = new Date();
 const dateSearch = date.toISOString().split('T')[0].split('-').join('');
-// console.log('dateSearch НБУ', dateSearch);
+
 let dataNBU = [];
 axios
   .request(
@@ -452,10 +452,6 @@ function nbu(data2) {
   const USD = data.find(el => el.cc == 'USD').rate;
   const EUR = data.find(el => el.cc == 'EUR').rate;
   const PLN = data.find(el => el.cc == 'PLN').rate;
-
-  // console.log('НБУ USD', USD);
-  // console.log('НБУ USD', EUR);
-  // console.log('НБУ USD', PLN);
 
   table.innerHTML = `<table>
         <tr>
@@ -484,6 +480,52 @@ function nbu(data2) {
         </tr>
       </table>`;
 }
+
+let arr20 = {
+  labels: ['25-06', '26-06', '27-06', '28-06', '29-06', '30-06', '01-07'],
+  data: [40.1852, 39.7738, 39.9238, 40.0225, 40.0042, 40.1006, 40.0006],
+};
+localStorage.setItem('storyCurrencyNBU', JSON.stringify(arr20));
+axios
+  .request(
+    `https://bank.gov.ua/NBU_Exchange/exchange_site?start=20220115&end=20220131&valcode=usd&sort=exchangedate&order=desc&json`,
+    { referrerPolicy: 'strict-origin-when-cross-origin' }
+  )
+  .then(function (response) {
+    console.log(response.data);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .finally(function () {});
+
+// document.addEventListener('DOMContentLoaded', () => {
+//   new Chart(document.querySelector('.chart'), {
+//     type: 'line', // вернули линейный тип
+//     data: {
+//       labels: arr20.labels,
+//       datasets: [
+//         {
+//           label: 'EUR',
+//           data: arr20.data,
+//           borderColor: 'crimson',
+//           borderWidth: 3,
+//           backgroundColor: 'crimson',
+//           cubicInterpolationMode: 'monotone', // добавили сглаживание углов
+//         },
+//         // {
+//         //   label: 'USD',
+//         //   data: [36.5686, 36.5686, 36.5686, 36.5686, 36.5686],
+//         //   borderColor: 'teal',
+//         //   borderWidth: 3,
+//         //   backgroundColor: 'teal',
+//         //   cubicInterpolationMode: 'monotone', // добавили сглаживание углов
+//         // },
+//       ],
+//     },
+//     options: {},
+//   });
+// });
 
 // const dateId = document.querySelector('#dateId');
 // const date1 = new Date();

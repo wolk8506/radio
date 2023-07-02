@@ -4,95 +4,97 @@
   margin-bottom: 40px;
   font-size: 16px;
   color: var(--font-color);
-}
+  //
+  // !!!!! DAY  --  Стили для текущего дня!!!!!!!!!
+  //
+  & .day-list {
+    box-shadow: var(--box-shedow-1);
+    padding: 10px;
+    padding-left: 15px;
+    border-radius: 10px;
+    padding-top: 20px;
+    font-size: 18px;
+    & .location {
+      display: flex;
+      align-items: baseline;
+      & .button-location {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+      //* Стили для input поиска города
+      & .inputbox {
+        position: relative;
+        width: 300px;
 
-// !!!!! DAY  !!!!!!!!!
-/* ** Стили для текущего дня */
-.day-list {
-  box-shadow: var(--box-shedow-1);
-  padding: 10px;
-  padding-left: 15px;
-  border-radius: 10px;
-  padding-top: 20px;
-  font-size: 18px;
-}
+        & #city {
+          position: relative;
+          width: 100%;
+          padding: 15px 10px 15px;
+          background: transparent;
+          outline: none;
+          box-shadow: none;
+          border: none;
+          color: var(--font-color);
+          letter-spacing: 0.05em;
+          transition: 0.5s;
+          z-index: 10;
+        }
 
-.location {
-  display: flex;
-  align-items: baseline;
-}
+        & span {
+          position: absolute;
+          left: 0;
+          padding: 20px 10px 10px;
+          letter-spacing: 00.05em;
+          transition: 0.5s;
+          pointer-events: none;
+        }
 
-.location-line {
-  content: '';
-  height: 2px;
-  color: red;
-  display: block;
-  width: 100%;
-  background-image: linear-gradient(
-    90deg,
-    rgba(255, 128, 82, 1) 0%,
-    rgba(255, 128, 82, 0) 100%
-  );
-}
+        & #city:valid ~ span,
+        & #city:focus ~ span {
+          transform: translateX(-10px) translateY(-34px);
+          font-size: 14px;
+          font-weight: 400;
+        }
 
-.button-location {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
+        & i {
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 0px;
+          background: rgba(255, 255, 255, 0.15);
+          border-radius: 4px;
+          transition: 0.5s;
+          pointer-events: none;
+          z-index: 9;
+        }
 
-//Стили для input поиска города
-.inputbox {
-  position: relative;
-  width: 300px;
-
-  & #city {
-    position: relative;
-    width: 100%;
-    padding: 15px 10px 15px;
-    background: transparent;
-    outline: none;
-    box-shadow: none;
-    border: none;
-    color: var(--font-color);
-    letter-spacing: 0.05em;
-    transition: 0.5s;
-    z-index: 10;
+        & #city:valid ~ i,
+        & #city:focus ~ i {
+          height: 44px;
+        }
+      }
+    }
+    & .location-line {
+      content: '';
+      height: 2px;
+      color: red;
+      display: block;
+      width: 100%;
+      background-image: linear-gradient(
+        90deg,
+        rgba(255, 128, 82, 1) 0%,
+        rgba(255, 128, 82, 0) 100%
+      );
+    }
+    //
+  }
+  & #weather-day {
+    margin-top: 65px;
   }
 
-  & span {
-    position: absolute;
-    left: 0;
-    padding: 20px 10px 10px;
-    letter-spacing: 00.05em;
-    transition: 0.5s;
-    pointer-events: none;
-  }
-
-  & #city:valid ~ span,
-  & #city:focus ~ span {
-    transform: translateX(-10px) translateY(-34px);
-    font-size: 14px;
-    font-weight: 400;
-  }
-
-  & i {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 0px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 4px;
-    transition: 0.5s;
-    pointer-events: none;
-    z-index: 9;
-  }
-
-  & #city:valid ~ i,
-  & #city:focus ~ i {
-    height: 44px;
-  }
+  //
 }
 
 .button-search {
@@ -255,9 +257,6 @@
 
 // ???????????????????????????????????????????????????????????????
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#weather-day {
-  margin-top: 65px;
-}
 
 #weather-hour {
   display: flex;
@@ -315,7 +314,7 @@ svg {
 }
 
 .undefined {
-  color: #eb65df;
+  color: var(--accent-color-1);
   display: flex;
   align-items: center;
   margin: 14px;
@@ -323,63 +322,4 @@ svg {
 
 .icon-time {
   fill: currentColor;
-}
-
-/* ************ */
-#weather-week {
-  display: flex;
-
-  flex-wrap: wrap;
-  justify-content: space-between;
-  color: var(--font-color);
-  font-size: 10px;
-  max-width: 1600px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-#weather-week li,
-#weather-hour li {
-  font-size: 14px;
-  list-style: none;
-}
-
-.condition-week {
-  display: flex;
-  font-weight: 500;
-  justify-content: space-around;
-  margin-bottom: 0px;
-}
-
-.condition-week p {
-  font-size: 32px;
-}
-
-.condition-week img {
-  width: 96px;
-  height: 96px;
-}
-.week-first-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.week-first-item p {
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-}
-
-.week-humidity {
-  display: flex;
-  align-items: center;
-}
-.week-humidity img {
-  width: 32px;
-  height: 32px;
-}
-
-.icon-pressure {
-  margin-right: 0;
 }

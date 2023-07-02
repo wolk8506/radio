@@ -16,7 +16,7 @@
     background: var(--background-color);
   }
   &::-webkit-scrollbar-thumb {
-    background-color: #eb65df;
+    background-color: var(--accent-color-1);
     background-color: #0000004b;
     border-radius: 20px;
     border: 1px solid #eb65e079;

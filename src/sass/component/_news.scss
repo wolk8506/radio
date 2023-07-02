@@ -61,6 +61,7 @@
 }
 
 .scrol-slider-ico {
+  @extend .button;
   fill: var(--accent-color-2-2);
   margin: 0;
 }

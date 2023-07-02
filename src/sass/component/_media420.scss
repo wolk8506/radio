@@ -111,6 +111,29 @@
 }
 
 @media (min-width: 421px) and (max-width: 1600px) {
+  // .header div + div {
+  //   margin-top: 20px;
+  // }
+  .radio {
+    width: 100%;
+  }
+  .calendar-clock-events div + div {
+    margin-top: 20px;
+  }
+  .calendar__event {
+    margin-top: 20px;
+  }
+  .news-card {
+    flex-direction: column;
+  }
+  #slider-news {
+    height: 650px;
+  }
+
+  #news {
+    width: 100%;
+  }
+  // ************************************
   .modal-settings {
     width: 90%;
   }
@@ -165,7 +188,6 @@
   }
 
   .calendar-clock-events {
-    // display: none;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -175,19 +197,10 @@
   .header {
     flex-direction: column;
     align-items: center;
-    // margin-bottom: -40px;
   }
-  // #slider-news {
-  //   display: none;
-  // }
-  // .icon-time {
-  //   display: none;
-  // }
 
   .icon-EUR,
   .icon-USD {
-    // width: 64px;
-    // height: 48px;
     margin-right: 0;
   }
   .condition-week {
@@ -214,5 +227,11 @@
   #currency-eur,
   #currency-usd {
     width: 100%;
+  }
+  #currency-eur {
+    margin-bottom: 20px;
+  }
+  #currency-usd {
+    margin-top: 20px;
   }
 }

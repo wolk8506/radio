@@ -104,6 +104,7 @@
   }
   & .calendar__month {
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
     width: 100%;
   }
@@ -115,10 +116,10 @@
   }
 
   & .month__btn {
-    color: var(--font-color-0_6);
-    background: transparent;
-    border: none;
-    cursor: pointer;
+    @extend .button;
+    height: auto;
+    width: 32px;
+    height: 32px;
   }
   & .month__btn:hover {
     color: var(--font-color);

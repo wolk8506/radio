@@ -9,36 +9,12 @@
   padding-bottom: 30px;
 }
 
-#theme-toggle {
-  display: flex;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  border: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: none;
-  border: 1px solid var(--main-text-color);
-  & svg {
-    margin: 0;
-  }
-}
-
+#theme-toggle,
 #settings {
-  display: flex;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  border: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  background: none;
-  border: 1px solid var(--main-text-color);
-  & svg {
-    margin: 0;
-  }
+  @extend .button;
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--main-text-color);
 }
 
 .settings__item {

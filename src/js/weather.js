@@ -297,7 +297,7 @@ function weatherD(data) {
       <div>
         <p title="Восход солнца" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-sunrise"></use></svg>${sunrise}</p>
         <p title="Закат солнца" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-sunset"></use></svg>${sunsetH}:${sunsetM}</p>
-         <p title="Восход луны" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-moonrise"></use></svg>${moonrise24}</p>
+        <p title="Восход луны" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-moonrise"></use></svg>${moonrise24}</p>
         <p title="Закат луны" class="condition-block-item"><svg width="32" height="32"><use href="${sprite}#icon-moonset"></use></svg>${moonset24}</p>
       </div>
       <div>
@@ -407,24 +407,3 @@ function weatherFourDayRender(data) {
     .join('');
   weatherDayTest = '<div class="card-week">' + weekOne + '</div>';
 }
-// window.matchMedia('(min-width: 1600px)').addEventListener('change', e => {
-//   if (!e.matches) {
-//     Report.failure(
-//       'Ваша ширина экрана менее 1600px',
-//       'Для отображения всего контенты измените разрешение экрана, или масштаб страницы'
-//     );
-//   }
-//   return;
-// });
-// screenWidth();
-// function screenWidth() {
-//   const screenWidth = window.innerWidth;
-//   if (screenWidth < 420) {
-//     return;
-//   } else if (screenWidth < 1600) {
-//     Report.failure(
-//       'Ваша ширина экрана менее 1600px',
-//       'Для отображения всего контенты измените разрешение экрана, или масштаб страницы'
-//     );
-//   }
-// }
