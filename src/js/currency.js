@@ -485,19 +485,6 @@ let arr20 = {
   labels: ['25-06', '26-06', '27-06', '28-06', '29-06', '30-06', '01-07'],
   data: [40.1852, 39.7738, 39.9238, 40.0225, 40.0042, 40.1006, 40.0006],
 };
-localStorage.setItem('storyCurrencyNBU', JSON.stringify(arr20));
-axios
-  .request(
-    `https://bank.gov.ua/NBU_Exchange/exchange_site?start=20220115&end=20220131&valcode=usd&sort=exchangedate&order=desc&json`,
-    { referrerPolicy: 'strict-origin-when-cross-origin' }
-  )
-  .then(function (response) {
-    console.log(response.data);
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-  .finally(function () {});
 
 // document.addEventListener('DOMContentLoaded', () => {
 //   new Chart(document.querySelector('.chart'), {
