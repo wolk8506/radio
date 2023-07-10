@@ -7,4 +7,4 @@ import './js/footer';
 // import './js/chart';
 // import './js/test';
 
-console.log('v4.1.1');
+console.log('v4.1.2');

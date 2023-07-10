@@ -480,50 +480,134 @@ function nbu(data2) {
         </tr>
       </table>`;
 }
+// let ctx = document.getElementById('myChart').getContext('2d');
 
-let arr20 = {
-  labels: ['25-06', '26-06', '27-06', '28-06', '29-06', '30-06', '01-07'],
-  data: [40.1852, 39.7738, 39.9238, 40.0225, 40.0042, 40.1006, 40.0006],
-};
+// let arr20 = {
+//   labels: [
+//     '01-07',
+//     '30-07',
+//     '30-06',
+//     '29-06',
+//     '28-06',
+//     '27-06',
+//     '26-06',
+//     '25-06',
+//   ],
+//   data: [
+//     40.1852, 39.7738, 39.9238, 40.0225, 40.0042, 40.1006, 40.0006, 40.0006,
+//   ],
+// };
+// var moment = require('moment');
+// // let currentDayEvent = moment().format('MM-DD');
+// let arr21 = { labels: [], data: [] };
+// let p = 0;
+// for (let n = 0; n < 7; n++) {
+//   let d = moment().subtract(n, 'days').format('DD-MM');
+//   let d_q = moment().subtract(n, 'days').format('YYYYMMDD');
+//   let d_1 = moment()
+//     .subtract(n + 1, 'days')
+//     .format('DD-MM');
+//   let d_1_q = moment()
+//     .subtract(n + 1, 'days')
+//     .format('YYYYMMDD');
+//   if (arr20.labels[0] === d && n === 0) {
+//     console.log(1000);
+//     arr21 = [arr20];
 
-// document.addEventListener('DOMContentLoaded', () => {
-//   new Chart(document.querySelector('.chart'), {
+//     // return;
+//   }
+//   if (arr20.labels[0] !== d && n === 0) {
+//     console.log(n, 'делаем запрос на дату', d);
+//     axios
+//       .request(
+//         `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${d_q}&json`,
+//         { referrerPolicy: 'origin-when-cross-origin' }
+//       )
+//       .then(function (response) {
+//         console.log(response.data.find(el => el.cc == 'EUR').rate);
+//         arr21.data[0] = response.data.find(el => el.cc == 'EUR').rate;
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       })
+//       .finally(function () {});
+//     arr21.labels[0] = d;
+//     // arr21.data[0] = n;
+//     p++;
+//   }
+//   if (arr20.labels[n] === d_1 && n !== 0) {
+//     console.log(n, 'добавляем в массив дату', d_1);
+//     arr21.labels[n] = d_1;
+//     arr21.data[n] = n;
+//     p++;
+//   } else {
+//     if (0 < n < 7) {
+//       console.log(n + 1, 'делаем запрос на дату', d_1);
+//       f2(d_1_q, n);
+//       arr21.labels[n + 1] = d_1;
+
+//       p++;
+//     }
+//   }
+// }
+
+// function f2(d_1_q, n) {
+//   axios
+//     .request(
+//       `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${d_1_q}&json`,
+//       { referrerPolicy: 'origin-when-cross-origin' }
+//     )
+//     .then(function (response) {
+//       // console.log(response.data.find(el => el.cc == 'EUR').rate);
+//       arr21.data[n + 1] = response.data.find(el => el.cc == 'EUR').rate;
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//     })
+//     .finally(function () {
+//       renderChart();
+//     });
+// }
+
+// f1();
+
+// function f1() {
+//   console.log(arr21.labels[0]);
+// }
+
+// setTimeout(fu, 2000);
+// function fu() {
+//   new Chart(ctx, {
 //     type: 'line', // вернули линейный тип
 //     data: {
-//       labels: arr20.labels,
+//       labels: [
+//         arr21.labels[6],
+//         arr21.labels[5],
+//         arr21.labels[4],
+//         arr21.labels[3],
+//         arr21.labels[2],
+//         arr21.labels[1],
+//         arr21.labels[0],
+//       ],
 //       datasets: [
 //         {
 //           label: 'EUR',
-//           data: arr20.data,
+//           data: [
+//             arr21.data[6],
+//             arr21.data[5],
+//             arr21.data[4],
+//             arr21.data[3],
+//             arr21.data[2],
+//             arr21.data[1],
+//             arr21.data[0],
+//           ],
 //           borderColor: 'crimson',
 //           borderWidth: 3,
 //           backgroundColor: 'crimson',
 //           cubicInterpolationMode: 'monotone', // добавили сглаживание углов
 //         },
-//         // {
-//         //   label: 'USD',
-//         //   data: [36.5686, 36.5686, 36.5686, 36.5686, 36.5686],
-//         //   borderColor: 'teal',
-//         //   borderWidth: 3,
-//         //   backgroundColor: 'teal',
-//         //   cubicInterpolationMode: 'monotone', // добавили сглаживание углов
-//         // },
 //       ],
 //     },
 //     options: {},
 //   });
-// });
-
-// const dateId = document.querySelector('#dateId');
-// const date1 = new Date();
-// dateId.max = date1.toISOString().split('T')[0];
-// dateId.value = date1.toISOString().split('T')[0];
-
-// dateId.oninput = function (e) {
-// const date = new Date();
-// const dateSearch = date.toISOString().split('T')[0].split('-').join('');
-
-// const dateSearch = date.toISOString().split('T')[0];
-// console.log(dateSearch);
-// console.log(e.target.value);
-// };
+// }
