@@ -129,14 +129,43 @@ function currencyA(data) {
     };
     localStorage.setItem('storyCurrency', JSON.stringify(arr12));
 
+    let b = 0; //переменнная что-бы не выводилось больше одного уведомления при изменении курса
+    const c = [0, 0, 0, 0, 0, 0, 0, 0]; // массив хранит текущий курс при изменении перезаписывает
+
     for (let n = 0; n < 8; n++) {
       const a = (arr12[d1][n] - arr12[d2][n]).toFixed(4);
       differentCurrency[n] = Number(a);
+      // !!! Уведомление об изменении курса валют!!!!!!!!!!!!!!!!!
+      if (c[n] !== arr12[d2][n]) {
+        c[n] = arr12[d2][n];
+        // console.log(c);
+        b++;
+      }
+
+      // if (Number(a) !== 0) {
+      //   b++;
+      // }
+
+      // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       if (a > 0) {
         arrowCurrency[n] = 'up';
       } else if (a < 0) {
         arrowCurrency[n] = 'down';
       } else arrowCurrency[n] = 'undefined';
+    }
+
+    if (b !== 0) {
+      b = 0;
+      // console.log('уведомление');
+      // Уведомление об обновлении курса валют
+      Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+          new Notification('Hi!', {
+            body: 'Курс валют обновлен',
+            icon: 'https://tapajyoti-bose.vercel.app/img/logo.png',
+          });
+        }
+      });
     }
   } else {
     arr12 = {
@@ -432,7 +461,12 @@ function currencyA(data) {
 const date = new Date();
 const dateSearch = date.toISOString().split('T')[0].split('-').join('');
 
+var moment = require('moment');
+const dateSearchTomorrow = moment().add(1, 'days').format('YYYYMMDD');
+const dateSearchTomorrowTable = moment().add(1, 'days').format('DD-MM');
+
 let dataNBU = [];
+let dataNBU2 = [];
 axios
   .request(
     `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${dateSearch}&json`,
@@ -447,11 +481,80 @@ axios
   })
   .finally(function () {});
 
+axios
+  .request(
+    `https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?date=${dateSearchTomorrow}&json`,
+    { referrerPolicy: 'origin-when-cross-origin' }
+  )
+
+  .then(function (response) {
+    dataNBU2 = response.data;
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .finally(function () {});
+
+// !!!! Запрос на международные резарвы на 2 месяца
+const dateSearchM = moment().add(-1, 'month').format('YYYYMM');
+console.log(dateSearchM);
+const dateSearchmNext = moment().add(0, 'month').format('YYYYMM');
+axios
+  .request(
+    `https://bank.gov.ua/NBUStatService/v1/statdirectory/res?date=${dateSearchM}&json`,
+    { referrerPolicy: 'origin-when-cross-origin' }
+  )
+
+  .then(function (response) {
+    const data_a = [];
+    response.data.map(i => {
+      data_a.push({
+        data2: i.dt,
+        name: i.txt,
+        val: i.value,
+      });
+    });
+
+    console.table(data_a);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .finally(function () {});
+axios
+  .request(
+    `https://bank.gov.ua/NBUStatService/v1/statdirectory/res?date=${dateSearchmNext}&json`,
+    { referrerPolicy: 'origin-when-cross-origin' }
+  )
+
+  .then(function (response) {
+    const data_a = [];
+    response.data.map(i => {
+      data_a.push({
+        data2: i.dt,
+        name: i.txt,
+        val: i.value,
+      });
+    });
+
+    console.table(data_a);
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+  .finally(function () {});
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 function nbu(data2) {
   const data = dataNBU;
+  const data_tonorrow = dataNBU2;
+
   const USD = data.find(el => el.cc == 'USD').rate;
   const EUR = data.find(el => el.cc == 'EUR').rate;
   const PLN = data.find(el => el.cc == 'PLN').rate;
+
+  const USD2 = data_tonorrow.find(el => el.cc == 'USD').rate;
+  const EUR2 = data_tonorrow.find(el => el.cc == 'EUR').rate;
+  const PLN2 = data_tonorrow.find(el => el.cc == 'PLN').rate;
 
   table.innerHTML = `<table>
         <tr>
@@ -459,25 +562,31 @@ function nbu(data2) {
           <th>Покупка MONO</th>
           <th>Продажа MONO</th>
           <th>Курс НБУ</th>
+          <th>Курс НБУ ${dateSearchTomorrowTable}</th>
+
         </tr>
         <tr>
           <th>USD</th>
           <td>${data2[0].rateBuy}</td>
           <td>${data2[0].rateSell}</td>
           <td>${USD}</td>
+          <td>${USD2}</td>
         </tr>
         <tr>
           <th>EUR</th>
           <td>${data2[1].rateBuy}</td>
           <td>${data2[1].rateSell}</td>
           <td>${EUR}</td>
+          <td>${EUR2}</td>
         </tr>
         <tr>
           <th>PLZ</th>
           <td>${data2[2].rateBuy}</td>
           <td>${data2[2].rateSell}</td>
           <td>${PLN}</td>
+          <td>${PLN2}</td>
         </tr>
+        
       </table>`;
 }
 // let ctx = document.getElementById('myChart').getContext('2d');
