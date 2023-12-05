@@ -7,7 +7,7 @@ import './js/footer';
 // import './js/chart';
 // import './js/test';
 
-console.log('v4.2');
+console.log('v4.3');
 // Notification.requestPermission().then(permission => {
 //   if (permission === 'granted') {
 //     new Notification('Hi there!', {

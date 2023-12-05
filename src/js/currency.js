@@ -552,9 +552,16 @@ function nbu(data2) {
   const EUR = data.find(el => el.cc == 'EUR').rate;
   const PLN = data.find(el => el.cc == 'PLN').rate;
 
-  const USD2 = data_tonorrow.find(el => el.cc == 'USD').rate;
-  const EUR2 = data_tonorrow.find(el => el.cc == 'EUR').rate;
-  const PLN2 = data_tonorrow.find(el => el.cc == 'PLN').rate;
+  let USD2 = '---------';
+  let EUR2 = '---------';
+  let PLN2 = '---------';
+
+  if (data_tonorrow.length !== 0) {
+    USD2 = data_tonorrow.find(el => el.cc == 'USD').rate;
+    EUR2 = data_tonorrow.find(el => el.cc == 'EUR').rate;
+    PLN2 = data_tonorrow.find(el => el.cc == 'PLN').rate;
+  }
+  console.log('qqqqq', data_tonorrow.length);
 
   table.innerHTML = `<table>
         <tr>
