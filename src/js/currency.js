@@ -462,8 +462,53 @@ const date = new Date();
 const dateSearch = date.toISOString().split('T')[0].split('-').join('');
 
 var moment = require('moment');
-const dateSearchTomorrow = moment().add(1, 'days').format('YYYYMMDD');
-const dateSearchTomorrowTable = moment().add(1, 'days').format('DD-MM');
+// const dateSearchTomorrow = moment().add(1, 'days').format('YYYYMMDD');
+let dateSearchTomorrow = '20230101';
+let dateSearchTomorrowTable = '01-01';
+
+// console.log(moment().format('dddd'));
+// console.log(dateSearchTomorrow);
+
+// const expr = moment().format('dddd');
+
+switch (moment().format('dddd')) {
+  case 'Sunday':
+    // console.log('Sunday switch');
+    dateSearchTomorrow = moment().add(1, 'days').format('YYYYMMDD');
+    dateSearchTomorrowTable = moment().add(1, 'days').format('DD-MM');
+    break;
+  case 'Monday':
+    // console.log('Monday switch');
+    dateSearchTomorrow = moment().add(1, 'days').format('YYYYMMDD');
+    dateSearchTomorrowTable = moment().add(1, 'days').format('DD-MM');
+    break;
+  case 'Tuesday':
+    // console.log('Tuesday switch');
+    dateSearchTomorrow = moment().add(1, 'days').format('YYYYMMDD');
+    dateSearchTomorrowTable = moment().add(1, 'days').format('DD-MM');
+    break;
+  case 'Wednesday':
+    // console.log('Wednesday switch');
+    dateSearchTomorrow = moment().add(1, 'days').format('YYYYMMDD');
+    dateSearchTomorrowTable = moment().add(1, 'days').format('DD-MM');
+    break;
+  case 'Thursday':
+    // console.log('Thursday switch');
+    dateSearchTomorrow = moment().add(1, 'days').format('YYYYMMDD');
+    dateSearchTomorrowTable = moment().add(1, 'days').format('DD-MM');
+    break;
+  case 'Friday':
+    // console.log('Friday switch');
+    dateSearchTomorrow = moment().add(3, 'days').format('YYYYMMDD');
+    dateSearchTomorrowTable = moment().add(3, 'days').format('DD-MM');
+    break;
+  case 'Saturday':
+    // console.log('Saturday switch');
+    dateSearchTomorrow = moment().add(2, 'days').format('YYYYMMDD');
+    dateSearchTomorrowTable = moment().add(2, 'days').format('DD-MM');
+    break;
+}
+// console.log(dateSearchTomorrow);
 
 let dataNBU = [];
 let dataNBU2 = [];
@@ -480,6 +525,8 @@ axios
     console.log(error);
   })
   .finally(function () {});
+
+// !!!! Запрос курса валют на завтра
 
 axios
   .request(
